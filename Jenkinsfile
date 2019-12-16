@@ -27,8 +27,6 @@ pipeline {
                 sshagent(['node-app-server']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 << EOF
-                        pwd
-                        ls
                         cd dvna
                         git pull origin master
                         export MYSQL_USER=root
@@ -37,7 +35,7 @@ pipeline {
                         export MYSQL_HOST=127.0.0.1
                         export MYSQL_PORT=3306
                         npm install
-                        npm start
+                        pm2 start server.js
                         EOF
                        '''
                 }                        
