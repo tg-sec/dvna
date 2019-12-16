@@ -26,8 +26,10 @@ pipeline {
             steps {
                 sshagent(['node-app-server']) {
                     sh '''
+                        ssh chaos@10.0.2.20
                         pwd
                         ls
+                        cd dvna
                         git pull origin master
                         export MYSQL_USER=root
                         export MYSQL_DATABASE=dvna
