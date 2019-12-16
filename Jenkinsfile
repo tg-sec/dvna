@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sshagent(['node-app-server']) {
                     sh '''
-                        ssh chaos@10.0.2.20
+                        ssh -o StrictHostKeyChecking=no chaos@10.0.2.20
                         pwd
                         ls
                         cd dvna
