@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sshagent(['node-app-server']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no chaos@10.0.2.20
+                        ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 << EOF
                         pwd
                         ls
                         cd dvna
@@ -38,6 +38,7 @@ pipeline {
                         export MYSQL_PORT=3306
                         npm install
                         npm start
+                        EOF
                        '''
                 }                        
             }
