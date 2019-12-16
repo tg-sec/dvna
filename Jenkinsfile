@@ -37,6 +37,7 @@ pipeline {
                         npm install
                         npm start
                        '''
-                        
-    }
+                }                        
+            }
+        }
 }
