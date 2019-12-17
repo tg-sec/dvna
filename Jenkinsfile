@@ -25,6 +25,7 @@ pipeline {
         stage ('Deploy to App Server') {
             steps {
                 sshagent(['node-app-server']) {
+                    sh 'echo "Deploying App to Server"'
                     sh '''
                         ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 << EOF
                         cd dvna
