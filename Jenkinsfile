@@ -36,6 +36,7 @@ pipeline {
                         export MYSQL_HOST=127.0.0.1
                         export MYSQL_PORT=3306
                         npm install
+                        
                         EOF
                        '''
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "cd dvna && pm2 start server.js"'
