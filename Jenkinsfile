@@ -25,8 +25,9 @@ pipeline {
         stage ('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv ('SonarQube') {
+                    sh 'printenv | grep onar'
                     sh '${pwd}/bin/sonar-scanner'
-                    sh 'act ${pwd}/target/sonar/report-task.txt'
+                    sh 'cat ${pwd}/target/sonar/report-task.txt'
                 }
             }    
         }   
