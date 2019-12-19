@@ -25,9 +25,8 @@ pipeline {
         stage ('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv ('SonarQube') {
-                    sh '''
-                       docker run -ti -v $(pwd):/root/src --link sonarqube mitch/sonarscanner sonar-scanner
-                       '''
+                    sh '${pwd}/bin/sonar-scanner'
+                    sh 'act ${pwd}/target/sonar/report-task.txt'
                 }
             }    
         }   
