@@ -23,11 +23,12 @@ pipeline {
         }
         
         stage ('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'SonarQube Scanner'
+            }
             steps {
                 withSonarQubeEnv ('SonarQube') {
-                    sh 'printenv | grep onar'
-                    sh '${pwd}/bin/sonar-scanner'
-                    sh 'cat ${pwd}/target/sonar/report-task.txt'
+                    sh '${scannerHome}/bin/sonar-scanner'
                 }
             }    
         }   
