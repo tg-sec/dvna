@@ -29,7 +29,7 @@ pipeline {
             steps {
                 withSonarQubeEnv ('SonarQube') {
                     sh '${scannerHome}/bin/sonar-scanner'
-                    sh 'cat target/sonar/report-task.txt'
+                    sh 'cat .scannerwork/report-task.txt'
                 }
             }    
         }   
