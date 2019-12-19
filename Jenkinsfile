@@ -22,6 +22,14 @@ pipeline {
             }
         }
         
+        stage ('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv ('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }    
+        }   
+        
         stage ('Deploy to App Server') {
             steps {
                 sshagent(['node-app-server']) {
