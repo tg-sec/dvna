@@ -1,0 +1,54 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Report for Task 1\n\n\nSetting up VMs\n\n\n\n\nThe setup is of two VMs running Ubuntu 18.04 on VirtualBox.\n\n\nOne VM has the Jenkins setup, the other is used to deploy DVNA via Jenkins.\n\n\n\n\nSetting up Jenkins VM\n\n\n\n\nInstalled Jenkins via the documentation on the site.\n\n\n\n\nSetting up Deployment VM\n\n\nDeployment script:\n\n\n#!/bin/bash\n\ncd dvna\ngit pull origin master\nexport MYSQL_USER=root\nexport MYSQL_DATABASE=dvna\nexport MYSQL_PASSWORD=AyushPriya#10\nexport MYSQL_HOST=127.0.0.1\nexport MYSQL_PORT=3306\nnpm install\npm2 restart server.js\n\n\n\n\nSetting up DVNA\n\n\n\n\nForked the DVNA repository\n\n\nAdded a Jenkinsfile to run the pipeline\n\n\nCloned the repository on the Deployment Server\n\n\nInstalled MySQL for DVNA\n\n\n\n\nSetting up the Pipeline\n\n\nWrote the following Jenkinsfile for the pipeline:\n\n\npipeline {\n    agent any\n\n    stages {\n\n        stage ('Initialization') {\n            steps {\n                sh 'echo \"Starting the build\"'\n            }\n        }\n\n        stage ('Build') {\n            steps {\n                sh '''\n                    export MYSQL_USER=root\n                    export MYSQL_DATABASE=dvna\n                    export MYSQL_PASSWORD=ayushpriya10\n                    export MYSQL_HOST=127.0.0.1\n                    export MYSQL_PORT=3306\n                    npm install\n                   '''\n            }\n        }\n\n        stage ('SonarQube Analysis') {\n            environment {\n                scannerHome = tool 'SonarQube Scanner'\n            }\n            steps {\n                withSonarQubeEnv ('SonarQube') {\n                    sh '${scannerHome}/bin/sonar-scanner'\n                    sh 'cat .scannerwork/report-task.txt'\n                }\n            }\n        }\n\n        stage ('Deploy to App Server') {\n            steps {\n                sshagent(['node-app-server']) {\n                    sh 'echo \"Deploying App to Server\"'\n                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 \"./deploy.sh\"'\n                }\n            }\n        }\n    }\n}\n\n\n\n\n\nPlugin used: OWASP Dependency Check\n\n\nStatic Analysis with SonarQube\n\n\n\n\nUsed SonarQube's docker image to run the application\n\n\nConfigured the jenkins plugin for SonarQube with Access Token\n\n\n\n\nDeploying the report in Markdown\n\n\n\n\nUsed \nmkdocs\n to build the static site\n\n\nCopied the static site to web root\n\n\nUsed Apache as the server\n\n\n\n\nResources\n\n\n\n\nhttps://hub.docker.com/_/sonarqube/\n\n\nhttps://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f\n\n\nhttps://codebabel.com/sonarqube-with-jenkins/amp/\n\n\nhttps://github.com/xseignard/sonar-js\n\n\nhttps://discuss.bitrise.io/t/sonarqube-authorization-problem/4229/2",
+            "title": "Home"
+        },
+        {
+            "location": "/#report-for-task-1",
+            "text": "",
+            "title": "Report for Task 1"
+        },
+        {
+            "location": "/#setting-up-vms",
+            "text": "The setup is of two VMs running Ubuntu 18.04 on VirtualBox.  One VM has the Jenkins setup, the other is used to deploy DVNA via Jenkins.",
+            "title": "Setting up VMs"
+        },
+        {
+            "location": "/#setting-up-jenkins-vm",
+            "text": "Installed Jenkins via the documentation on the site.",
+            "title": "Setting up Jenkins VM"
+        },
+        {
+            "location": "/#setting-up-deployment-vm",
+            "text": "Deployment script:  #!/bin/bash\n\ncd dvna\ngit pull origin master\nexport MYSQL_USER=root\nexport MYSQL_DATABASE=dvna\nexport MYSQL_PASSWORD=AyushPriya#10\nexport MYSQL_HOST=127.0.0.1\nexport MYSQL_PORT=3306\nnpm install\npm2 restart server.js",
+            "title": "Setting up Deployment VM"
+        },
+        {
+            "location": "/#setting-up-dvna",
+            "text": "Forked the DVNA repository  Added a Jenkinsfile to run the pipeline  Cloned the repository on the Deployment Server  Installed MySQL for DVNA",
+            "title": "Setting up DVNA"
+        },
+        {
+            "location": "/#setting-up-the-pipeline",
+            "text": "Wrote the following Jenkinsfile for the pipeline:  pipeline {\n    agent any\n\n    stages {\n\n        stage ('Initialization') {\n            steps {\n                sh 'echo \"Starting the build\"'\n            }\n        }\n\n        stage ('Build') {\n            steps {\n                sh '''\n                    export MYSQL_USER=root\n                    export MYSQL_DATABASE=dvna\n                    export MYSQL_PASSWORD=ayushpriya10\n                    export MYSQL_HOST=127.0.0.1\n                    export MYSQL_PORT=3306\n                    npm install\n                   '''\n            }\n        }\n\n        stage ('SonarQube Analysis') {\n            environment {\n                scannerHome = tool 'SonarQube Scanner'\n            }\n            steps {\n                withSonarQubeEnv ('SonarQube') {\n                    sh '${scannerHome}/bin/sonar-scanner'\n                    sh 'cat .scannerwork/report-task.txt'\n                }\n            }\n        }\n\n        stage ('Deploy to App Server') {\n            steps {\n                sshagent(['node-app-server']) {\n                    sh 'echo \"Deploying App to Server\"'\n                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 \"./deploy.sh\"'\n                }\n            }\n        }\n    }\n}  Plugin used: OWASP Dependency Check",
+            "title": "Setting up the Pipeline"
+        },
+        {
+            "location": "/#static-analysis-with-sonarqube",
+            "text": "Used SonarQube's docker image to run the application  Configured the jenkins plugin for SonarQube with Access Token",
+            "title": "Static Analysis with SonarQube"
+        },
+        {
+            "location": "/#deploying-the-report-in-markdown",
+            "text": "Used  mkdocs  to build the static site  Copied the static site to web root  Used Apache as the server",
+            "title": "Deploying the report in Markdown"
+        },
+        {
+            "location": "/#resources",
+            "text": "https://hub.docker.com/_/sonarqube/  https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f  https://codebabel.com/sonarqube-with-jenkins/amp/  https://github.com/xseignard/sonar-js  https://discuss.bitrise.io/t/sonarqube-authorization-problem/4229/2",
+            "title": "Resources"
+        }
+    ]
+}

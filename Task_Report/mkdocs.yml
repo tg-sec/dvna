@@ -1,0 +1,4 @@
+site_name: 'Jenkins Pipeline'
+
+pages:
+- Home: 'index.md'
