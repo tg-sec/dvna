@@ -39,7 +39,7 @@ pipeline {
                 sshagent(['node-app-server']) {
                     sh 'echo "Deploying App to Server"'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "pm2 stop dvna/server.js"'
-                    sh 'scp . chaos@10.0.2.20:/dvna'
+                    sh 'scp -r . chaos@10.0.2.20:/dvna'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/"'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "cd dvna && pm2 start server.js"'
                 }                        
