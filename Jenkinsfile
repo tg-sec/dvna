@@ -41,7 +41,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/ && mkdir dvna"'
                     sh 'scp -r * chaos@10.0.2.20:~/dvna'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh"'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "cd dvna && npm start"'
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "cd dvna && npm restart"'
                 }                        
             }
         }
