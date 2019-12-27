@@ -11,20 +11,16 @@
 
 ## Setting up Deployment VM
 
-Deployment script:
+Script to setup Environment Variables:
 
 ```bash
 #!/bin/bash
 
-cd dvna
-git pull origin master
 export MYSQL_USER=root
 export MYSQL_DATABASE=dvna
 export MYSQL_PASSWORD=AyushPriya#10
 export MYSQL_HOST=127.0.0.1
 export MYSQL_PORT=3306
-npm install
-pm2 restart server.js
 ```
 
 ### Setting up DVNA
@@ -41,15 +37,15 @@ Wrote the following Jenkinsfile for the pipeline:
 ```jenkins
 pipeline {
     agent any
-
+    
     stages {
-
+        
         stage ('Initialization') {
             steps {
                 sh 'echo "Starting the build"'
             }
         }
-
+        
         stage ('Build') {
             steps {
                 sh '''
@@ -62,7 +58,7 @@ pipeline {
                    '''
             }
         }
-
+        
         stage ('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner'
@@ -72,20 +68,21 @@ pipeline {
                     sh '${scannerHome}/bin/sonar-scanner'
                     sh 'cat .scannerwork/report-task.txt'
                 }
-            }
-        }
-
+            }    
+        }   
+        
         stage ('Deploy to App Server') {
             steps {
                 sshagent(['node-app-server']) {
                     sh 'echo "Deploying App to Server"'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "./deploy.sh"'
-                }
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/ && mkdir dvna"'
+                    sh 'scp -r * chaos@10.0.2.20:~/dvna'
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh && cd dvna && pm2 restart server.js"'
+                }                        
             }
         }
     }
 }
-
 ```
 
 ## Static Analysis with SonarQube
@@ -108,4 +105,3 @@ Plugin used for SAST: SonarQube
 * <https://codebabel.com/sonarqube-with-jenkins/amp/>
 * <https://github.com/xseignard/sonar-js>
 * <https://discuss.bitrise.io/t/sonarqube-authorization-problem/4229/2>
-
