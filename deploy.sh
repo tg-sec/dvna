@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd dvna
-git pull origin master
+cd dvna && git pull origin master
 export MYSQL_USER=root
 export MYSQL_DATABASE=dvna
 export MYSQL_PASSWORD=AyushPriya#10
