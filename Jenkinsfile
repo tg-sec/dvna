@@ -36,12 +36,12 @@ pipeline {
         
         stage ('Deploy to App Server') {
             steps {
-                sshagent(['node-app-server']) {
+                
                     sh 'echo "Deploying App to Server"'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/ && mkdir dvna"'
                     sh 'scp -r * chaos@10.0.2.20:~/dvna'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh && cd dvna && pm2 restart server.js"'
-                }                        
+                                        
             }
         }
     }
