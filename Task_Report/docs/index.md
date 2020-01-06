@@ -1,5 +1,17 @@
 # Report for Task 1
 
+## Problem Statement
+
+* Setup a basic pipeline (use Jenkins <https://jenkins.io/>) for generating a security report for DVNA (<https://github.com/appsecco/dvna>)
+* The DVNA code should be downloaded from Github and then undergo static analysis
+* As part of the project understand what is the tech stack for DVNA hence what potential static analysis tools can be applied here
+* Once a static analysis is done the report should be saved
+* Next the DVNA should get deployed in a server
+* To do all of the above just consider 2 virtual machines running in your laptop
+* One VM contains the Jenkins and related infrastructure
+* Second VM is for deploying the DVNA using the pipeline
+* Do document extensively in markdown and deploy the documentation in a mkdocs website on the second VM.
+
 ## Setting up VMs
 
 * The setup is of two VMs running Ubuntu 18.04 on VirtualBox.
@@ -37,15 +49,15 @@ Wrote the following Jenkinsfile for the pipeline:
 ```jenkins
 pipeline {
     agent any
-    
+
     stages {
-        
+
         stage ('Initialization') {
             steps {
                 sh 'echo "Starting the build"'
             }
         }
-        
+
         stage ('Build') {
             steps {
                 sh '''
@@ -58,7 +70,7 @@ pipeline {
                    '''
             }
         }
-        
+
         stage ('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner'
@@ -68,9 +80,9 @@ pipeline {
                     sh '${scannerHome}/bin/sonar-scanner'
                     sh 'cat .scannerwork/report-task.txt'
                 }
-            }    
-        }   
-        
+            }
+        }
+
         stage ('Deploy to App Server') {
             steps {
                 sshagent(['node-app-server']) {
@@ -78,14 +90,29 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/ && mkdir dvna"'
                     sh 'scp -r * chaos@10.0.2.20:~/dvna'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh && cd dvna && pm2 restart server.js"'
-                }                        
+                }
             }
         }
     }
 }
 ```
 
-## Static Analysis with SonarQube
+## Static Analysis
+
+Tools considered:
+
+* SonarQube
+* [NPM Audit](https://docs.npmjs.com/cli/audit)
+* [NodeJsScan](https://github.com/ajinabraham/NodeJsScan)
+* [Retire.js](https://retirejs.github.io/retire.js/)
+* [OWASP Dependency Checker](https://www.owasp.org/index.php/OWASP_Dependency_Check)
+* [auditjs](https://github.com/sonatype-nexus-community/auditjs)
+* [Synk](https://docs.npmjs.com/cli/audit)
+* [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)
+* [JSPrime](https://github.com/dpnishant/jsprime)
+* [ScanJS](https://github.com/mozilla/scanjs) (Deprecated)
+
+### Static Analysis with SonarQube
 
 Plugin used for SAST: SonarQube
 
