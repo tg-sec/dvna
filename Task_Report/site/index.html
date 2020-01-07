@@ -1,69 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
-        
-        
-        <link rel="shortcut icon" href="./img/favicon.ico">
-        <title>Jenkins Pipeline</title>
-        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="./css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-	
-	<script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script> 
-    </head>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - Jenkins Pipeline</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-    <body class="homepage">
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+<body class="wy-body-for-nav" role="document">
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href=".">Jenkins Pipeline</a>
-        </div>
+  <div class="wy-grid-for-nav">
 
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> Search
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Jenkins Pipeline</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
 </div>
+      </div>
 
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#report-for-task-1">Report for Task 1</a></li>
-            <li><a href="#setting-up-vms">Setting up VMs</a></li>
-            <li><a href="#setting-up-jenkins-vm">Setting up Jenkins VM</a></li>
-            <li><a href="#setting-up-deployment-vm">Setting up Deployment VM</a></li>
-            <li><a href="#setting-up-the-pipeline">Setting up the Pipeline</a></li>
-            <li><a href="#static-analysis-with-sonarqube">Static Analysis with SonarQube</a></li>
-            <li><a href="#deploying-the-report-in-markdown">Deploying the report in Markdown</a></li>
-            <li><a href="#resources">Resources</a></li>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#report-for-task-1">Report for Task 1</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#problem-statement">Problem Statement</a></li>
+        
+            <li><a class="toctree-l3" href="#setting-up-vms">Setting up VMs</a></li>
+        
+            <li><a class="toctree-l3" href="#setting-up-jenkins-vm">Setting up Jenkins VM</a></li>
+        
+            <li><a class="toctree-l3" href="#setting-up-deployment-vm">Setting up Deployment VM</a></li>
+        
+            <li><a class="toctree-l3" href="#setting-up-the-pipeline">Setting up the Pipeline</a></li>
+        
+            <li><a class="toctree-l3" href="#static-analysis">Static Analysis</a></li>
+        
+            <li><a class="toctree-l3" href="#configuring-trigger-with-webhook">Configuring Trigger with Webhook</a></li>
+        
+            <li><a class="toctree-l3" href="#deploying-the-report-in-markdown">Deploying the report in Markdown</a></li>
+        
+            <li><a class="toctree-l3" href="#resources">Resources</a></li>
+        
+        </ul>
+    
+
     </ul>
-</div></div>
-                <div class="col-md-9" role="main">
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
 
-<h1 id="report-for-task-1">Report for Task 1</h1>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Jenkins Pipeline</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="report-for-task-1">Report for Task 1</h1>
+<h2 id="problem-statement">Problem Statement</h2>
+<ul>
+<li>Setup a basic pipeline (use Jenkins <a href="https://jenkins.io/">https://jenkins.io/</a>) for generating a security report for DVNA (<a href="https://github.com/appsecco/dvna">https://github.com/appsecco/dvna</a>)</li>
+<li>The DVNA code should be downloaded from Github and then undergo static analysis</li>
+<li>As part of the project understand what is the tech stack for DVNA hence what potential static analysis tools can be applied here</li>
+<li>Once a static analysis is done the report should be saved</li>
+<li>Next the DVNA should get deployed in a server</li>
+<li>To do all of the above just consider 2 virtual machines running in your laptop</li>
+<li>One VM contains the Jenkins and related infrastructure</li>
+<li>Second VM is for deploying the DVNA using the pipeline</li>
+<li>Do document extensively in markdown and deploy the documentation in a mkdocs website on the second VM.</li>
+</ul>
 <h2 id="setting-up-vms">Setting up VMs</h2>
 <ul>
 <li>The setup is of two VMs running Ubuntu 18.04 on VirtualBox.</li>
@@ -74,18 +136,14 @@
 <li>Installed Jenkins via the documentation on the site.</li>
 </ul>
 <h2 id="setting-up-deployment-vm">Setting up Deployment VM</h2>
-<p>Deployment script:</p>
+<p>Script to setup Environment Variables:</p>
 <pre><code class="bash">#!/bin/bash
 
-cd dvna
-git pull origin master
 export MYSQL_USER=root
 export MYSQL_DATABASE=dvna
 export MYSQL_PASSWORD=AyushPriya#10
 export MYSQL_HOST=127.0.0.1
 export MYSQL_PORT=3306
-npm install
-pm2 restart server.js
 </code></pre>
 
 <h3 id="setting-up-dvna">Setting up DVNA</h3>
@@ -137,20 +195,54 @@ pm2 restart server.js
             steps {
                 sshagent(['node-app-server']) {
                     sh 'echo &quot;Deploying App to Server&quot;'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;./deploy.sh&quot;'
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;rm -rf dvna/ &amp;&amp; mkdir dvna&quot;'
+                    sh 'scp -r * chaos@10.0.2.20:~/dvna'
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;source ./env.sh &amp;&amp; ./env.sh &amp;&amp; cd dvna &amp;&amp; pm2 restart server.js&quot;'
                 }
             }
         }
     }
 }
-
 </code></pre>
 
-<p>Plugin used: OWASP Dependency Check</p>
-<h2 id="static-analysis-with-sonarqube">Static Analysis with SonarQube</h2>
+<h2 id="static-analysis">Static Analysis</h2>
+<p>Tools considered:</p>
+<ul>
+<li>SonarQube</li>
+<li><a href="https://docs.npmjs.com/cli/audit">NPM Audit</a></li>
+<li><a href="https://github.com/ajinabraham/NodeJsScan">NodeJsScan</a></li>
+<li><a href="https://retirejs.github.io/retire.js/">Retire.js</a></li>
+<li><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">OWASP Dependency Checker</a></li>
+<li><a href="https://github.com/sonatype-nexus-community/auditjs">auditjs</a></li>
+</ul>
+<pre><code class="bash">auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af
+</code></pre>
+
+<ul>
+<li>
+<p><a href="https://github.com/snyk/snyk#cli">Synk</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nodesecurity/nsp">NSP</a> (This is now replaced with <code>npm audit</code> starting npm@6)</p>
+</li>
+<li><a href="https://github.com/dvolvox/JSpwn">JSpwn</a> (JSPrime + ScanJs)</li>
+<li><a href="https://github.com/dpnishant/jsprime">JSPrime</a></li>
+<li><a href="https://github.com/mozilla/scanjs">ScanJS</a> (Deprecated)</li>
+</ul>
+<p>Resource for combined usage of Dependency Check, Retirejs, Snyk (and NSP): <a href="https://blog.developer.bazaarvoice.com/2018/02/27/getting-started-with-dependency-security-and-nodejs/">https://blog.developer.bazaarvoice.com/2018/02/27/getting-started-with-dependency-security-and-nodejs/</a></p>
+<h3 id="static-analysis-with-sonarqube">Static Analysis with SonarQube</h3>
+<p>Plugin used for SAST: SonarQube</p>
 <ul>
 <li>Used SonarQube's docker image to run the application</li>
 <li>Configured the jenkins plugin for SonarQube with Access Token</li>
+</ul>
+<h2 id="configuring-trigger-with-webhook">Configuring Trigger with Webhook</h2>
+<ul>
+<li>Configured a Personal Access Token on GitHub</li>
+<li>Added GitHub Server under "Configure System" with Personal Access Token generated as a Credential in Jenkins</li>
+<li>Added Webhook trigger under the repository settings</li>
+<li>Used <code>ngrok</code> to handle the event</li>
+<li>Selected the "GitHub hook trigger for GITScm polling" option under "Build triggers" for the Jenkins project</li>
 </ul>
 <h2 id="deploying-the-report-in-markdown">Deploying the report in Markdown</h2>
 <ul>
@@ -165,44 +257,45 @@ pm2 restart server.js
 <li><a href="https://codebabel.com/sonarqube-with-jenkins/amp/">https://codebabel.com/sonarqube-with-jenkins/amp/</a></li>
 <li><a href="https://github.com/xseignard/sonar-js">https://github.com/xseignard/sonar-js</a></li>
 <li><a href="https://discuss.bitrise.io/t/sonarqube-authorization-problem/4229/2">https://discuss.bitrise.io/t/sonarqube-authorization-problem/4229/2</a></li>
-</ul></div>
-        </div>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>var base_url = '.';</script>
-        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-        <script src="./js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
-    </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
 </div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
 
-    </body>
+</body>
 </html>
 
 <!--
-MkDocs version : 0.16.3
-Build Date UTC : 2019-12-19 20:42:54
+MkDocs version : 1.0.4
+Build Date UTC : 2020-01-07 03:29:51
 -->

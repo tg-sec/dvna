@@ -1,4 +1,15 @@
 site_name: 'Jenkins Pipeline'
 
 pages:
-- Home: 'index.md'
+- Introduction: 'index.md'
+- Problem Statement: 'problem_statement.md'
+- Setting Up VMs: 'setting_up_vms.md'
+- Static Analysis: 'static_analysis.md'
+- Static Analysis: static_analysis.md
+- Setting Up Pipeline: setting_up_pipeline.md
+- Configuring Webhook: configuring_webhook.md
+- Deploying documentation with `mkdocs`: deploying_report.md
+- Resources: resources.md
+
+
+theme: readthedocs
