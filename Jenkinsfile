@@ -42,25 +42,25 @@ pipeline {
         
         stage ('Dependency-Check Analysis') {
             steps {
-                sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /home/chaos/reports/dependency-check-report --prettyPrint'
+                sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
             }
         }
         
         stage ('Audit.js Analysis') {
             steps {
-                sh 'auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /home/chaos/reports/auditjs-report 2>&1'
+                sh 'auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1'
             }
         }
         
         stage ('NodeJsScan Analysis') {
             steps {
-                sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
+                sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
             }
         }
               
         stage ('Retire.js Analysis') {
             steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0'
+                sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
             }
         }
                 
