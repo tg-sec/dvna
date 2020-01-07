@@ -42,7 +42,7 @@ pipeline {
         
         stage ('Dependency-Check Analysis') {
             steps {
-                sh '/home/chaos/Downloads/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/node-app-pipeline --format JSON --out /home/chaos/reports/dependency-check-report --prettyPrint'
+                sh 'sudo /home/chaos/Downloads/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/node-app-pipeline --format JSON --out /home/chaos/reports/dependency-check-report --prettyPrint'
             }
         }
         
