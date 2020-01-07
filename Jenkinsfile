@@ -29,10 +29,16 @@ pipeline {
             steps {
                 withSonarQubeEnv ('SonarQube') {
                     sh '${scannerHome}/bin/sonar-scanner'
-                    sh 'cat .scannerwork/report-task.txt'
+                    sh 'cat .scannerwork/report-task.txt > ~/reports/sonarqube-report'
                 }
             }    
-        }   
+        }
+        
+        stage ('NPM Audit Analysis') {
+            steps {
+                sh 'npm audit --json > ~/reports/npm-audit-report'
+            }
+        }
         
         stage ('Deploy to App Server') {
             steps {
