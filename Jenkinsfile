@@ -40,6 +40,12 @@ pipeline {
             }
         }
         
+        stage ('NodeJsScan Analysis') {
+            steps {
+                sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
+            }
+        }
+        
         stage ('Deploy to App Server') {
             steps {
                     sh 'echo "Deploying App to Server"'
