@@ -46,6 +46,12 @@ pipeline {
             }
         }
         
+        stage ('Retire.js Analysis') {
+            steps {
+                sh 'retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0'
+            }
+        }
+        
         stage ('Deploy to App Server') {
             steps {
                     sh 'echo "Deploying App to Server"'
