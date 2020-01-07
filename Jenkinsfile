@@ -36,7 +36,7 @@ pipeline {
         
         stage ('NPM Audit Analysis') {
             steps {
-                sh 'npm audit --json > /home/chaos/reports/npm-audit-report'
+                sh '/home/chaos/npm-audit.sh'
             }
         }
         
