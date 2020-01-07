@@ -29,14 +29,14 @@ pipeline {
             steps {
                 withSonarQubeEnv ('SonarQube') {
                     sh '${scannerHome}/bin/sonar-scanner'
-                    sh 'cat .scannerwork/report-task.txt > ~/reports/sonarqube-report'
+                    sh 'cat .scannerwork/report-task.txt > /home/chaos/reports/sonarqube-report'
                 }
             }    
         }
         
         stage ('NPM Audit Analysis') {
             steps {
-                sh 'npm audit --json > ~/reports/npm-audit-report'
+                sh 'npm audit --json > /home/chaos/reports/npm-audit-report'
             }
         }
         
