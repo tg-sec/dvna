@@ -42,7 +42,7 @@ pipeline {
         
         stage ('NodeJsScan Analysis') {
             steps {
-                sh 'source venv/bin/activate && nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report && deactivate'
+                sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
             }
         }
         
