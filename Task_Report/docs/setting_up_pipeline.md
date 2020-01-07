@@ -1,6 +1,6 @@
-# Setting up Pipeline
+# Setting Up Pipeline
 
-Wrote the following Jenkinsfile for the pipeline:
+The following is the Jenkinsfile to execute the pipeline:
 
 ```jenkins
 pipeline {
