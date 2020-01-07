@@ -52,6 +52,12 @@ pipeline {
             }
         }
         
+        stage ('Audit.js Analysis') {
+            steps {
+                sh 'auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /home/chaos/reports/auditjs-report 2>&1'
+            }
+        }
+        
         stage ('NodeJsScan Analysis') {
             steps {
                 sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
