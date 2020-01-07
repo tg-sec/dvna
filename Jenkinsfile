@@ -40,12 +40,6 @@ pipeline {
             }
         }
         
-        stage ('Retire.js Analysis') {
-            steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0'
-            }
-        }
-        
         stage ('Dependency-Check Analysis') {
             steps {
                 sh '/home/chaos/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/node-app-pipeline --format JSON --out /home/chaos/reports/dependency-check-report --prettyPrint'
@@ -63,7 +57,13 @@ pipeline {
                 sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
             }
         }
-        
+              
+        stage ('Retire.js Analysis') {
+            steps {
+                sh 'retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0'
+            }
+        }
+                
         stage ('Deploy to App Server') {
             steps {
                     sh 'echo "Deploying App to Server"'
