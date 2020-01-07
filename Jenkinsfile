@@ -48,7 +48,7 @@ pipeline {
         
         stage ('Audit.js Analysis') {
             steps {
-                sh 'auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1'
+                sh '/home/chaos/auditjs.sh'
             }
         }
         
