@@ -141,7 +141,7 @@ stage ('Dependency-Check Analysis') {
 }
 ```
 
-### [auditjs](https://github.com/sonatype-nexus-community/auditjs)
+### [Auditjs](https://github.com/sonatype-nexus-community/auditjs)
 
 * To install Audit.js, use the following command:
 

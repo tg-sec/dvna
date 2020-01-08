@@ -1,6 +1,6 @@
 # Problem Statement
 
-* Setup a basic pipeline (use [Jenkins](https://jenkins.io/)) for generating a security report for [DVNA](https://github.com/appsec)o/dvna).
+* Setup a basic pipeline (use [Jenkins](https://jenkins.io/)) for generating a security report for [DVNA](https://github.com/appsecco/dvna).
 * The DVNA code should be downloaded from Github and then undergo static analysis.
 * As part of the project understand what is the tech stack for DVNA hence what potential static analysis tools can be applied here.
 * Once a static analysis is done the report should be saved.
