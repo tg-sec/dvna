@@ -5,13 +5,6 @@
 
 The following are some tools that I found to perform SAST on Nodejs Applications:
 
-* [NSP](https://github.com/nodesecurity/nsp) (This is now replaced with `npm audit` starting npm@6)
-* [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)
-* [JSPrime](https://github.com/dpnishant/jsprime)
-* [ScanJS](https://github.com/mozilla/scanjs) (Deprecated)
-
-Resource for combined usage of Dependency Check, Retirejs, Snyk (and NSP): <https://blog.developer.bazaarvoice.com/2018/02/27/getting-started-with-dependency-security-and-nodejs/>
-
 ### [SonarQube](https://www.sonarqube.org/)
 
 * Used SonarQube's docker image to run the application with the following command:
@@ -55,7 +48,7 @@ npm install -g npm@latest
 #!/bin/bash
 
 cd /var/lib/jenkins/workspace/node-app-pipeline
-npm audit --json > /home/chaos/reports/npm-audit-report
+npm audit --json > /var/lib/jenkins/reports/npm-audit-report
 
 echo $? > /dev/null
 ```
@@ -83,7 +76,7 @@ pip3 install nodejsscan
 * To analyse the Nodejs project, the following command is used:
 
 ```bash
-nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report
+nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report
 ```
 
 * Add the following stage in the Jenkinsfile:
@@ -91,7 +84,7 @@ nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report
 ```jenkins
 stage ('NodeJsScan Analysis') {
     steps {
-        sh 'nodejsscan --directory `pwd` --output /home/chaos/reports/nodejsscan-report'
+        sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
     }
 }
 ```
@@ -107,7 +100,7 @@ npm install -g retire
 * To analyse the project with Retire.js run the following command:
 
 ```bash
-retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0
+retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0
 ```
 
 * Add the following stage in the Jenkinsfile:
@@ -115,7 +108,7 @@ retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirej
 ```jenkins
 stage ('Retire.js Analysis') {
     steps {
-        sh 'retire --path `pwd` --outputformat json --outputpath /home/chaos/reports/retirejs-report --exitwith 0'
+        sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
     }
 }
 ```
@@ -133,13 +126,19 @@ unzip dependency-check-5.2.4-release.zip
 * To execute the scan, run the following command:
 
 ```bash
-/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/node-app-pipeline --format JSON --out /home/chaos/reports/dependency-check-report --prettyPrint
+/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/node-app-pipeline --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint
 ```
+
+**Note**: Copy the unzipped archive to `/var/lib/jenkins/` before scanning.
 
 * Add the following stage in the Jenkinfile:
 
 ```jenkins
-
+stage ('Dependency-Check Analysis') {
+    steps {
+        sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
+    }
+}
 ```
 
 ### [auditjs](https://github.com/sonatype-nexus-community/auditjs)
@@ -153,7 +152,18 @@ npm install auditjs -g
 * To perform a scan, run the following command while inside the project directory:
 
 ```bash
-auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /home/chaos/reports/auditjs-report 2>&1
+auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1
+```
+
+* Auditjs gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script to avoid failure of the pipeline. The script is as follows:
+
+```bash
+#!/bin/bash
+
+cd /var/lib/jenkins/workspace/node-app-pipeline
+auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1
+
+echo $? > /dev/null
 ```
 
 **Note**: We use `2>&1` to redirct STDERR output to STDOUT otherwise the Vulnerabilities found will not be written to the report but instead will be printed to console.
@@ -161,7 +171,58 @@ auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68
 * Add the following stage to the Jenkinsfile:
 
 ```jenkins
-
+stage ('Audit.js Analysis') {
+    steps {
+        sh '/home/chaos/auditjs.sh'
+    }
+}
 ```
 
-### [Synk](https://github.com/snyk/snyk#cli)
+### [Snyk](https://github.com/snyk/snyk#cli)
+
+* To install Snyk, use the following command:
+
+```bash
+npm install -g snyk
+```
+
+* Before scanning a project, we need to authenticate Snyk CLI which can be done as follows:
+
+```bash
+snyk auth <AUTH TOKEN>
+```
+
+* To perform a scan:
+
+```bash
+snyk test
+```
+
+* Snyk gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script to avoid failure of the pipeline. The script is as follows:
+
+```bash
+#!/bin/bash
+
+cd /var/lib/jenkins/workspace/node-app-pipeline
+snyk auth 1f3baa08-7908-413f-99fc-8b4766aef7dc
+snyk test --json > /var/lib/jenkins/reports/snyk-report
+
+echo $? > /dev/null
+```
+
+* Add the following stage to the pipeline:
+
+```jenkins
+stage ('Snyk Analysis') {
+    steps {
+        sh '/home/chaos/snyk.sh'
+    }
+}
+```
+
+### Other Tools
+
+* [NSP](https://github.com/nodesecurity/nsp) (This is now replaced with `npm audit` starting npm@6)
+* [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)
+* [JSPrime](https://github.com/dpnishant/jsprime)
+* [ScanJS](https://github.com/mozilla/scanjs) (Deprecated)
