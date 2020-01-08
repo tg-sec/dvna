@@ -40,6 +40,18 @@ pipeline {
             }
         }
         
+        stage ('NodeJsScan Analysis') {
+            steps {
+                sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
+            }
+        }
+        
+        stage ('Retire.js Analysis') {
+            steps {
+                sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
+            }
+        }
+        
         stage ('Dependency-Check Analysis') {
             steps {
                 sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
@@ -51,19 +63,7 @@ pipeline {
                 sh '/home/chaos/auditjs.sh'
             }
         }
-        
-        stage ('NodeJsScan Analysis') {
-            steps {
-                sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
-            }
-        }
               
-        stage ('Retire.js Analysis') {
-            steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
-            }
-        }
-        
         stage ('Snyk Analysis') {
             steps {
                 sh '/home/chaos/snyk.sh'
@@ -73,9 +73,10 @@ pipeline {
         stage ('Deploy to App Server') {
             steps {
                     sh 'echo "Deploying App to Server"'
+                    sh 'ssh -o StrictHostKeyChecking=n0 chaos@10.0.2.20 "cd dvna && pm2 stop server.js"'
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "rm -rf dvna/ && mkdir dvna"'
                     sh 'scp -r * chaos@10.0.2.20:~/dvna'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh && cd dvna && pm2 restart server.js"'                     
+                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 "source ./env.sh && ./env.sh && cd dvna && pm2 start server.js"'                     
             }
         }
     }
