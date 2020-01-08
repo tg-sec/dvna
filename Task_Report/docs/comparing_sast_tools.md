@@ -25,16 +25,16 @@ The following are the various vulnerabilities found by the tools used to perform
 
 ### NodeJsScan
 
-* NodeJsScan found a 34 dependenc  *based vulnerabilities:
+* NodeJsScan found a 34 dependency-based vulnerabilities:
     * Deserialization with Remote Code Execution (8 Vulnerabilities)
     * Open Redirect (1 Vulnerabilities)
     * SQL Injection (1 Vulnerabilities)
     * Secrete Hardcoded (1 Vulnerabilities)
     * Server Side Injection (1 Vulnerabilities)
     * Unescaped Variables (12 Vulnerabilities)
-    * Weak Hash Used  * (11 Vulnerabilities)
+    * Weak Hash Used (11 Vulnerabilities)
 
-* Additionally, NodeJsScan found 5 we  *based vulnerabilities:
+* Additionally, NodeJsScan found 5 web-based vulnerabilities:
     * Missing Header
         * Strict-Transport-Security (HSTS)
         * Public-Key-Pin (HPKP)
@@ -79,7 +79,7 @@ The following are the various vulnerabilities found by the tools used to perform
     * mathjs 3.10.1 (3 Vulnerabilities)
     * typed-function 0.10.5 (2 Vulnerabilities)
     * sequelize 4.44.3 (2 Vulnerabilities)
-    * expres  *fileupload 0.4.0 (1 Vulnerability)
+    * express-fileupload 0.4.0 (1 Vulnerability)
 
 ### Snyk
 
@@ -96,7 +96,7 @@ The following are the various vulnerabilities found by the tools used to perform
 
 Based on the reports generated and the vulnerabilities found by the various scanner used to analyse DVNA, the ranking of these tools from best to worse (in my opinion) is as follows:
 
-* NodeJsScan (34 dependenc  *based + 5 we  *based)
+* NodeJsScan (34 dependency-based + 5 web-based)
 * Auditjs (22)
 * Snyk (8)
 * OWASP Dependency Check (7)
