@@ -63,6 +63,12 @@ pipeline {
                 sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
             }
         }
+        
+        stage ('Snyk Analysis') {
+            steps {
+                sh '/home/chaos/snyk.sh'
+            }
+        }
                 
         stage ('Deploy to App Server') {
             steps {
