@@ -28,7 +28,7 @@ stage ('SonarQube Analysis') {
     steps {
         withSonarQubeEnv ('SonarQube') {
             sh '${scannerHome}/bin/sonar-scanner'
-            sh 'cat .scannerwork/report-task.txt > /home/chaos/reports/sonarqube-report'
+            sh 'cat .scannerwork/report-task.txt > /var/lib/jenkins/reports/sonarqube-report'
         }
     }
 }
@@ -152,7 +152,7 @@ npm install auditjs -g
 * To perform a scan, run the following command while inside the project directory:
 
 ```bash
-auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1
+auditjs --username ayushpriya10@gmail.com --token <auth_token> /var/lib/jenkins/reports/auditjs-report 2>&1
 ```
 
 * Auditjs gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script to avoid failure of the pipeline. The script is as follows:
@@ -161,7 +161,7 @@ auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68
 #!/bin/bash
 
 cd /var/lib/jenkins/workspace/node-app-pipeline
-auditjs --username ayushpriya10@gmail.com --token 55716e0a92c8c53ae2db6296b62f68860ef5f1af > /var/lib/jenkins/reports/auditjs-report 2>&1
+auditjs --username ayushpriya10@gmail.com --token <auth_token> /var/lib/jenkins/reports/auditjs-report 2>&1
 
 echo $? > /dev/null
 ```
@@ -204,7 +204,7 @@ snyk test
 #!/bin/bash
 
 cd /var/lib/jenkins/workspace/node-app-pipeline
-snyk auth 1f3baa08-7908-413f-99fc-8b4766aef7dc
+snyk auth <auth_token>
 snyk test --json > /var/lib/jenkins/reports/snyk-report
 
 echo $? > /dev/null
@@ -220,9 +220,16 @@ stage ('Snyk Analysis') {
 }
 ```
 
-### Other Tools
+## Other Tools
 
-* [NSP](https://github.com/nodesecurity/nsp) (This is now replaced with `npm audit` starting npm@6)
-* [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)
-* [JSPrime](https://github.com/dpnishant/jsprime)
-* [ScanJS](https://github.com/mozilla/scanjs) (Deprecated)
+* [NSP](https://github.com/nodesecurity/nsp)  
+NSP or Node Security Project is now replaced with `npm audit` starting npm@6 and hence, is unavilable to new users.
+
+* [JSPrime](https://github.com/dpnishant/jsprime)  
+JSPrime lacks a CLI interface and hence, couldn't be integrated into the CI Pipeline.
+
+* [ScanJS](https://github.com/mozilla/scanjs) (Deprecated)  
+ScanJS is depracated and was throwing an exception while being run via the CLI interface.
+
+* [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)  
+JSpwn combines both JSPrime and JsScan and has a CLI interface as well. The CLI gave garbage output when ran.

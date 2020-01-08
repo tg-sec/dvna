@@ -1,0 +1,722 @@
+{
+  "vulnerabilities": [
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "alternativeIds": [],
+      "creationTime": "2019-10-22T12:22:54.665794Z",
+      "credit": [
+        "Roman Burunkov"
+      ],
+      "cvssScore": 9.8,
+      "description": "## Overview\n\n[express-fileupload](https://github.com/richardgirges/express-fileupload) is a file upload middleware for express that wraps around busboy.\n\n\nAffected versions of this package are vulnerable to Denial of Service (DoS).\nThe package does not limit file name length.\n\n## Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its intended and legitimate users.\r\n\r\nUnlike other vulnerabilities, DoS attacks usually do not aim at breaching security. Rather, they are focused on making websites and services unavailable to genuine users resulting in downtime.\r\n\r\nOne popular Denial of Service vulnerability is DDoS (a Distributed Denial of Service), an attack that attempts to clog network pipes to the system by generating a large volume of traffic from many machines.\r\n\r\nWhen it comes to open source libraries, DoS vulnerabilities allow attackers to trigger such a crash or crippling of the service by using a flaw either in the application code or from the use of open source libraries.\r\n\r\nTwo common types of DoS vulnerabilities:\r\n\r\n* High CPU/Memory Consumption- An attacker sending crafted requests that could cause the system to take a disproportionate amount of time to process. For example, [commons-fileupload:commons-fileupload](SNYK-JAVA-COMMONSFILEUPLOAD-30082).\r\n\r\n* Crash - An attacker sending crafted requests that could cause the system to crash. For Example,  [npm `ws` package](npm:ws:20171108)\n\n## Remediation\n\nUpgrade `express-fileupload` to version 1.1.6-alpha.6 or higher.\n\n\n## References\n\n- [GitHub Fix PR](https://github.com/richardgirges/express-fileupload/pull/171)\n",
+      "disclosureTime": "2019-10-18T11:17:09Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "1.1.6-alpha.6"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "SNYK-JS-EXPRESSFILEUPLOAD-473997",
+      "identifiers": {
+        "CVE": [],
+        "CWE": [
+          "CWE-79"
+        ],
+        "NSP": [
+          1216
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-11-20T09:48:38.528931Z",
+      "moduleName": "express-fileupload",
+      "packageManager": "npm",
+      "packageName": "express-fileupload",
+      "patches": [],
+      "publicationTime": "2019-10-22T15:08:40Z",
+      "references": [
+        {
+          "title": "GitHub Fix PR",
+          "url": "https://github.com/richardgirges/express-fileupload/pull/171"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<1.1.6-alpha.6"
+        ]
+      },
+      "severity": "high",
+      "title": "Denial of Service (DoS)",
+      "from": [
+        "dvna@0.0.1",
+        "express-fileupload@0.4.0"
+      ],
+      "upgradePath": [
+        false,
+        "express-fileupload@1.1.6"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "express-fileupload",
+      "version": "0.4.0"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "alternativeIds": [],
+      "creationTime": "2019-04-08T17:32:17.848023Z",
+      "credit": [
+        "Masato Kinugawa"
+      ],
+      "cvssScore": 8.8,
+      "description": "## Overview\n\n[typed-function](https://github.com/josdejong/typed-function) is a library used for type checking of JavaScript functions.\n\n\nAffected versions of this package are vulnerable to Arbitrary Code Execution\ndue to the creation of a typed function with JavaScript code in the `_name` variable.\n\n## Remediation\n\nUpgrade `typed-function` to version 0.10.6 or higher.\n\n\n## References\n\n- [Github Commit](https://github.com/josdejong/typed-function/commit/6478ef4f2c3f3c2d9f2c820e2db4b4ba3425e6fe)\n\n- [NPM Security Advisory](https://www.npmjs.com/advisories/819)\n",
+      "disclosureTime": "2017-11-27T16:13:51Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "0.10.6"
+      ],
+      "functions": [
+        {
+          "functionId": {
+            "className": null,
+            "filePath": "typed-function.js",
+            "functionName": "typed"
+          },
+          "version": [
+            "0.3.1"
+          ]
+        },
+        {
+          "functionId": {
+            "className": null,
+            "filePath": "typed-function.js",
+            "functionName": "create._typed"
+          },
+          "version": [
+            "<0.10.6"
+          ]
+        },
+        {
+          "functionId": {
+            "className": null,
+            "filePath": "typed-function.js",
+            "functionName": "_typed"
+          },
+          "version": [
+            "<0.7.0"
+          ]
+        }
+      ],
+      "functions_new": [
+        {
+          "functionId": {
+            "filePath": "typed-function.js",
+            "functionName": "typed"
+          },
+          "version": [
+            "0.3.1"
+          ]
+        },
+        {
+          "functionId": {
+            "filePath": "typed-function.js",
+            "functionName": "create._typed"
+          },
+          "version": [
+            "<0.10.6"
+          ]
+        },
+        {
+          "functionId": {
+            "filePath": "typed-function.js",
+            "functionName": "_typed"
+          },
+          "version": [
+            "<0.7.0"
+          ]
+        }
+      ],
+      "id": "SNYK-JS-TYPEDFUNCTION-174139",
+      "identifiers": {
+        "CVE": [
+          "CVE-2017-1001004"
+        ],
+        "CWE": [
+          "CWE-94"
+        ],
+        "NSP": [
+          819
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-04-09T13:06:58.428440Z",
+      "moduleName": "typed-function",
+      "packageManager": "npm",
+      "packageName": "typed-function",
+      "patches": [],
+      "publicationTime": "2019-04-08T17:26:57Z",
+      "references": [
+        {
+          "title": "Github Commit",
+          "url": "https://github.com/josdejong/typed-function/commit/6478ef4f2c3f3c2d9f2c820e2db4b4ba3425e6fe"
+        },
+        {
+          "title": "NPM Security Advisory",
+          "url": "https://www.npmjs.com/advisories/819"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<0.10.6"
+        ]
+      },
+      "severity": "high",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1",
+        "typed-function@0.10.5"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.17.0",
+        "typed-function@0.10.6"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "typed-function",
+      "version": "0.10.5"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "alternativeIds": [
+        "SNYK-JS-MATHJS-10881"
+      ],
+      "creationTime": "2018-01-28T13:00:18.453000Z",
+      "credit": [
+        "CapacitorSet",
+        "denvit"
+      ],
+      "cvssScore": 7.3,
+      "description": "## Overview\n[`mathjs`](https://www.npmjs.com/package/mathjs) is an extensive math library for JavaScript and Node.js.\n\nAffected versions of the package are vulnerable to Arbitrary Code Execution.\n\nThe expression parser in mathjs uses the `eval` and the `new Function` methods insecurely which could allow an attacker to execute arbitrary code on the remote server.\n\n## Remediation\nUpgrade `mathjs` to version 3.10.3 or higher.\n\n## References\n- [GitHub Commit](https://github.com/josdejong/mathjs/compare/v3.10.1...v3.10.3)\n- [GitHub Changelog](https://github.com/josdejong/mathjs/blob/v3.11.5/HISTORY.md#2017-03-31-version-3103)",
+      "disclosureTime": "2017-03-31T21:00:00Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "3.10.3"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:mathjs:20170331",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-MATHJS-10881"
+        ],
+        "CVE": [],
+        "CWE": [
+          "CWE-94"
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-06-02T07:09:56.746684Z",
+      "moduleName": "mathjs",
+      "packageManager": "npm",
+      "packageName": "mathjs",
+      "patches": [],
+      "publicationTime": "2018-01-28T13:00:18.453000Z",
+      "references": [
+        {
+          "title": "GitHub Changelog",
+          "url": "https://github.com/josdejong/mathjs/blob/v3.11.5/HISTORY.md%232017-03-31-version-3103"
+        },
+        {
+          "title": "GitHub Commit",
+          "url": "https://github.com/josdejong/mathjs/compare/v3.10.1...v3.10.3"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<3.10.3"
+        ]
+      },
+      "severity": "high",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.10.3"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "mathjs",
+      "version": "3.10.1"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "alternativeIds": [
+        "SNYK-JS-MATHJS-10882"
+      ],
+      "creationTime": "2018-01-28T14:01:09.995000Z",
+      "credit": [
+        "Konrad Borowski",
+        "Joe Vennix",
+        "comex"
+      ],
+      "cvssScore": 5.6,
+      "description": "## Overview\n[`mathjs`](https://www.npmjs.com/package/mathjs) is an extensive math library for JavaScript and Node.js.\n\nAffected versions of the package are vulnerable to Arbitrary Code Execution.\n\nThe expression parser in mathjs uses the `eval` and the `new Function` methods insecurely which could allow an attacker to execute arbitrary code on the remote server.\n\nthis is due to an incomplete fix for [npm:mathjs:20170331](https://snyk.io/vuln/npm:mathjs:20170331).\n\n## Remediation\nUpgrade `mathjs` to version 3.11.5 or higher.\n\n## References\n- [GitHub PR #1](https://github.com/josdejong/mathjs/issues/821)\n- [GitHub PR #2](https://github.com/josdejong/mathjs/issues/822)\n- [GitHub Changelog](https://github.com/josdejong/mathjs/blob/master/HISTORY.md#2017-04-08-version-3115)\n- [GitHub Commit](https://github.com/josdejong/mathjs/compare/v3.10.3...v3.11.5)\n",
+      "disclosureTime": "2017-04-02T21:00:00Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "3.11.5"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:mathjs:20170402",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-MATHJS-10882"
+        ],
+        "CVE": [],
+        "CWE": [
+          "CWE-94"
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-06-02T07:09:57.458673Z",
+      "moduleName": "mathjs",
+      "packageManager": "npm",
+      "packageName": "mathjs",
+      "patches": [],
+      "publicationTime": "2018-01-28T14:01:09.995000Z",
+      "references": [
+        {
+          "title": "GitHub Changelog",
+          "url": "https://github.com/josdejong/mathjs/blob/master/HISTORY.md%232017-04-08-version-3115"
+        },
+        {
+          "title": "GitHub Commit",
+          "url": "https://github.com/josdejong/mathjs/compare/v3.10.3...v3.11.5"
+        },
+        {
+          "title": "GitHub PR #1",
+          "url": "https://github.com/josdejong/mathjs/issues/821"
+        },
+        {
+          "title": "GitHub PR #2",
+          "url": "https://github.com/josdejong/mathjs/issues/822"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<3.11.5"
+        ]
+      },
+      "severity": "medium",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.11.5"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "mathjs",
+      "version": "3.10.1"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "alternativeIds": [
+        "SNYK-JS-MATHJS-10880"
+      ],
+      "creationTime": "2018-01-28T11:12:08.713000Z",
+      "credit": [
+        "Jos De Jong"
+      ],
+      "cvssScore": 5.6,
+      "description": "## Overview\n[`mathjs`](https://www.npmjs.com/package/mathjs) is an extensive math library for JavaScript and Node.js.\n\nAffected versions of the package are vulnerable to Arbitrary Code Execution. The `isSafeMethod` was able to call other methods (like bind) which is not allowed and could cause code execution on the remote server.\n\n## Remediation\nUpgrade `mathjs` to version 3.13.3 or higher.\n\n## References\n- [GitHub Changelog](https://github.com/josdejong/mathjs/blob/master/HISTORY.md#2017-05-27-version-3133)\n- [GitHub Commit](https://github.com/josdejong/mathjs/commit/ed5f2cebaf873ba1e57acbce2a3668686ac69331)\n",
+      "disclosureTime": "2017-05-27T21:00:00Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "3.13.3"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:mathjs:20170527",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-MATHJS-10880"
+        ],
+        "CVE": [],
+        "CWE": [
+          "CWE-94"
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-06-02T07:09:56.028578Z",
+      "moduleName": "mathjs",
+      "packageManager": "npm",
+      "packageName": "mathjs",
+      "patches": [],
+      "publicationTime": "2018-01-28T11:12:08.713000Z",
+      "references": [
+        {
+          "title": "GitHub Changelog",
+          "url": "https://github.com/josdejong/mathjs/blob/master/HISTORY.md%232017-05-27-version-3133"
+        },
+        {
+          "title": "GitHub Commit",
+          "url": "https://github.com/josdejong/mathjs/commit/ed5f2cebaf873ba1e57acbce2a3668686ac69331"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<3.13.3"
+        ]
+      },
+      "severity": "medium",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.13.3"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "mathjs",
+      "version": "3.10.1"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "alternativeIds": [
+        "SNYK-JS-MATHJS-10843"
+      ],
+      "creationTime": "2017-11-28T12:38:08.861000Z",
+      "credit": [
+        "Masato Kinugawa"
+      ],
+      "cvssScore": 7.3,
+      "description": "## Overview\n[`mathjs`](https://www.npmjs.com/package/mathjs) is an extensive math library for JavaScript and Node.js\n\nAffected versions of the package are vulnerable to Arbitrary Code Execution via `typed-function`.  A malicious user could possibly execute arbitrary code in the JavaScript engine, by creating a typed function with JavaScript code in the name.\n\n## Remediation\nUpgrade `mathjs` to version 3.17.0 or higher.\n\n## References\n- [GitHub Changelog](https://github.com/josdejong/mathjs/blob/master/HISTORY.md#2017-11-18-version-3170)\n- [GitHub Commit](https://github.com/josdejong/mathjs/commit/8d2d48d81b3c233fb64eb2ec1d7a9e1cf6a55a90)\n",
+      "disclosureTime": "2017-11-18T22:00:00Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "3.17.0"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:mathjs:20171118",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-MATHJS-10843"
+        ],
+        "CVE": [
+          "CVE-2017-1001002"
+        ],
+        "CWE": [
+          "CWE-94"
+        ],
+        "NSP": [
+          552
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-05-30T14:51:40.369099Z",
+      "moduleName": "mathjs",
+      "packageManager": "npm",
+      "packageName": "mathjs",
+      "patches": [],
+      "publicationTime": "2017-11-28T14:47:22.368000Z",
+      "references": [
+        {
+          "title": "GitHub Changelog",
+          "url": "https://github.com/josdejong/mathjs/blob/master/HISTORY.md%232017-11-18-version-3170"
+        },
+        {
+          "title": "GitHub Commit",
+          "url": "https://github.com/josdejong/mathjs/commit/8d2d48d81b3c233fb64eb2ec1d7a9e1cf6a55a90"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<3.17.0"
+        ]
+      },
+      "severity": "high",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.17.0"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "mathjs",
+      "version": "3.10.1"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "alternativeIds": [
+        "SNYK-JS-MATHJS-10844"
+      ],
+      "creationTime": "2017-11-28T12:38:08.861000Z",
+      "credit": [
+        "Masato Kinugawa"
+      ],
+      "cvssScore": 9.8,
+      "description": "## Overview\n[`mathjs`](https://www.npmjs.com/package/mathjs) is an extensive math library for JavaScript and Node.js\n\nAffected versions of the package are vulnerable to Arbitrary Code Execution. Forbidden properties like constructor could be replaced by using unicode characters when creating an object.\n\n## Remediation\nUpgrade `mathjs` to version 3.17.0 or higher.\n\n## References\n- [GitHub Changelog](https://github.com/josdejong/mathjs/blob/master/HISTORY.md#2017-11-18-version-3170)\n- [GitHub Commit](https://github.com/josdejong/mathjs/commit/a60f3c8d9dd714244aed7a5569c3dccaa3a4e761)\n",
+      "disclosureTime": "2017-11-18T22:00:00Z",
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "3.17.0"
+      ],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:mathjs:20171118-1",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-MATHJS-10844"
+        ],
+        "CVE": [
+          "CVE-2017-1001003"
+        ],
+        "CWE": [
+          "CWE-94"
+        ],
+        "NSP": [
+          551
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2019-06-02T07:09:42.422875Z",
+      "moduleName": "mathjs",
+      "packageManager": "npm",
+      "packageName": "mathjs",
+      "patches": [],
+      "publicationTime": "2017-11-28T14:47:22.264000Z",
+      "references": [
+        {
+          "title": "GitHub Changelog",
+          "url": "https://github.com/josdejong/mathjs/blob/master/HISTORY.md%232017-11-18-version-3170"
+        },
+        {
+          "title": "GitHub Commit",
+          "url": "https://github.com/josdejong/mathjs/commit/a60f3c8d9dd714244aed7a5569c3dccaa3a4e761"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "<3.17.0"
+        ]
+      },
+      "severity": "high",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "mathjs@3.10.1"
+      ],
+      "upgradePath": [
+        false,
+        "mathjs@3.17.0"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "mathjs",
+      "version": "3.10.1"
+    },
+    {
+      "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:U/RC:C",
+      "alternativeIds": [
+        "SNYK-JS-NODESERIALIZE-10400"
+      ],
+      "creationTime": "2017-02-12T16:38:36Z",
+      "credit": [
+        "Ajin Abraham"
+      ],
+      "cvssScore": 9.8,
+      "description": "## Overview\n[`node-serialize`](https://www.npmjs.com/package/node-serialize) serializes an object and it's function into a JSON.\n\nAffected versions of this package are vulnerable to Arbitrary Code Execution when untrusted user-input is passed into the `unserialize()` function.\n\n**Example:**\n```js\nvar serialize = require('node-serialize');\nvar payload = '{\"rce\":\"_$$ND_FUNC$$_function (){require(\\'child_process\\').exec(\\'ls /\\', function(error, stdout, stderr) { console.log(stdout) });}()\"}';\nserialize.unserialize(payload);\n```\n\n## Remediation\nThere is no fix version for `node-serialize`\n\n## References\n- [Opsecx Blog](https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/)\n- [GitHub Issue](https://github.com/luin/serialize/issues/4)\n",
+      "disclosureTime": "2017-02-08T16:38:36Z",
+      "exploit": "High",
+      "fixedIn": [],
+      "functions": [],
+      "functions_new": [],
+      "id": "npm:node-serialize:20170208",
+      "identifiers": {
+        "ALTERNATIVE": [
+          "SNYK-JS-NODESERIALIZE-10400"
+        ],
+        "CVE": [
+          "CVE-2017-5941"
+        ],
+        "CWE": [
+          "CWE-502"
+        ],
+        "NSP": [
+          311
+        ]
+      },
+      "language": "js",
+      "modificationTime": "2018-11-18T11:50:40.856566Z",
+      "moduleName": "node-serialize",
+      "packageManager": "npm",
+      "packageName": "node-serialize",
+      "patches": [],
+      "publicationTime": "2017-02-13T16:38:36Z",
+      "references": [
+        {
+          "title": "GitHub Issue",
+          "url": "https://github.com/luin/serialize/issues/4"
+        },
+        {
+          "title": "Opsecx Blog",
+          "url": "https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/"
+        }
+      ],
+      "semver": {
+        "vulnerable": [
+          "*"
+        ]
+      },
+      "severity": "high",
+      "title": "Arbitrary Code Execution",
+      "from": [
+        "dvna@0.0.1",
+        "node-serialize@0.0.4"
+      ],
+      "upgradePath": [],
+      "isUpgradable": false,
+      "isPatchable": false,
+      "name": "node-serialize",
+      "version": "0.0.4"
+    }
+  ],
+  "ok": false,
+  "org": "ayushpriya10",
+  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.14.0\nignore: {}\npatch: {}\n",
+  "isPrivate": true,
+  "licensesPolicy": {
+    "severities": {},
+    "orgLicenseRules": {}
+  },
+  "packageManager": "npm",
+  "ignoreSettings": null,
+  "summary": "8 vulnerable dependency paths",
+  "remediation": {
+    "unresolved": [
+      {
+        "CVSSv3": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:U/RC:C",
+        "alternativeIds": [
+          "SNYK-JS-NODESERIALIZE-10400"
+        ],
+        "creationTime": "2017-02-12T16:38:36Z",
+        "credit": [
+          "Ajin Abraham"
+        ],
+        "cvssScore": 9.8,
+        "description": "## Overview\n[`node-serialize`](https://www.npmjs.com/package/node-serialize) serializes an object and it's function into a JSON.\n\nAffected versions of this package are vulnerable to Arbitrary Code Execution when untrusted user-input is passed into the `unserialize()` function.\n\n**Example:**\n```js\nvar serialize = require('node-serialize');\nvar payload = '{\"rce\":\"_$$ND_FUNC$$_function (){require(\\'child_process\\').exec(\\'ls /\\', function(error, stdout, stderr) { console.log(stdout) });}()\"}';\nserialize.unserialize(payload);\n```\n\n## Remediation\nThere is no fix version for `node-serialize`\n\n## References\n- [Opsecx Blog](https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/)\n- [GitHub Issue](https://github.com/luin/serialize/issues/4)\n",
+        "disclosureTime": "2017-02-08T16:38:36Z",
+        "exploit": "High",
+        "fixedIn": [],
+        "functions": [],
+        "functions_new": [],
+        "id": "npm:node-serialize:20170208",
+        "identifiers": {
+          "ALTERNATIVE": [
+            "SNYK-JS-NODESERIALIZE-10400"
+          ],
+          "CVE": [
+            "CVE-2017-5941"
+          ],
+          "CWE": [
+            "CWE-502"
+          ],
+          "NSP": [
+            311
+          ]
+        },
+        "language": "js",
+        "modificationTime": "2018-11-18T11:50:40.856566Z",
+        "moduleName": "node-serialize",
+        "packageManager": "npm",
+        "packageName": "node-serialize",
+        "patches": [],
+        "publicationTime": "2017-02-13T16:38:36Z",
+        "references": [
+          {
+            "title": "GitHub Issue",
+            "url": "https://github.com/luin/serialize/issues/4"
+          },
+          {
+            "title": "Opsecx Blog",
+            "url": "https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/"
+          }
+        ],
+        "semver": {
+          "vulnerable": [
+            "*"
+          ]
+        },
+        "severity": "high",
+        "title": "Arbitrary Code Execution",
+        "from": [
+          "dvna@0.0.1",
+          "node-serialize@0.0.4"
+        ],
+        "upgradePath": [],
+        "isUpgradable": false,
+        "isPatchable": false,
+        "isPinnable": false,
+        "name": "node-serialize",
+        "version": "0.0.4"
+      }
+    ],
+    "upgrade": {
+      "express-fileupload@0.4.0": {
+        "upgradeTo": "express-fileupload@1.1.6",
+        "upgrades": [
+          "express-fileupload@0.4.0"
+        ],
+        "vulns": [
+          "SNYK-JS-EXPRESSFILEUPLOAD-473997"
+        ]
+      },
+      "mathjs@3.10.1": {
+        "upgradeTo": "mathjs@3.17.0",
+        "upgrades": [
+          "typed-function@0.10.5",
+          "mathjs@3.10.1",
+          "mathjs@3.10.1",
+          "mathjs@3.10.1",
+          "mathjs@3.10.1",
+          "mathjs@3.10.1"
+        ],
+        "vulns": [
+          "SNYK-JS-TYPEDFUNCTION-174139",
+          "npm:mathjs:20171118",
+          "npm:mathjs:20171118-1",
+          "npm:mathjs:20170527",
+          "npm:mathjs:20170402",
+          "npm:mathjs:20170331"
+        ]
+      }
+    },
+    "patch": {},
+    "ignore": {},
+    "pin": {}
+  },
+  "filesystemPolicy": false,
+  "filtered": {
+    "ignore": [],
+    "patch": []
+  },
+  "uniqueCount": 8,
+  "projectName": "dvna",
+  "path": "/var/lib/jenkins/workspace/node-app-pipeline"
+}
