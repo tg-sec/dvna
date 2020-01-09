@@ -4,7 +4,8 @@ The report was written in `Markdown` and `mkdocs` was used to build a static sit
 
 ## Installing `mkdocs`
 
-Installed `mkdocs` with help from the official [documentation](https://www.mkdocs.org/#installation).
+* Installed `mkdocs` with help from the official [documentation](https://www.mkdocs.org/#installation).
+* Installed `Material` theme from the official [documentation](https://squidfunk.github.io/mkdocs-material/).
 
 ## Site Configuration
 
@@ -23,7 +24,7 @@ pages:
 - Resources: resources.md
 
 
-theme: readthedocs
+theme: material
 ```
 
 ## Deploying Static Site

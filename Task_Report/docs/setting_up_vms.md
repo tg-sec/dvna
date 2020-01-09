@@ -1,12 +1,30 @@
 # Setting up VMs
 
+## Objective
+
+The aim of this section is to setup the required infrastructure to perform the task and solve the following segment of the problem statement's description:
+
+> * To do all of the above just consider 2 virtual machines running in your laptop. One VM contains the Jenkins and related infrastructure, and the second VM is for deploying the DVNA using the pipeline.
+
+## System Configuration
+
 The lab setup is of two VMs running Ubuntu 18.04 on VirtualBox. One VM has the Jenkins Infrastructure and the other is used as a Production Server to deploy the application (DVNA) on the server via the Jenkins Pipeline.
 
-* Ubuntu was installed on both VMs following this [documentation](https://linuxhint.com/install_ubuntu_18-04_virtualbox/).
+* I installed Ubuntu on both VirtualBox VMs following this [documentation](https://linuxhint.com/install_ubuntu_18-04_virtualbox/).
+
+    * I decided to go with this documentation as it was concise.
+    * I, however, chose the 'Normal Installation' under "Minimal Install Option and Third Party Software" segment instead of the ones specified in the instructions as otherwise only the essential Ubuntu core components.
+    * Additionally, I left out the optional third step "Managing installation media" as I did not need the boot media after the installation was complete.
 
 ## Installing Jenkins
 
-* Installed Jenkins following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04).
+Jenkins is a Continous Integration (CI) Tool used to automate actions for CI operations for building and deploying applications. Jenkins was used as the tool to build the application deployment pipeline as it was a requisite of the problem statement given.
+
+* Installed Jenkins following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04). I went along with this particular documentation as it seemed the easiest to follow with clear steps, and I like the style of Digital Ocean's documentations. For this documentation, I didn't skip any step.
+
+## Choosing the Application
+
+The application that was to be analysed and deployed, as required by the problem statment, was DVNA (or Damn Vulnerable Node Application). It is an intentionally vulnerable application written with Node.js and has various security issues designed to illustrate different security concepts.
 
 ## Configuring Production VM
 
@@ -14,11 +32,15 @@ To serve [DVNA](https://github.com/ayushpriya10/dvna), there were some prerequis
 
 ### Setting up DVNA
 
-* Forked the DVNA repository onto my GitHub account
-* Added a Jenkinsfile to the project repository to execute the pipeline
-* Installed MySQL for DVNA on both VMs with this [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
+* I forked the DVNA repository onto my GitHub account to be able to add files and edit project structure.
+* Then I added a Jenkinsfile to the project repository to configure pipeline stages and execute it.
+* DVNA's documentation specifies MySQL as the database needed so, to to install MySQL for DVNA I again used Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04).
+    - Under step 3, I skipped the section about provisionally MySQL access for a dedicated user. I created the 'root' user as mentioned in the documentation previously and then went straight to step 4. I did so as there was no need for an additional user after `root`.
+* MySQL was insalled the Production VM for a successful deployment of the application. The Jenkins VM need not have MySQL installed as DVNA was only getting built on this machine and not deployed.
 
-Script (env.sh) to setup environment variables on Production VM:
+To not leak the MySQL Server configuration details for the production server, I used a shell script, named `env.sh`, and placed it in the Production VM in user's home directory (`/home/<username>`). The script gets executed from the pipeline to export the Environment Variables for the application to deploy.
+
+The contents of the script (env.sh) to setup environment variables on Production VM are:
 
 ```bash
 #!/bin/bash
@@ -30,9 +52,11 @@ export MYSQL_HOST=127.0.0.1
 export MYSQL_PORT=3306
 ```
 
+This script is executed through the pipeline in the 'Deploy to App Server' stage.
+
 ### Configuring SSH Access
 
-For Jenkins to be able to perform operations and copy application files onto the on the Production VM, `ssh` configuration was required to allow the _Jenkins User_ to log on to the Production VM. For the same, the following commands can be run on the Jenkins VM:
+For Jenkins to be able to perform operations and copy application files onto the on the Production VM, `ssh` configuration was required to allow the _Jenkins User_ to log on to the Production VM. For the same, I switched to the _Jenkins User_, creates a pair of SSH keys (an extensive article about how user authentication works in SSH with public keys can be found [here](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)) and placed the public key in the Production VM:
 
 * Switching to Jenkins User
 
@@ -43,9 +67,11 @@ sudo su - jenkins
 * Generating new SSH Keys for the Jenkins User
 
 ```bash
-ssh-keygen -t rsa -b 4096 -C "<email>"
+ssh-keygen -t ed25519 -C "<email>"
 ```
 
-* The public key generated above was added to  `~/.ssh/authorized_keys` on the Production VM
+* The public key generated above was added to  `~/.ssh/authorized_keys` on the Production VM.
 
 **Note**: One could also use the `ssh-agent` plugin in Jenkins to use a different user to ssh in to the production VM. The credentails for that user will have to be added under Jenkins Credentials Section.
+
+**Note**: `ed25519` is used instead of the `rsa` option as it provides a smaller key while providing the equivalent security of an RSA key.
