@@ -91,7 +91,7 @@ pipeline {
 
 ## Stages
 
-The pipeline is divided into the following stages which perform a specific step(s):
+The pipeline is divided into the following stages which perform specific step(s):
 
 ### Initialization
 
