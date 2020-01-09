@@ -88,3 +88,23 @@ pipeline {
 }
 
 ```
+
+## Stages
+
+The pipeline is divided into the following stages which perform a specific step(s):
+
+### Initialization
+
+* This is just a dummy stage, nothing happens here.
+
+### Build
+
+* In this stage, DVNA get built locally on the Jenkins VM.
+
+### Static Analysis
+
+* All the stages that follow the Build Stage, except for the last one, consist of performing static analysis on DVNA with various tools.
+
+### Deployment
+
+* Finally, the Jenkins VM stops the existing deployment of the App on the Production VM, purges associated files, copies local build over ssh and restarts the deployment reflecting the latest changes.
