@@ -20,7 +20,7 @@ MkDocs allows users to use various themes to customise the style and look of the
 
 ## Site Configuration
 
-To build the static site, MkDocs need a YAML file, called `mkdocs.yml`, be present in the root directory of the project that configures the site structure, site title, pages, themes, etc. It is used to define properties for the site. The YAML file that I wrote for the report is below:
+To build the static site, MkDocs needs a YAML file, called `mkdocs.yml`, be present in the root directory of the project that configures the site structure, site title, pages, themes, etc. It is used to define properties for the site. The YAML file that I wrote for the report is below:
 
 ```yaml
 site_name: 'Jenkins Pipeline'
@@ -51,6 +51,6 @@ To generate the static site, in the root directory of the report, I ran the comm
 
 **Note**: To just preview how the site looks, I used `'mkdocs serve'` in the terminal to serve the site locally on my machine.
 
-Now, to serve the site I needed a web server for which I installed [Apache](https://httpd.apache.org/) following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache) as the server. I chose Apache as it is popular, has great support and is easy to work with in my opinion. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
+Now, to serve the site I needed a web server for which I installed [Apache](https://httpd.apache.org/), following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache), as the server. I chose Apache as it is popular, has great support and is easy to work with in my opinion. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
 
 Lastly, I copied the contents from static site directory (`/site`) generated with MkDocs to the web root directory (`/var/www/html`) to serve the report as a static site.

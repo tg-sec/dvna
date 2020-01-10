@@ -7,4 +7,6 @@
 5. Next the DVNA should get deployed in a server.
 6. To do all of the above just consider 2 virtual machines running in your laptop. One VM contains the Jenkins and related infrastructure, and the second VM is for deploying the DVNA using the pipeline.
 7. Do document extensively in markdown and deploy the documentation in a MkDocs website on the second VM.
-8. Additionally, there was an inferred task to address in the problem statement i.e. to create a comparitive report about how various SAST tools performed.
+8. Additionally, there was some inferred task to address in the problem statement:
+    1. To create a comparitive report about how various SAST tools performed.
+    2. To create a webhook to trigger the build when a `push` event occurs on the project repository on GitHub.

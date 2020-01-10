@@ -281,6 +281,27 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    Webhooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-authentication-for-webhook" class="md-nav__link">
+    GitHub Authentication for Webhook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-jenkins-for-webhook" class="md-nav__link">
     Configuring Jenkins for Webhook
   </a>
@@ -357,6 +378,27 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    Webhooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-authentication-for-webhook" class="md-nav__link">
+    GitHub Authentication for Webhook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-jenkins-for-webhook" class="md-nav__link">
     Configuring Jenkins for Webhook
   </a>
@@ -395,10 +437,19 @@
                 
                 
                 <h1 id="configuring-trigger-with-webhook">Configuring Trigger with Webhook</h1>
-<p>To build and deploy the application based on <code>push</code> events and new <code>releases</code> on the project repository on GitHub automatically, we need a Jenkins Webhook to handle a trigger that GitHub will send when user selected events occur. The following are the steps to create a Jenkins Webhook with GitHub:</p>
+<h2 id="objective">Objective</h2>
+<p>The aim of this section is to create and configure a webhook to automate builds based on defined events occuring on the project repository in reference to 8th point's second section in the <a href="../problem_statement/">problem statement</a>.</p>
+<h2 id="webhooks">Webhooks</h2>
+<p>Webhooks, sometimes referred to as <em>Reverse APIs</em>, are functions that are triggered on the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurence of the event.</p>
+<p>To build and deploy the application based on <code>push</code> events and new <code>releases</code> on the project repository on GitHub automatically, I needed a Jenkins Webhook to handle a trigger that GitHub will send when selected events occur.</p>
+<h2 id="github-authentication-for-webhook">GitHub Authentication for Webhook</h2>
+<p>Jenkins needs to be authenticated with GitHub for it to be able to handle a webhook. For this authentication, I needed a <em>Personal Access Token</em> or PAT on GitHub. I generated a PAT for Jenkins using this <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">documentation</a>. I used this documentation as it was GithHub's own.</p>
+<ul>
+<li>In the first section, 'Creating a token', the 7th step is where one has to choose the access that the token grants the application using the token. Here, I chose everything under the 'repo' option and nothing else as I was only concerned about <code>push</code> events.</li>
+<li>Out of the two sections present in the documentation, I skipped the second one, 'Using a token on the command line', as it was not required in the solution for the problem statement.</li>
+</ul>
 <h2 id="configuring-jenkins-for-webhook">Configuring Jenkins for Webhook</h2>
 <ul>
-<li>Firstly, we need a Personal Access Token (PAT) on GitHub to authenticate Jenkins. A PAT can be generated using this <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">documentation</a>.</li>
 <li>The PAT generated above is then added as a <code>Secret Text Credential</code> in Jenkins under <code>Credentials &gt; Add New Credential</code>.</li>
 <li>Added GitHub Server under <code>Manage Jenkins &gt; Configure System</code> with Personal Access Token generated as a Credential in Jenkins. The <code>API URL</code> used is <a href="https://api.github.com">https://api.github.com</a> and the <code>Manage Hooks</code> option is checked.</li>
 <li>Selected the <code>GitHub hook trigger for GITScm polling</code> option under <code>Build triggers</code> for the particular Jenkins project.</li>
