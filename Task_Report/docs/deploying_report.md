@@ -1,5 +1,9 @@
 # Deploying Report with `Mkdocs`
 
+## Objective
+
+This section is
+
 The report was written in `Markdown` and `mkdocs` was used to build a static site with the report.
 
 ## Installing `mkdocs`

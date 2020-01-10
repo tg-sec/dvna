@@ -1,4 +1,6 @@
-# Resources
+# References
+
+These are some references I used along with the ones mentioned implicitly in the report:
 
 * <https://hub.docker.com/_/sonarqube/>
 * <https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f>

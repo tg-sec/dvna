@@ -1,9 +1,9 @@
 Project Review 9th Jan 2020:
     ☐ Project Documentation Review Notes
         ☐ Ensure that all artefacts are in Github repo
-        ☐ Explain what is DVNA
+        ✔ Explain what is DVNA @done(20-01-09 18:16)
         ☐ Add a table decribing the comparison of the various SAST Tools
-        ☐ Add the glossary table to have a term-meaning pair for uncommon terms used in the report or terms that might have a different meaning in general.
+        ✔ Add the glossary table to have a term-meaning pair for uncommon terms used in the report or terms that might have a different meaning in general. @done(20-01-09 18:16)
         ☐ Ensure that the problem statement has been solved in broad overview steps 
             ☐ Based on the broad overview steps, document each step further if additional research and analysis activity was undertaken
             ☐ Explicitly mention the segment of the problem statement being solved by the solution.

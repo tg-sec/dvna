@@ -2,13 +2,11 @@
 
 ## Objective
 
-The aim of this section is to setup the required infrastructure to perform the task and solve the following segment of the problem statement's description:
-
-> * To do all of the above just consider 2 virtual machines running in your laptop. One VM contains the Jenkins and related infrastructure, and the second VM is for deploying the DVNA using the pipeline.
+The aim of this section is to setup the required infrastructure to perform the task and solve the 6th point of the [problem statement](problem_statement.md).
 
 ## System Configuration
 
-The lab setup is of two VMs running Ubuntu 18.04 on VirtualBox. One VM has the Jenkins Infrastructure and the other is used as a Production Server to deploy the application (DVNA) on the server via the Jenkins Pipeline.
+The lab setup is of two VMs running Ubuntu 18.04 on VirtualBox as it is an LTS (Long Term Support) version which is a desirable feature for a CI pipline. The realease notes for Ubuntu 18.04 can be found [here](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes?_ga=2.263578572.1702646424.1578630197-858707961.1578630197) for additional details. One VM has the Jenkins Infrastructure and the other is used as a Production Server to deploy the application (DVNA) on the server via the Jenkins Pipeline.
 
 * I installed Ubuntu on both VirtualBox VMs following this [documentation](https://linuxhint.com/install_ubuntu_18-04_virtualbox/).
 
@@ -35,7 +33,7 @@ To serve [DVNA](https://github.com/ayushpriya10/dvna), there were some prerequis
 * I forked the DVNA repository onto my GitHub account to be able to add files and edit project structure.
 * Then I added a Jenkinsfile to the project repository to configure pipeline stages and execute it.
 * DVNA's documentation specifies MySQL as the database needed so, to to install MySQL for DVNA I again used Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04).
-    - Under step 3, I skipped the section about provisionally MySQL access for a dedicated user. I created the 'root' user as mentioned in the documentation previously and then went straight to step 4. I did so as there was no need for an additional user after `root`.
+    - Under step 3, I skipped the section about provisionally MySQL access for a dedicated user. I created the 'root' user as mentioned in the documentation previously and then went straight to step 4 so as there was no need for an additional user after `root`.
 * MySQL was insalled the Production VM for a successful deployment of the application. The Jenkins VM need not have MySQL installed as DVNA was only getting built on this machine and not deployed.
 
 To not leak the MySQL Server configuration details for the production server, I used a shell script, named `env.sh`, and placed it in the Production VM in user's home directory (`/home/<username>`). The script gets executed from the pipeline to export the Environment Variables for the application to deploy.
