@@ -9,7 +9,7 @@ pages:
 - Comparing SAST Tools: comparing_sast_tools.md
 - Setting Up Pipeline: setting_up_pipeline.md
 - Configuring Webhook: configuring_webhook.md
-- Deploying Report: deploying_report.md
+- Deploying the Report: deploying_report.md
 - Resources: resources.md
 
 
