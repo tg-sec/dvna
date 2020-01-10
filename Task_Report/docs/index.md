@@ -8,7 +8,7 @@ The following is the report/documentation for the problem statement stated below
 * [Comparing SAST Tools](/comparing_sast_tools)
 * [Setting Up Pipeline](/setting_up_pipeline)
 * [Configuring Webhook](/configuring_webhook)
-* [Deploying documentation with `mkdocs`](/deploying_report)
+* [Deploying the Report`](/deploying_report)
 * [Resources](/resources)
 
 This documentation can also be found [online](https://jenkins-report.netlify.com/).
