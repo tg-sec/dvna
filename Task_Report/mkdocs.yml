@@ -3,7 +3,7 @@ site_name: 'Jenkins Pipeline'
 pages:
 - Introduction: 'index.md'
 - Problem Statement: 'problem_statement.md'
-- Glossary: 'gloassary.md'
+- Glossary: 'glossary.md'
 - Setting Up VMs: 'setting_up_vms.md'
 - Static Analysis: 'static_analysis.md'
 - Comparing SAST Tools: comparing_sast_tools.md

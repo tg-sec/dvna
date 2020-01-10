@@ -10,3 +10,5 @@ The following is the report/documentation for the problem statement stated below
 * [Configuring Webhook](/configuring_webhook)
 * [Deploying documentation with `mkdocs`](/deploying_report)
 * [Resources](/resources)
+
+This documentation can also be found [online](https://jenkins-report.netlify.com/).
