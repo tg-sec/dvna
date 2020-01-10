@@ -12,7 +12,7 @@ The report was written in `Markdown` as required by the problem statement. [Mark
 
 ## Installing `MkDocs`
 
-I installed `MkDocs` with the command `'pip install mkdocs'` as mentioned in the official [documentation](https://www.mkdocs.org/#installation). I just referred to the 'Installing MkDocs' section under 'Manual Installation' as the rest of the steps were not required in the context of the task/problem statement.
+I installed `MkDocs` with the command `'pip install mkdocs'` as mentioned in the official [documentation](https://www.mkdocs.org/#installation). I only referred to the 'Installing MkDocs' section under 'Manual Installation' as rest of the steps were not required in the context of the task/problem statement.
 
 ## Selecting a Theme
 
@@ -51,6 +51,6 @@ To generate the static site, in the root directory of the report, I ran the comm
 
 **Note**: To just preview how the site looks, I used `'mkdocs serve'` in the terminal to serve the site locally on my machine.
 
-Now, to serve the site I needed a web server for which I installed Apache following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache) as the server. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
+Now, to serve the site I needed a web server for which I installed [Apache](https://httpd.apache.org/) following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache) as the server. I chose Apache as it is popular, has great support and is easy to work with in my opinion. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
 
 Lastly, I copied the contents from static site directory (`/site`) generated with MkDocs to the web root directory (`/var/www/html`) to serve the report as a static site.
