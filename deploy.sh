@@ -6,4 +6,4 @@ export MYSQL_DATABASE=dvna
 export MYSQL_PASSWORD=AyushPriya#10
 export MYSQL_HOST=127.0.0.1
 export MYSQL_PORT=3306
-pm2 restart server.js
+pm2 start server.js
