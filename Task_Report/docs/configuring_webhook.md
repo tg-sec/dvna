@@ -10,53 +10,50 @@ Webhooks, sometimes referred to as _Reverse APIs_, are functions that are trigge
 
 To build and deploy the application based on `push` events and new `releases` on the project repository on GitHub automatically, I needed a Jenkins Webhook to handle a trigger that GitHub will send when selected events occur.
 
-## GitHub Authentication for Webhook
+To create a webhook as part of the solution for the problem statement, I used this [article](https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline) as it also used `ngrok` as I was supposed to use in further sections. I, however, did not add the GitHub repository link under `Configure Jenkins > GitHub Pull Requests` mentioned in the article, as the webhook worked without it as well.
 
-Jenkins needs to be authenticated with GitHub for it to be able to handle a webhook. For this authentication, I needed a _Personal Access Token_ or PAT on GitHub. I generated a PAT for Jenkins using this [documentation](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). I used this documentation as it was GithHub's own.
+## Configuring Jenkins Pipeline for Webhook
 
-* In the first section, 'Creating a token', the 7th step is where one has to choose the access that the token grants the application using the token. Here, I chose everything under the 'repo' option and nothing else as I was only concerned about `push` events.
-* Out of the two sections present in the documentation, I skipped the second one, 'Using a token on the command line', as it was not required in the solution for the problem statement.
-
-## Configuring Jenkins for Webhook
-
-* The PAT generated above is then added as a `Secret Text Credential` in Jenkins under `Credentials > Add New Credential`.
-* Added GitHub Server under `Manage Jenkins > Configure System` with Personal Access Token generated as a Credential in Jenkins. The `API URL` used is <https://api.github.com> and the `Manage Hooks` option is checked.
-* Selected the `GitHub hook trigger for GITScm polling` option under `Build triggers` for the particular Jenkins project.
+For Jenkins, the configuration was straightforward and simple. All I had to do was to select the `GitHub hook trigger for GITScm polling` option under `Build triggers` for the Jenkins pipeline. This option allows Jenkins to listen for any requests sent to it via GitHub (in this case) and then trigger a new build for the project which has the option checked.
 
 ## Configuring GitHub for Webhook
 
-On GitHub, we need to add the Webhook to the project repository. The following are the steps to add a Webhook for a GitHub Project:
+Then I needed to add a webhook trigger on GitHub for the project repository. Following the documentation, mentioned above, I went to the `Settings` page for the repository and from there, I went to the `Webhooks` page. Then clicking on the `Add New` button, I got a page asking for specifics about the webhook that I wanted to create:
 
-* We go to the project repository, and there we navigate to `Settings > Webhooks` and click on `Add Webhook` option.
-* The `Payload URL` is where we put our Jenkins Servers domain/IP appended with `/github-webhook/` at the end. For example, <http://{JENKINS VM IP}/github-webhook/> is a valid Jenkins Webhook.
-* The `Content Type` should be `application/json`.
-* Then the required events are selected (Pushes & Releases in this case).
-* The `Active` option is checked.
-* Save the Webhook.
+* The `Payload URL` is where I had to put my Jenkins Servers domain/IP which would be handling the webhook. As required by Jenkins, a valid Jenkins Webhook is a domain/IP appended with `/github-webhook/` at the end. For example, `http://{JENKINS_VM_IP}/github-webhook/` is a valid Jenkins webhook.
+* I put the `Content Type` as `application/json` as Jenkins expects a JSON formatted request.
+* Then I selected the required events that should trigger the webhook, and in turn, start the build via Jenkins. In this case, the events that were required by the problem statement were 'Pushes' and 'Releases'.
+* Lastly, I checked the `Active` option and saved the Webhook. The active option is necessary to be set to checked else, GitHub doesn't send any request. I tried triggering the selected events, after unchecking the option, and it didn't send any request.
+
+**Note**: The webhook's payload URL should have exactly `/github-webhook/` at the end. Missing the slash at the end will not be handled and thus, no build will be triggered if the exact route is not appended to the payload URL.
 
 ## Using `ngrok` to handle Webhook over Internet
 
-If we do not have a public IP to handle GitHub's webhook triggers over the web, we can use `ngrok` to provide us with a domain that points to our machine. All the steps below are performed on the Jenkins VM.
+Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since, the setup I had was on my local machine, I ended up using `ngrok`.
 
-* `ngrok` runs as an executable which can be downloaded from [here](https://ngrok.com/download) on the Jenkins VM.
-* Unzip the downloaded file as follows:
+`Ngrok` is a tool that helps to expose a machine to the internet by providing a dyanamically generated URL which can be used to tunnel traffic from the internet to our local machine and use it as needed.
+
+I found the basic documentation, which was enough for me to use it for the purpose of this task, on the [downloads page](https://ngrok.com/download) itself. So, as specified in the instructions given at the site:
+
+* I downloaded the `ngrok` executable, which was available for download [here](https://ngrok.com/download), on the Jenkins VM.
+* Then I unzipped the downloaded file as follows:
 
 ```bash
 unzip /path/to/ngrok.zip
 ```
 
-* Sign up for an account to get an Authentication Token and then authenticate `ngrok` for initialization as follows:
+* `Ngrok` requires an _authentication token_ to work. Hence, I signed up for an account to get an Authentication Token and then authenticated `ngrok` for initialization as follows:
 
 ```bash
 ./ngrok authtoken <AUTH_TOKEN>
 ```
 
-* To run `ngrok` and start a HTTP Tunnel, we use the following command:
+* Finally, to run `ngrok` and start a HTTP Tunnel, I used the following command:
 
 ```bash
 ./ngrok http 8080
 ```
 
-**Note**: We use port 8080, instead of 80, as our instance of Jenkins is running on 8080.
+**Note**: I used port 8080, instead of the usual 80 used for HTTP traffic, as my instance of Jenkins was running on 8080.
 
-* Lastly, we take the URL provided by `ngrok`, append `/github-webhook` at the end, and use it as the `PAYLOAD URL` on GitHub for the Webhook.
+* Lastly, I took the URL provided by `ngrok`, appended `/github-webhook/` at the end, and used it as the `PAYLOAD URL` on GitHub for the Webhook as mentioned in the [Configuring GitHub for Webhook](#configuring-github-for-webhook) section above. The final payload URL was like - `http://{DYNAMIC_SUBDOMAIN}.ngrok.io/github-webhook/` where the _dynamic subdomain_  was generated by `ngrok` to create a unique tunnel for us to use.

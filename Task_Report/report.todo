@@ -1,6 +1,6 @@
 Project Review 9th Jan 2020:
     ☐ Project Documentation Review Notes
-        ☐ Ensure that all artefacts are in Github repo
+        ✔ Ensure that all artefacts are in Github repo @done(20-01-13 10:08)
         ✔ Explain what is DVNA @done(20-01-09 18:16)
         ☐ Add a table decribing the comparison of the various SAST Tools
         ✔ Add the glossary table to have a term-meaning pair for uncommon terms used in the report or terms that might have a different meaning in general. @done(20-01-09 18:16)
