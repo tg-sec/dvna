@@ -216,30 +216,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../static_analysis/" title="Static Analysis" class="md-nav__link">
-      Static Analysis
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../comparing_sast_tools/" title="Comparing SAST Tools" class="md-nav__link">
-      Comparing SAST Tools
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -267,6 +243,34 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    Pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins-pipeline-project" class="md-nav__link">
+    Jenkins Pipeline Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-jenkinsfile" class="md-nav__link">
+    The Jenkinsfile
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#stages" class="md-nav__link">
@@ -317,6 +321,30 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../static_analysis/" title="Static Analysis" class="md-nav__link">
+      Static Analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../comparing_sast_tools/" title="Comparing SAST Tools" class="md-nav__link">
+      Comparing SAST Tools
+    </a>
   </li>
 
     
@@ -377,6 +405,34 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    Pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins-pipeline-project" class="md-nav__link">
+    Jenkins Pipeline Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-jenkinsfile" class="md-nav__link">
+    The Jenkinsfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stages" class="md-nav__link">
     Stages
   </a>
@@ -435,8 +491,39 @@
                 
                 
                 <h1 id="setting-up-pipeline">Setting Up Pipeline</h1>
-<p>The following is the Jenkinsfile to execute the pipeline:</p>
+<h2 id="objective">Objective</h2>
+<p>The aim of this section is to setup a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the <a href="../problem_statement/">problem statement</a>.</p>
+<h2 id="pipeline">Pipeline</h2>
+<p>A Continuous Integration (CI) pipeline is a set of automated actions defined to be performed for delivering software applications. The pipeline helps in automating building the application, testing it and deploying it to production thus, reducing the time it requires for a software update to reach the production stage. A more detailed explanation can be found in this <a href="https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment">article</a> by Atlassian. I liked this article's explanation because it was written in an easy-to-understand language.</p>
+<h2 id="jenkins-pipeline-project">Jenkins Pipeline Project</h2>
+<p>To start off with the task of building a pipeline, I setup Jenkins as mentioned in the previous section, logged on to the Jenkins Web Interface and then followed these steps to create a new pipeline under Jenkins for DVNA:</p>
+<ul>
+<li>I clicked on <code>New Item</code> from the main dashboard which lead me to a different page. I gave gave <code>node-app-pipeline</code> as the project's name and chose <code>Pipeline</code> as the project type amongst the all the options present. Few articles on the web also demonstrated the usage of <code>Freestyle Project</code> but I liked the syntactical format and hence, went with <code>Pipeline</code>.</li>
+<li>Next came the project configurations page. Here:<ul>
+<li>Under <code>General</code> section:<ul>
+<li>I gave a brief description about the application being deployed and the purpose of this pipeline.</li>
+<li>I checked the <code>Discard Old Builds</code> option as I felt there was no need of keeping artefacts from previous builds.</li>
+<li>I also checked the <code>GitHub Project</code> option and provided the GitHub URL for the project's repository. This option allowed Jenkins to know where to fetch the project from.</li>
+</ul>
+</li>
+<li>Under <code>Build Triggers</code> section:<ul>
+<li>I checked the <code>GitHub hook trigger for GITScm Polling</code> option to allow automated builds based on webhook triggers on GitHub for selected events. The need for this option is explained in more detail in the upcoming section, <a href="../configuring_webhook/">Configuring Webhook</a>.</li>
+</ul>
+</li>
+<li>Under <code>Pipeline</code> section:<ul>
+<li>For <code>Definition</code>, I chose <code>Pipeline Script from SCM</code> option as I planned on adding the Jenkinsfile directly to the project repository.</li>
+<li>For <code>Script Path</code>, I just provided <code>Jenkinsfile</code> as it was situated at the project's root directory.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lastly, I clicked on save to save the configurations.</li>
+</ul>
+<h2 id="the-jenkinsfile">The Jenkinsfile</h2>
+<p>Jenkins has a utility where the actions that are to be performed on build can be written in a syntactical format in a file called <code>Jenkinsfile</code>. I used this format to define the pipeline as I found it programmatically intuitive and easy to understand. I followed this <a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps/">article</a> because it was the official documentation from Jenkins and it was very thoroughly written in a simple format with examples.</p>
+<p>I wrote and added a Jenkinsfile to the root folder of the project repository. The following are the contents of the Jenkinsfile which executes the CI pipeline:</p>
 <pre><code class="jenkins">pipeline {
+
     agent any
 
     stages {
@@ -517,29 +604,39 @@
                     sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;source ./env.sh &amp;&amp; ./env.sh &amp;&amp; cd dvna &amp;&amp; pm2 start server.js&quot;'
             }
         }
+
     }
+
 }
 
 </code></pre>
 
+<ul>
+<li>The <code>pipeline</code> block constitutes the entire definition of the pipeline.</li>
+<li>The <code>agent</code> keyword is used to choose the way the Jenkins instance(s) are used to run the pipeline. The <code>any</code> keyword defines that Jenkins should allocate any available agent (an instance of Jenkins/a slave/the master instance) to execute the pipeline. A more thorough explanation can be found <a href="https://jenkins.io/doc/book/pipeline/syntax/">here</a>.</li>
+<li>The <code>stages</code> block houses all the stages that will comprise the various operations to be performed during the execution of the pipeline.</li>
+<li>The <code>stage</code> block defines a set of steps to be executed as part of that particular stage.</li>
+<li>The <code>steps</code> block defines the actions that are to be performed within a particular stage.</li>
+<li>Lastly, <code>sh</code> keyword is used to execute shell commands through Jenkins.</li>
+</ul>
 <h2 id="stages">Stages</h2>
-<p>The pipeline is divided into the following stages which perform specific step(s):</p>
+<p>I divided the pipeline into various stages based on the operations being performed. The following are the stages I chose:</p>
 <h3 id="initialization">Initialization</h3>
-<ul>
-<li>This is just a dummy stage, nothing happens here.</li>
-</ul>
+<p>This is just a dummy stage, nothing happens here. I wrote this to test out and practice the syntax for writing the pipeline.</p>
 <h3 id="build">Build</h3>
-<ul>
-<li>In this stage, DVNA get built locally on the Jenkins VM.</li>
-</ul>
+<p>In the build stage, I built the app with <code>npm install</code> on the Jenkins VM. This loads all the dependecies that the app (DVNA) requires so static analysis can be performed on the app in later stages.</p>
+<p><strong>Note</strong>: The app gets build with all of its dependencies only on the Jenkins VM.</p>
 <h3 id="static-analysis">Static Analysis</h3>
-<ul>
-<li>All the stages that follow the Build Stage, except for the last one, consist of performing static analysis on DVNA with various tools.</li>
-</ul>
+<p>All the stages that follow the Build Stage, except for the last (deployment) stage, consist of performing static analysis on DVNA with various tools. These stages are used to generate a report of their analysis and are stored locally on the Jenkins VM. The individual stages under Static Analysis are explained in detail in the upcoming sections <a href="../static_analysis/">Static Analysis</a> and <a href="../comparing_sast_tools/">Comparing SAST Tools</a>.</p>
 <h3 id="deployment">Deployment</h3>
+<p>Finally, in the stage titled 'Deploy to App Server', operations are performed on the App VM over SSH which I configured previously as mentioned in <a href="../setting_up_vms/">Setting up VMs</a>.</p>
 <ul>
-<li>Finally, the Jenkins VM stops the existing deployment of the App on the Production VM, purges associated files, copies local build over ssh and restarts the deployment reflecting the latest changes.</li>
+<li>Firstly, I stop the instance of the app running on the App VM.</li>
+<li>Then I purge all project associated files present on the App VM.</li>
+<li>All files from the Jenkins machine, including the dependencies built earlier, are copied over to the production VM.</li>
+<li>Finally, I restart the application with the new updates reflecting changes made to the project.</li>
 </ul>
+<p><strong>Note</strong>: The app is not <em>built</em> on the Production VM to avoid breaking any installation of dependencies existing on the machine. All the dependencies are always built on the Jenkins machine and then copied over to the production server.</p>
                 
                   
                 
@@ -561,7 +658,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../comparing_sast_tools/" title="Comparing SAST Tools" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../setting_up_vms/" title="Setting Up VMs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -570,19 +667,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Comparing SAST Tools
+                Setting Up VMs
               </span>
             </div>
           </a>
         
         
-          <a href="../configuring_webhook/" title="Configuring Webhook" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../static_analysis/" title="Static Analysis" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Configuring Webhook
+                Static Analysis
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
