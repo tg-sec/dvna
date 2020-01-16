@@ -2,11 +2,11 @@
 
 ## Objective
 
-The aim of this section is to create and configure a webhook to automate builds based on defined events occuring on the project repository in reference to 8th point's second section in the [problem statement](problem_statement.md).
+The aim of this section is to create and configure a webhook to automate builds based on defined events occurring on the project repository in reference to the second sub-segment of the 8th point in the [problem statement](problem_statement.md).
 
 ## Webhooks
 
-Webhooks, sometimes referred to as _Reverse APIs_, are functions that are triggered on the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurence of the event.
+Webhooks, sometimes referred to as _Reverse APIs_, are functions that are triggered by the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurrence of the event.
 
 To build and deploy the application based on `push` events and new `releases` on the project repository on GitHub automatically, I needed a Jenkins Webhook to handle a trigger that GitHub will send when selected events occur.
 
@@ -20,18 +20,22 @@ For Jenkins, the configuration was straightforward and simple. All I had to do w
 
 Then I needed to add a webhook trigger on GitHub for the project repository. Following the documentation, mentioned above, I went to the `Settings` page for the repository and from there, I went to the `Webhooks` page. Then clicking on the `Add New` button, I got a page asking for specifics about the webhook that I wanted to create:
 
+![Add Webhook Page](/img/add_webhook.png)
+
 * The `Payload URL` is where I had to put my Jenkins Servers domain/IP which would be handling the webhook. As required by Jenkins, a valid Jenkins Webhook is a domain/IP appended with `/github-webhook/` at the end. For example, `http://{JENKINS_VM_IP}/github-webhook/` is a valid Jenkins webhook.
 * I put the `Content Type` as `application/json` as Jenkins expects a JSON formatted request.
 * Then I selected the required events that should trigger the webhook, and in turn, start the build via Jenkins. In this case, the events that were required by the problem statement were 'Pushes' and 'Releases'.
-* Lastly, I checked the `Active` option and saved the Webhook. The active option is necessary to be set to checked else, GitHub doesn't send any request. I tried triggering the selected events, after unchecking the option, and it didn't send any request.
+* Lastly, I checked the `Active` option and saved the Webhook. The active option is necessary to be set to checked else, GitHub does not send any request. I tried triggering the selected events, after unchecking the option, and it did not send any request.
+
+![Configure Webhook Options](/img/configure_webhook.png)
 
 **Note**: The webhook's payload URL should have exactly `/github-webhook/` at the end. Missing the slash at the end will not be handled and thus, no build will be triggered if the exact route is not appended to the payload URL.
 
 ## Using `ngrok` to handle Webhook over Internet
 
-Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since, the setup I had was on my local machine, I ended up using `ngrok`.
+Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since the setup I had was on my local machine, I ended up using `ngrok`.
 
-`Ngrok` is a tool that helps to expose a machine to the internet by providing a dyanamically generated URL which can be used to tunnel traffic from the internet to our local machine and use it as needed.
+`Ngrok` is a tool that helps to expose a machine to the internet by providing a dynamically generated URL that can be used to tunnel traffic from the internet to our local machine and use it as needed.
 
 I found the basic documentation, which was enough for me to use it for the purpose of this task, on the [downloads page](https://ngrok.com/download) itself. So, as specified in the instructions given at the site:
 
@@ -48,7 +52,7 @@ unzip /path/to/ngrok.zip
 ./ngrok authtoken <AUTH_TOKEN>
 ```
 
-* Finally, to run `ngrok` and start a HTTP Tunnel, I used the following command:
+* Finally, to run `ngrok` and start an HTTP Tunnel, I used the following command:
 
 ```bash
 ./ngrok http 8080

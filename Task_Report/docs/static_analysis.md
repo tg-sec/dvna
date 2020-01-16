@@ -3,17 +3,17 @@
 
 ## Objective
 
-The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to 2nd, 3rd and 4th points of the [problem statement](problem_statement.md).
+The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to the 2nd, 3rd and 4th points of the [problem statement](problem_statement.md).
 
 ## SAST
 
-SAST or Static Application Security Testing is a process that analyses a project's source code, dependencies and related files for known security vulnerabilities. SAST could also help identify segments of project's logic which might lead to a security vulnerability.
+SAST or Static Application Security Testing is a process that analyses a project's source code, dependencies and related files for known security vulnerabilities. SAST could also help identify segments of the project's logic which might lead to a security vulnerability.
 
 ## DVNA's Tech Stack
 
 SAST is a targeted analysis configured based on the technologies being used in a project. Hence, for any meaningful SAST stage in a pipeline (or in general), the tools utilized should be concerned only with the technologies that the project uses. If need be, one could use multiple tools (as one should, in most cases) to cover different types of vulnerabilities and/or technologies present in the project.
 
-To perform static analysis on DVNA, the first step for me was to identify what all technologies comprise DVNA (which is quite obvious given the name is Damn Vulnerable NodeJs Application). So, I figured that NodeJs is the server side language used, along with a SQL database.
+To perform static analysis on DVNA, the first step for me was to identify what all technologies comprise DVNA (which is quite obvious given the name is Damn Vulnerable NodeJs Application). So, I figured that NodeJs is the server-side language used, along with a SQL database.
 
 ## SAST Tools for Node.js Applications
 
@@ -21,7 +21,7 @@ After figuring out the tech stack used, I focused on finding tools that perform 
 
 ### [SonarQube](https://www.sonarqube.org/)
 
-SonarQube is a commercial static analysis tool with a community version with restricted features. I used this [Medium article](https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f) to utilise SonarQube with Jenkins and Docker:
+SonarQube is a commercial static analysis tool with a community version with restricted features. I used this [Medium article](https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f) to utilize SonarQube with Jenkins and Docker:
 
 * To start the SonarQube server for analysis I used SonarQube's docker image, as it seemed more convenient than an installed setup unlike all the other tools I used which had a very simple installation procedure, and ran it with the following command:
 
@@ -31,7 +31,7 @@ docker run -d -p 9000:9000 -p 9092:9092 --name sonarqube sonarqube
 
 * Then for Jenkins to authenticate with the SonarQube server I created a new Access Token for Jenkins in SonarQube under `Account > Security`.
 * I saved the above generated token in Jenkins, under `Credentials >  Add New Credentials` as a `Secret Text` type credential so I could use it later with the credential identity created.
-* I added the SonarQube plugin for Jenkins and then navigated to the `SonarQube Server` section under `Manage Jenkins > Configure System`. Here, I checked the `Enable injection of SonarQube server configuration as build environment variables` option to allow SonarQube to inject environment variables at pipeline's runtime and be used in the Jenkinsfile.
+* I added the SonarQube plugin for Jenkins and then navigated to the `SonarQube Server` section under `Manage Jenkins > Configure System`. Here, I checked the `Enable injection of SonarQube server configuration as build environment variables` option to allow SonarQube to inject environment variables at the pipeline's runtime and be used in the Jenkinsfile.
 * I provided the URL for SonarQube Server (in my case) `localhost:9000` and added the previously saved SonarQube Credentials for authentication.
 * Lastly, I added the following stage in the Jenkinsfile for DVNA's analysis by SonarQube, which injects the path to the SonarQube scanner, performs the scan and then saves the report locally:
 
@@ -57,13 +57,13 @@ stage ('SonarQube Analysis') {
 
 ### [NPM Audit](https://docs.npmjs.com/cli/audit)
 
-NPM Audit is a built-in utlitiy that comes along with `npm@6` which allows for _auditing_ the dependencies being used in the project i.e. it analyses the dependencies against a database for known vulnerabilities. Since, NPM Audit comes along with `npm` itself, is not required to be installed seprately. However, if one has an older version of `npm` on the system, the following command can be used to upgrade:
+NPM Audit is a built-in utility that comes along with `npm@6` which allows for _auditing_ the dependencies being used in the project i.e. it analyses the dependencies against a database for known vulnerabilities. Since NPM Audit comes along with `npm` itself, is not required to be installed separately. However, if one has an older version of `npm` on the system, the following command can be used to upgrade:
 
 ```bash
-npm install -g npm@latest
+sudo npm install -g npm@latest
 ```
 
-* Now, NPM Audit has a characteristic that gives a non-zero status code, if it finds any vulnerable dependencies. This is so if ran through a pipeline, the build can fail thus, stopping the deployment of vulnerable code. Since, DVNA, quite obviously, has a lot of vulnerabilities, I had to run it through a script to avoid failure of the pipeline after analysis so the stages can still be executed. The script that I wrote, which runs `npm-audit`, formats the output in a JSON format, saves it to a file and finally just echoes the status code, is as follows:
+* Now, NPM Audit has a characteristic that gives a non-zero status code, if it finds any vulnerable dependencies. This is so if run through a pipeline, the build can fail thus, stopping the deployment of vulnerable code. Since, DVNA, quite obviously, has a lot of vulnerabilities, I had to run it through a script to avoid failure of the pipeline after analysis so the stages can still be executed. The script that I wrote, which runs `npm-audit`, formats the output in a JSON format, saves it to a file and finally just echoes the status code, is as follows:
 
 ```bash
 #!/bin/bash
@@ -79,7 +79,7 @@ echo $? > /dev/null
 ```jenkins
 stage ('NPM Audit Analysis') {
     steps {
-        sh '/home/chaos/npm-audit.sh'
+        sh '/{PATH TO SCRIPT}/npm-audit.sh'
     }
 }
 ```
@@ -102,7 +102,7 @@ pip3 install nodejsscan
 nodejsscan --directory `pwd` --output /{JENKINS HOME DIRECTORY}/reports/nodejsscan-report
 ```
 
-* After observing that NodeJsScan did not exit with a non-zero status code, even if vulnerabilities were found, I realised that the command to execute the scan can be directly added to the pipeline. So, I added the following stage in the Jenkinsfile to perform the scan, and store the report in JSON format on the Jenkins machine:
+* After observing that NodeJsScan did not exit with a non-zero status code, even if vulnerabilities were found, I realized that the command to execute the scan can be directly added to the pipeline. So, I added the following stage in the Jenkinsfile to perform the scan, and store the report in JSON format on the Jenkins machine:
 
 ```jenkins
 stage ('NodeJsScan Analysis') {
@@ -119,10 +119,10 @@ Retire.js is a tool that scans the project's dependencies to identify dependenci
 * Retire.js was also available to be installed as a package without too much hassle, so I installed it with the following command:
 
 ```bash
-npm install -g retire
+sudo npm install -g retire
 ```
 
-**Note**: The `-g` flag specifies that the package needs to be insalled globally.
+**Note**: The `-g` flag specifies that the package needs to be installed globally.
 
 * Then to look at how Retire.js functions, I ran it with the following command as mentioned in the [official documentation](https://github.com/RetireJS/retire.js) to run the scan on DVNA, output the report in JSON format, save it locally on a file and then exit with a zero status-code even if vulnerabilities are found:
 
@@ -142,9 +142,9 @@ stage ('Retire.js Analysis') {
 
 ### [OWASP Dependency Check](https://www.owasp.org/index.php/OWASP_Dependency_Check)
 
-As mentioned on OWASP Dependency Check's official site, it is a software composition analysis tool, used to identify if the project has any known security vulnerabilities as part of it's dependencies.
+As mentioned on OWASP Dependency Check's official site, it is a software composition analysis tool, used to identify if the project has any known security vulnerabilities as part of its dependencies.
 
-* OWASP Dependency Check comes as an executable for linux and does not require any installation, so I decided to use the binary. I downloaded the executable from this [archive](https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.4-release.zip).
+* OWASP Dependency Check comes as an executable for Linux and does not require any installation, so I decided to use the binary. I downloaded the executable from this [archive](https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.4-release.zip).
 
 * Next, I unzipped the archive and then placed its contents in `/{JENKINS HOME DIRECTORY}/`:
 
@@ -172,12 +172,12 @@ stage ('Dependency-Check Analysis') {
 
 ### [Auditjs](https://github.com/sonatype-nexus-community/auditjs)
 
-Auditjs is a SAST tool which uses [OSS Index](https://ossindex.sonatype.org/), which is a service used to determine if a dependency being used has a known vulnerability, to analyse NodeJs applications.
+Auditjs is a SAST tool which uses [OSS Index](https://ossindex.sonatype.org/), which is a service used to determine if a dependency being used has a known vulnerability, to analyze NodeJs applications.
 
-* Like Retire.js, Auditjs is also available as a npm-package. So, I installed it with the following command:
+* Like Retire.js, Auditjs is also available as an npm-package. So, I installed it with the following command:
 
 ```bash
-npm install -g auditjs
+sudo npm install -g auditjs
 ```
 
 * Next, I ran a scan to observe the output provided by Auditjs by running the following command, as mentioned in the [documentation](https://github.com/sonatype-nexus-community/auditjs), while being inside the project directory:
@@ -186,7 +186,7 @@ npm install -g auditjs
 auditjs --username ayushpriya10@gmail.com --token <auth_token> /{JENKINS HOME DIRECTORY}/reports/auditjs-report 2>&1
 ```
 
-**Note**: As it appears, Auditjs prints the vulnerabilities found to STDERR and everything else to STDOUT. Hence, I couldn't write the vulnerabilities found to a file directly. So, I used `2>&1` to redirct STDERR output to STDOUT to be able to write everything to a file.
+**Note**: As it appears, Auditjs prints the vulnerabilities found to STDERR and everything else to STDOUT. Hence, I couldn't write the vulnerabilities found to a file directly. So, I used `2>&1` to redirect STDERR output to STDOUT to be able to write everything to a file.
 
 * Like some previous tools, Auditjs gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script to avoid build failures with the pipeline. I wrote a script to overcome this issue, as done previously as well, to run the scan and save the report locally. The contents of the script I wrote are as follows:
 
@@ -204,7 +204,7 @@ echo $? > /dev/null
 ```jenkins
 stage ('Audit.js Analysis') {
     steps {
-        sh '/home/chaos/auditjs.sh'
+        sh '/{PATH TO SCRIPT}/auditjs.sh'
     }
 }
 ```
@@ -216,7 +216,7 @@ Snyk is a platform that helps monitor (open source) projects present on GitHub, 
 * Snyk can be installed with `npm` so, I used the following command to do so:
 
 ```bash
-npm install -g snyk
+sudo npm install -g snyk
 ```
 
 * Snyk required that I authenticated Snyk CLI with an Authentication Token, that can be found on one's profile after signing up for Snyk, before scanning a project, which I did as follows:
@@ -231,7 +231,7 @@ snyk auth <AUTH TOKEN>
 snyk test
 ```
 
-* Snyk also gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script,which performs a scan and stores the report in a JSON format, to avoid build-failure with the pipeline. The contents of the script I wrote are as follows:
+* Snyk also gives a non-zero status code, if it finds any vulnerable dependencies, hence, I ran it through a script, which performs a scan and stores the report in a JSON format, to avoid build-failure with the pipeline. The contents of the script I wrote are as follows:
 
 ```bash
 #!/bin/bash
@@ -248,7 +248,7 @@ echo $? > /dev/null
 ```jenkins
 stage ('Snyk Analysis') {
     steps {
-        sh '/home/chaos/snyk.sh'
+        sh '/{PATH TO SCRIPT}/snyk.sh'
     }
 }
 ```
@@ -259,16 +259,16 @@ I stored the reports generated by the various tools in `/reports/` directory ins
 
 ## Other Tools
 
-There were a few other tools avaible to perform SAST on NodeJs applications. They are listed below along with the reason why I chose not to use them for this task:
+There were a few other tools available to perform SAST on NodeJs applications. They are listed below along with the reason why I chose not to use them for this task:
 
 * [NSP](https://github.com/nodesecurity/nsp)  
-According to what NSP's (Node Security Project) official site said, it is now replaced with `npm audit` starting npm@6 and hence, is unavilable to new users but without any loss as it's functionality is available with NPM Audit.
+According to what NSP's (Node Security Project) official site said, it is now replaced with `npm audit` starting npm@6 and hence, is unavailable to new users but without any loss as it's functionality is available with NPM Audit.
 
 * [JSPrime](https://github.com/dpnishant/jsprime)  
 JSPrime appeared to be a really nice tool from its documentation and a demonstration video from a talk in a security conference, but it lacked a CLI interface and hence, I couldn't integrate it into the CI Pipeline.
 
 * [ScanJS](https://github.com/mozilla/scanjs)  
-As stated by the official site, ScanJS is now depracated and was throwing an exception when I tried running an available version via the CLI interface. So, I ended up excluding it from my implementation for the task.
+As stated by the official site, ScanJS is now deprecated and was throwing an exception when I tried running an available version via the CLI interface. So, I ended up excluding it from my implementation for the task.
 
 * [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)  
-JSpwn is an SAST tool which combined both JSPrime and ScanJs and had a CLI interface as well but when I executed it in accordance with the official documentation, the CLI gave garbage output without throwing any error and ran without ever terminating. Hence, I chose not to use it in my solution for the task.
+JSpwn is a SAST tool that combined both JSPrime and ScanJs and had a CLI interface as well but when I executed it in accordance with the official documentation, the CLI gave garbage output without throwing any error and ran without ever terminating. Hence, I chose not to use it in my solution for the task.

@@ -2,21 +2,21 @@
 
 ## Objective
 
-The aim of this section is to create a documentation in Markdown and use `MkDocs` to deploy the documentation generated as a static site in reference to the 7th point of the [problem statement](problem_statement.md).
+The aim of this section is to create documentation in Markdown and use `MkDocs` to deploy the documentation generated as a static site in reference to the 7th point of the [problem statement](problem_statement.md).
 
 ## Format and Tools
 
-The report was written in `Markdown` as required by the problem statement. [Markdown](https://en.wikipedia.org/wiki/Markdown) is a markup language which allows text formatting using a defined syntax. It is used extensively for documentation and can be converted to various other formats, including HTML, which allows many tools to build static sites with markdown documentation.
+The report was written in `Markdown` as required by the problem statement. [Markdown](https://en.wikipedia.org/wiki/Markdown) is a markup language that allows text formatting using a defined syntax. It is used extensively for documentation and can be converted to various other formats, including HTML, which allows many tools to build static sites with markdown documentation.
 
-[`MkDocs`](https://www.mkdocs.org/) was the tool used, as reqiured by the problem statement, to build a static site with the report. MkDocs is a static site generator which creates sites with content written in Markdown and the site is configured with a [YAML](https://yaml.org/) (YAML is a human-friendly data serialization standard and has various applications) file.
+[`MkDocs`](https://www.mkdocs.org/) was the tool used, as required by the problem statement, to build a static site with the report. MkDocs is a static site generator that creates sites with content written in Markdown and the site is configured with a [YAML](https://yaml.org/) (YAML is a human-friendly data serialization standard and has various applications) file.
 
 ## Installing `MkDocs`
 
-I installed `MkDocs` with the command `'pip install mkdocs'` as mentioned in the official [documentation](https://www.mkdocs.org/#installation). I only referred to the 'Installing MkDocs' section under 'Manual Installation' as rest of the steps were not required in the context of the task/problem statement.
+I installed `MkDocs` with the command `'pip install mkdocs'` as mentioned in the official [documentation](https://www.mkdocs.org/#installation). I only referred to the 'Installing MkDocs' section under 'Manual Installation' as the rest of the steps were not required in the context of the task/problem statement.
 
 ## Selecting a Theme
 
-MkDocs allows users to use various themes to customise the style and look of the site. For the report's site generated with MkDocs to look nice, I used the ['Material'](https://squidfunk.github.io/mkdocs-material/) theme as suggested during the preliminary review of the task. To use this theme with MkDocs, it is required to be installed with `pip` so, I installed `Material` theme using the command `'pip install mkdocs-material'` as mentioned in the official [documentation](https://squidfunk.github.io/mkdocs-material/#quick-start). Lastly, I specified the theme in MkDocs's configuration YAML file which can be seen in the next section.
+MkDocs allows users to use various themes to customize the style and look of the site. For the report's site generated with MkDocs to look nice, I used the ['Material'](https://squidfunk.github.io/mkdocs-material/) theme as suggested during the preliminary review of the task. To use this theme with MkDocs, it is required to be installed with `pip` so, I installed `Material` theme using the command `'pip install mkdocs-material'` as mentioned in the official [documentation](https://squidfunk.github.io/mkdocs-material/#quick-start). Lastly, I specified the theme in MkDocs's configuration YAML file which can be seen in the next section.
 
 ## Site Configuration
 
@@ -51,6 +51,6 @@ To generate the static site, in the root directory of the report, I ran the comm
 
 **Note**: To just preview how the site looks, I used `'mkdocs serve'` in the terminal to serve the site locally on my machine.
 
-Now, to serve the site I needed a web server for which I installed [Apache](https://httpd.apache.org/), following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache), as the server. I chose Apache as it is popular, has great support and is easy to work with in my opinion. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
+Now, to serve the site I needed a web server for which I installed [Apache](https://httpd.apache.org/), following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart#step-1-%E2%80%94-installing-apache), as the server. I chose Apache as it is popular, has great support and is easy to work with, in my opinion. The documentation was concise and complete in the context of the task and hence, I went with it. I, however, skipped step 4, 'Setting Up Virtual Hosts', as I was only going to host one site and thus, did not require to configure virtual hosts which are used to serve multiple websites on the same server.
 
 Lastly, I copied the contents from static site directory (`/site`) generated with MkDocs to the web root directory (`/var/www/html`) to serve the report as a static site.

@@ -2,13 +2,13 @@ Project Review 9th Jan 2020:
     ☐ Project Documentation Review Notes
         ✔ Ensure that all artefacts are in Github repo @done(20-01-13 10:08)
         ✔ Explain what is DVNA @done(20-01-09 18:16)
-        ☐ Add a table decribing the comparison of the various SAST Tools
+        ✔ Add a table decribing the comparison of the various SAST Tools @done(20-01-16 15:50)
         ✔ Add the glossary table to have a term-meaning pair for uncommon terms used in the report or terms that might have a different meaning in general. @done(20-01-09 18:16)
-        ☐ Ensure that the problem statement has been solved in broad overview steps 
-            ☐ Based on the broad overview steps, document each step further if additional research and analysis activity was undertaken
-            ☐ Explicitly mention the segment of the problem statement being solved by the solution.
-            ☐ Read into the security rules for the various tools, and identify why the vulnerabilities the toold found were found.
-        ☐ Justify the chosen documentation, Define Segments used (and left unused) from the said documentation.
+        ✔ Ensure that the problem statement has been solved in broad overview steps @done(20-01-16 15:51)
+            ✔ Based on the broad overview steps, document each step further if additional research and analysis activity was undertaken @done(20-01-16 15:50)
+            ✔ Explicitly mention the segment of the problem statement being solved by the solution. @done(20-01-16 15:50)
+            ✔ Read into the security rules for the various tools, and identify why the vulnerabilities the toold found were found. @done(20-01-16 15:51)
+        ✔ Justify the chosen documentation, Define Segments used (and left unused) from the said documentation. @done(20-01-16 15:51)
         ✔ Change ed25519 for ssh access under VM Setup @done(20-01-09 12:30)
         ✔ Change theme to 'Material' from 'ReadTheDocs' for the site. @done(20-01-09 12:05)
         ✔ Added Sunesh and Akash as collaborators in personal fork of DVNA @done(20-01-09 12:17)

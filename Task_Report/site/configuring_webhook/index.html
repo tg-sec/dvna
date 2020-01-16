@@ -424,25 +424,27 @@
                 
                 <h1 id="configuring-trigger-with-webhook">Configuring Trigger with Webhook</h1>
 <h2 id="objective">Objective</h2>
-<p>The aim of this section is to create and configure a webhook to automate builds based on defined events occuring on the project repository in reference to 8th point's second section in the <a href="../problem_statement/">problem statement</a>.</p>
+<p>The aim of this section is to create and configure a webhook to automate builds based on defined events occurring on the project repository in reference to the second sub-segment of the 8th point in the <a href="../problem_statement/">problem statement</a>.</p>
 <h2 id="webhooks">Webhooks</h2>
-<p>Webhooks, sometimes referred to as <em>Reverse APIs</em>, are functions that are triggered on the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurence of the event.</p>
+<p>Webhooks, sometimes referred to as <em>Reverse APIs</em>, are functions that are triggered by the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurrence of the event.</p>
 <p>To build and deploy the application based on <code>push</code> events and new <code>releases</code> on the project repository on GitHub automatically, I needed a Jenkins Webhook to handle a trigger that GitHub will send when selected events occur.</p>
 <p>To create a webhook as part of the solution for the problem statement, I used this <a href="https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline">article</a> as it also used <code>ngrok</code> as I was supposed to use in further sections. I, however, did not add the GitHub repository link under <code>Configure Jenkins &gt; GitHub Pull Requests</code> mentioned in the article, as the webhook worked without it as well.</p>
 <h2 id="configuring-jenkins-pipeline-for-webhook">Configuring Jenkins Pipeline for Webhook</h2>
 <p>For Jenkins, the configuration was straightforward and simple. All I had to do was to select the <code>GitHub hook trigger for GITScm polling</code> option under <code>Build triggers</code> for the Jenkins pipeline. This option allows Jenkins to listen for any requests sent to it via GitHub (in this case) and then trigger a new build for the project which has the option checked.</p>
 <h2 id="configuring-github-for-webhook">Configuring GitHub for Webhook</h2>
 <p>Then I needed to add a webhook trigger on GitHub for the project repository. Following the documentation, mentioned above, I went to the <code>Settings</code> page for the repository and from there, I went to the <code>Webhooks</code> page. Then clicking on the <code>Add New</code> button, I got a page asking for specifics about the webhook that I wanted to create:</p>
+<p><img alt="Add Webhook Page" src="/img/add_webhook.png" /></p>
 <ul>
 <li>The <code>Payload URL</code> is where I had to put my Jenkins Servers domain/IP which would be handling the webhook. As required by Jenkins, a valid Jenkins Webhook is a domain/IP appended with <code>/github-webhook/</code> at the end. For example, <code>http://{JENKINS_VM_IP}/github-webhook/</code> is a valid Jenkins webhook.</li>
 <li>I put the <code>Content Type</code> as <code>application/json</code> as Jenkins expects a JSON formatted request.</li>
 <li>Then I selected the required events that should trigger the webhook, and in turn, start the build via Jenkins. In this case, the events that were required by the problem statement were 'Pushes' and 'Releases'.</li>
-<li>Lastly, I checked the <code>Active</code> option and saved the Webhook. The active option is necessary to be set to checked else, GitHub doesn't send any request. I tried triggering the selected events, after unchecking the option, and it didn't send any request.</li>
+<li>Lastly, I checked the <code>Active</code> option and saved the Webhook. The active option is necessary to be set to checked else, GitHub does not send any request. I tried triggering the selected events, after unchecking the option, and it did not send any request.</li>
 </ul>
+<p><img alt="Configure Webhook Options" src="/img/configure_webhook.png" /></p>
 <p><strong>Note</strong>: The webhook's payload URL should have exactly <code>/github-webhook/</code> at the end. Missing the slash at the end will not be handled and thus, no build will be triggered if the exact route is not appended to the payload URL.</p>
 <h2 id="using-ngrok-to-handle-webhook-over-internet">Using <code>ngrok</code> to handle Webhook over Internet</h2>
-<p>Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since, the setup I had was on my local machine, I ended up using <code>ngrok</code>.</p>
-<p><code>Ngrok</code> is a tool that helps to expose a machine to the internet by providing a dyanamically generated URL which can be used to tunnel traffic from the internet to our local machine and use it as needed.</p>
+<p>Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since the setup I had was on my local machine, I ended up using <code>ngrok</code>.</p>
+<p><code>Ngrok</code> is a tool that helps to expose a machine to the internet by providing a dynamically generated URL that can be used to tunnel traffic from the internet to our local machine and use it as needed.</p>
 <p>I found the basic documentation, which was enough for me to use it for the purpose of this task, on the <a href="https://ngrok.com/download">downloads page</a> itself. So, as specified in the instructions given at the site:</p>
 <ul>
 <li>I downloaded the <code>ngrok</code> executable, which was available for download <a href="https://ngrok.com/download">here</a>, on the Jenkins VM.</li>
@@ -458,7 +460,7 @@
 </code></pre>
 
 <ul>
-<li>Finally, to run <code>ngrok</code> and start a HTTP Tunnel, I used the following command:</li>
+<li>Finally, to run <code>ngrok</code> and start an HTTP Tunnel, I used the following command:</li>
 </ul>
 <pre><code class="bash">./ngrok http 8080
 </code></pre>

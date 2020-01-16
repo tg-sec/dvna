@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to setup a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the [problem statement](problem_statement.md).
+The aim of this section is to set up a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the [problem statement](problem_statement.md).
 
 ## Pipeline
 
@@ -12,11 +12,11 @@ A Continuous Integration (CI) pipeline is a set of automated actions defined to 
 
 To start off with the task of building a pipeline, I setup Jenkins as mentioned in the previous section, logged on to the Jenkins Web Interface and then followed these steps to create a new pipeline under Jenkins for DVNA:
 
-* I clicked on `New Item` from the main dashboard which lead me to a different page. I gave gave `node-app-pipeline` as the project's name and chose `Pipeline` as the project type amongst the all the options present. Few articles on the web also demonstrated the usage of `Freestyle Project` but I liked the syntactical format and hence, went with `Pipeline`.
+* I clicked on `New Item` from the main dashboard which leads me to a different page. I gave `node-app-pipeline` as the project's name and chose `Pipeline` as the project type amongst all the options present. Few articles on the web also demonstrated the usage of `Freestyle Project` but I liked the syntactical format and hence, went with `Pipeline`.
 * Next came the project configurations page. Here:
     * Under `General` section:
-        * I gave a brief description about the application being deployed and the purpose of this pipeline.
-        * I checked the `Discard Old Builds` option as I felt there was no need of keeping artefacts from previous builds.
+        * I gave a brief description of the application being deployed and the purpose of this pipeline.
+        * I checked the `Discard Old Builds` option as I felt there was no need of keeping artifacts from previous builds.
         * I also checked the `GitHub Project` option and provided the GitHub URL for the project's repository. This option allowed Jenkins to know where to fetch the project from.
     * Under `Build Triggers` section:
         * I checked the `GitHub hook trigger for GITScm Polling` option to allow automated builds based on webhook triggers on GitHub for selected events. The need for this option is explained in more detail in the upcoming section, [Configuring Webhook](configuring_webhook.md).
@@ -27,7 +27,7 @@ To start off with the task of building a pipeline, I setup Jenkins as mentioned 
 
 ## The Jenkinsfile
 
-Jenkins has a utility where the actions that are to be performed on build can be written in a syntactical format in a file called `Jenkinsfile`. I used this format to define the pipeline as I found it programmatically intuitive and easy to understand. I followed this [article](https://jenkins.io/doc/pipeline/tour/running-multiple-steps/) because it was the official documentation from Jenkins and it was very thoroughly written in a simple format with examples.
+Jenkins has a utility where the actions that are to be performed on the build can be written in a syntactical format in a file called `Jenkinsfile`. I used this format to define the pipeline as I found it programmatically intuitive and easy to understand. I followed this [article](https://jenkins.io/doc/pipeline/tour/running-multiple-steps/) because it was the official documentation from Jenkins and it was very thoroughly written in a simple format with examples.
 
 I wrote and added a Jenkinsfile to the root folder of the project repository. The following are the contents of the Jenkinsfile which executes the CI pipeline:
 
@@ -49,7 +49,7 @@ pipeline {
                 sh '''
                     export MYSQL_USER=root
                     export MYSQL_DATABASE=dvna
-                    export MYSQL_PASSWORD=ayushpriya10
+                    export MYSQL_PASSWORD=<MYSQL PASSWORD>
                     export MYSQL_HOST=127.0.0.1
                     export MYSQL_PORT=3306
                     npm install
@@ -138,9 +138,9 @@ This is just a dummy stage, nothing happens here. I wrote this to test out and p
 
 ### Build
 
-In the build stage, I built the app with `npm install` on the Jenkins VM. This loads all the dependecies that the app (DVNA) requires so static analysis can be performed on the app in later stages.
+In the build stage, I built the app with `npm install` on the Jenkins VM. This loads all the dependencies that the app (DVNA) requires so static analysis can be performed on the app in later stages.
 
-**Note**: The app gets build with all of its dependencies only on the Jenkins VM.
+**Note**: The app gets built with all of its dependencies only on the Jenkins VM.
 
 ### Static Analysis
 
@@ -153,6 +153,6 @@ Finally, in the stage titled 'Deploy to App Server', operations are performed on
 * Firstly, I stop the instance of the app running on the App VM.
 * Then I purge all project associated files present on the App VM.
 * All files from the Jenkins machine, including the dependencies built earlier, are copied over to the production VM.
-* Finally, I restart the application with the new updates reflecting changes made to the project.
+* Finally, I restart the application with the updates reflecting changes made to the project.
 
-**Note**: The app is not _built_ on the Production VM to avoid breaking any installation of dependencies existing on the machine. All the dependencies are always built on the Jenkins machine and then copied over to the production server.
+**Note**: The app is not _built_ on the Production VM to avoid breaking the functioning of the instance of the application running on the production machine. All the dependencies are always built on the Jenkins machine and then copied over to the production server.

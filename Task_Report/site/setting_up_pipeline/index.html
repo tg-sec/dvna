@@ -492,17 +492,17 @@
                 
                 <h1 id="setting-up-pipeline">Setting Up Pipeline</h1>
 <h2 id="objective">Objective</h2>
-<p>The aim of this section is to setup a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the <a href="../problem_statement/">problem statement</a>.</p>
+<p>The aim of this section is to set up a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the <a href="../problem_statement/">problem statement</a>.</p>
 <h2 id="pipeline">Pipeline</h2>
 <p>A Continuous Integration (CI) pipeline is a set of automated actions defined to be performed for delivering software applications. The pipeline helps in automating building the application, testing it and deploying it to production thus, reducing the time it requires for a software update to reach the production stage. A more detailed explanation can be found in this <a href="https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment">article</a> by Atlassian. I liked this article's explanation because it was written in an easy-to-understand language.</p>
 <h2 id="jenkins-pipeline-project">Jenkins Pipeline Project</h2>
 <p>To start off with the task of building a pipeline, I setup Jenkins as mentioned in the previous section, logged on to the Jenkins Web Interface and then followed these steps to create a new pipeline under Jenkins for DVNA:</p>
 <ul>
-<li>I clicked on <code>New Item</code> from the main dashboard which lead me to a different page. I gave gave <code>node-app-pipeline</code> as the project's name and chose <code>Pipeline</code> as the project type amongst the all the options present. Few articles on the web also demonstrated the usage of <code>Freestyle Project</code> but I liked the syntactical format and hence, went with <code>Pipeline</code>.</li>
+<li>I clicked on <code>New Item</code> from the main dashboard which leads me to a different page. I gave <code>node-app-pipeline</code> as the project's name and chose <code>Pipeline</code> as the project type amongst all the options present. Few articles on the web also demonstrated the usage of <code>Freestyle Project</code> but I liked the syntactical format and hence, went with <code>Pipeline</code>.</li>
 <li>Next came the project configurations page. Here:<ul>
 <li>Under <code>General</code> section:<ul>
-<li>I gave a brief description about the application being deployed and the purpose of this pipeline.</li>
-<li>I checked the <code>Discard Old Builds</code> option as I felt there was no need of keeping artefacts from previous builds.</li>
+<li>I gave a brief description of the application being deployed and the purpose of this pipeline.</li>
+<li>I checked the <code>Discard Old Builds</code> option as I felt there was no need of keeping artifacts from previous builds.</li>
 <li>I also checked the <code>GitHub Project</code> option and provided the GitHub URL for the project's repository. This option allowed Jenkins to know where to fetch the project from.</li>
 </ul>
 </li>
@@ -520,7 +520,7 @@
 <li>Lastly, I clicked on save to save the configurations.</li>
 </ul>
 <h2 id="the-jenkinsfile">The Jenkinsfile</h2>
-<p>Jenkins has a utility where the actions that are to be performed on build can be written in a syntactical format in a file called <code>Jenkinsfile</code>. I used this format to define the pipeline as I found it programmatically intuitive and easy to understand. I followed this <a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps/">article</a> because it was the official documentation from Jenkins and it was very thoroughly written in a simple format with examples.</p>
+<p>Jenkins has a utility where the actions that are to be performed on the build can be written in a syntactical format in a file called <code>Jenkinsfile</code>. I used this format to define the pipeline as I found it programmatically intuitive and easy to understand. I followed this <a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps/">article</a> because it was the official documentation from Jenkins and it was very thoroughly written in a simple format with examples.</p>
 <p>I wrote and added a Jenkinsfile to the root folder of the project repository. The following are the contents of the Jenkinsfile which executes the CI pipeline:</p>
 <pre><code class="jenkins">pipeline {
 
@@ -539,7 +539,7 @@
                 sh '''
                     export MYSQL_USER=root
                     export MYSQL_DATABASE=dvna
-                    export MYSQL_PASSWORD=ayushpriya10
+                    export MYSQL_PASSWORD=&lt;MYSQL PASSWORD&gt;
                     export MYSQL_HOST=127.0.0.1
                     export MYSQL_PORT=3306
                     npm install
@@ -624,8 +624,8 @@
 <h3 id="initialization">Initialization</h3>
 <p>This is just a dummy stage, nothing happens here. I wrote this to test out and practice the syntax for writing the pipeline.</p>
 <h3 id="build">Build</h3>
-<p>In the build stage, I built the app with <code>npm install</code> on the Jenkins VM. This loads all the dependecies that the app (DVNA) requires so static analysis can be performed on the app in later stages.</p>
-<p><strong>Note</strong>: The app gets build with all of its dependencies only on the Jenkins VM.</p>
+<p>In the build stage, I built the app with <code>npm install</code> on the Jenkins VM. This loads all the dependencies that the app (DVNA) requires so static analysis can be performed on the app in later stages.</p>
+<p><strong>Note</strong>: The app gets built with all of its dependencies only on the Jenkins VM.</p>
 <h3 id="static-analysis">Static Analysis</h3>
 <p>All the stages that follow the Build Stage, except for the last (deployment) stage, consist of performing static analysis on DVNA with various tools. These stages are used to generate a report of their analysis and are stored locally on the Jenkins VM. The individual stages under Static Analysis are explained in detail in the upcoming sections <a href="../static_analysis/">Static Analysis</a> and <a href="../comparing_sast_tools/">Comparing SAST Tools</a>.</p>
 <h3 id="deployment">Deployment</h3>
@@ -634,9 +634,9 @@
 <li>Firstly, I stop the instance of the app running on the App VM.</li>
 <li>Then I purge all project associated files present on the App VM.</li>
 <li>All files from the Jenkins machine, including the dependencies built earlier, are copied over to the production VM.</li>
-<li>Finally, I restart the application with the new updates reflecting changes made to the project.</li>
+<li>Finally, I restart the application with the updates reflecting changes made to the project.</li>
 </ul>
-<p><strong>Note</strong>: The app is not <em>built</em> on the Production VM to avoid breaking any installation of dependencies existing on the machine. All the dependencies are always built on the Jenkins machine and then copied over to the production server.</p>
+<p><strong>Note</strong>: The app is not <em>built</em> on the Production VM to avoid breaking the functioning of the instance of the application running on the production machine. All the dependencies are always built on the Jenkins machine and then copied over to the production server.</p>
                 
                   
                 
