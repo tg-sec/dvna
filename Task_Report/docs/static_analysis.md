@@ -3,11 +3,11 @@
 
 ## Objective
 
-The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to the 2nd, 3rd and 4th points of the [problem statement](problems_statment.md).
+The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to 2nd, 3rd and 4th points of the [problem statement](problem_statement.md).
 
 ## SAST
 
-SAST or Static Application Security Testing is a process that analysis a project's source code, dependencies and related files for known security vulnerabilities. SAST could also help identify segments of project's logic which might lead to a security vulnerability.
+SAST or Static Application Security Testing is a process that analyses a project's source code, dependencies and related files for known security vulnerabilities. SAST could also help identify segments of project's logic which might lead to a security vulnerability.
 
 ## DVNA's Tech Stack
 
@@ -23,7 +23,7 @@ After figuring out the tech stack used, I focused on finding tools that perform 
 
 SonarQube is a commercial static analysis tool with a community version with restricted features. I used this [Medium article](https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f) to utilise SonarQube with Jenkins and Docker:
 
-* To start the SonarQube server for analysis I used SonarQube's docker image, as it seemed more convinient than an installed setup unlike all the other tools I used which had a very simple installation procedure, and ran it with the following command:
+* To start the SonarQube server for analysis I used SonarQube's docker image, as it seemed more convenient than an installed setup unlike all the other tools I used which had a very simple installation procedure, and ran it with the following command:
 
 ```bash
 docker run -d -p 9000:9000 -p 9092:9092 --name sonarqube sonarqube
@@ -52,12 +52,12 @@ stage ('SonarQube Analysis') {
 
 **Note**: There are two segments where I drifted away from the article I referred to:
 
-* First it that in the article there is no mention of generating/storing a report.
+* First is that in the article there is no mention of generating/storing a report.
 * Secondly, I left out the `timeout` block in the pipeline stage given in the article.
 
 ### [NPM Audit](https://docs.npmjs.com/cli/audit)
 
-NPM Audit is a built-in utlitiy that comes along with `npm@6` which allows for _auditing_ the dependencies being used in the project i.e. it analyses the dependencies against a database for known vulnerabilities. Since, NPM Audit comes along with `npm` itself, is not required to be installed seprately. However, if one has an older version of `npm` on the system, to  the following command can be used:
+NPM Audit is a built-in utlitiy that comes along with `npm@6` which allows for _auditing_ the dependencies being used in the project i.e. it analyses the dependencies against a database for known vulnerabilities. Since, NPM Audit comes along with `npm` itself, is not required to be installed seprately. However, if one has an older version of `npm` on the system, the following command can be used to upgrade:
 
 ```bash
 npm install -g npm@latest
@@ -140,11 +140,11 @@ stage ('Retire.js Analysis') {
 }
 ```
 
-### [OWASP Dependency Checker](https://www.owasp.org/index.php/OWASP_Dependency_Check)
+### [OWASP Dependency Check](https://www.owasp.org/index.php/OWASP_Dependency_Check)
 
-As mentioned on OWASP Dependency Check's official site, it is a software composition analysis tool, used to identify the project has any known security vulnerabilities as part of it's dependencies.
+As mentioned on OWASP Dependency Check's official site, it is a software composition analysis tool, used to identify if the project has any known security vulnerabilities as part of it's dependencies.
 
-* OWASP Dependency Checker comes as an executable for linux and does not require any installation, so I decided to use th binary. I downloaded the executable from this [archive](https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.4-release.zip).
+* OWASP Dependency Check comes as an executable for linux and does not require any installation, so I decided to use the binary. I downloaded the executable from this [archive](https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.4-release.zip).
 
 * Next, I unzipped the archive and then placed its contents in `/{JENKINS HOME DIRECTORY}/`:
 
@@ -219,7 +219,7 @@ Snyk is a platform that helps monitor (open source) projects present on GitHub, 
 npm install -g snyk
 ```
 
-* Snyk required that I authenticated Snyk CLI with an Authentication Token, that can be found on one's profile after signing up for Snykk, before scanning a project, which I did as follows:
+* Snyk required that I authenticated Snyk CLI with an Authentication Token, that can be found on one's profile after signing up for Snyk, before scanning a project, which I did as follows:
 
 ```bash
 snyk auth <AUTH TOKEN>
@@ -265,10 +265,10 @@ There were a few other tools avaible to perform SAST on NodeJs applications. The
 According to what NSP's (Node Security Project) official site said, it is now replaced with `npm audit` starting npm@6 and hence, is unavilable to new users but without any loss as it's functionality is available with NPM Audit.
 
 * [JSPrime](https://github.com/dpnishant/jsprime)  
-JSPrime appeared to be a really nice tool from its documentation and a demonstration video from a talk in a security conference, but it lacked a CLI interface and hence, I couldn't have integrated it into the CI Pipeline.
+JSPrime appeared to be a really nice tool from its documentation and a demonstration video from a talk in a security conference, but it lacked a CLI interface and hence, I couldn't integrate it into the CI Pipeline.
 
 * [ScanJS](https://github.com/mozilla/scanjs)  
 As stated by the official site, ScanJS is now depracated and was throwing an exception when I tried running an available version via the CLI interface. So, I ended up excluding it from my implementation for the task.
 
 * [JSpwn](https://github.com/dvolvox/JSpwn) (JSPrime + ScanJs)  
-JSpwn is an SAST tool which combined both JSPrime and ScanJs and had a CLI interface as well but when I executed it in accordance with the official documetnation, the CLI gave garbage output without throwing any error and ran without ever terminating. Hence, I chose not to use it in my solution for the task.
+JSpwn is an SAST tool which combined both JSPrime and ScanJs and had a CLI interface as well but when I executed it in accordance with the official documentation, the CLI gave garbage output without throwing any error and ran without ever terminating. Hence, I chose not to use it in my solution for the task.

@@ -597,11 +597,11 @@
 
         stage ('Deploy to App Server') {
             steps {
-                    sh 'echo &quot;Deploying App to Server&quot;'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;cd dvna &amp;&amp; pm2 stop server.js&quot;'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;rm -rf dvna/ &amp;&amp; mkdir dvna&quot;'
-                    sh 'scp -r * chaos@10.0.2.20:~/dvna'
-                    sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;source ./env.sh &amp;&amp; ./env.sh &amp;&amp; cd dvna &amp;&amp; pm2 start server.js&quot;'
+                sh 'echo &quot;Deploying App to Server&quot;'
+                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;cd dvna &amp;&amp; pm2 stop server.js&quot;'
+                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;rm -rf dvna/ &amp;&amp; mkdir dvna&quot;'
+                sh 'scp -r * chaos@10.0.2.20:~/dvna'
+                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;source ./env.sh &amp;&amp; ./env.sh &amp;&amp; cd dvna &amp;&amp; pm2 start server.js&quot;'
             }
         }
 
