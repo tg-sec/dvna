@@ -7,10 +7,11 @@ pages:
 - Setting Up VMs: 'setting_up_vms.md'
 - Setting Up Pipeline: setting_up_pipeline.md
 - Static Analysis: 'static_analysis.md'
-- Comparing SAST Tools: comparing_sast_tools.md
-- Configuring Webhook: configuring_webhook.md
-- Deploying the Report: deploying_report.md
-- Resources: resources.md
+- Comparing SAST Tools: 'comparing_sast_tools.md'
+- Configuring Webhook: 'configuring_webhook.md'
+- Deploying the Report: 'deploying_report.md'
+- Dynamic Analysis: 'dynamic_analysis.md'
+- Resources: 'resources.md'
 
 
 theme: material

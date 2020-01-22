@@ -9,6 +9,7 @@ The following is the report/documentation for the problem statement stated below
 * [Comparing SAST Tools](/comparing_sast_tools)
 * [Configuring Webhook](/configuring_webhook)
 * [Deploying the Report](/deploying_report)
+* [Dynamic Analysis](/dynamic_analysis)
 * [Resources](/resources)
 
 This documentation can also be found [online](https://jenkins-report.netlify.com/).
