@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to create and configure a webhook to automate builds based on defined events occurring on the project repository in reference to the second sub-segment of the 8th point in the [problem statement](problem_statement.md).
+The aim of this section is to create and configure a webhook to automate builds based on defined events occurring on the project repository in reference to the second sub-segment of the 8th point in the [problem statement](problem_statement.md) under `Task 1`.
 
 ## Webhooks
 

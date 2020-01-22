@@ -1,5 +1,7 @@
 # Problem Statement
 
+## Task 1
+
 1. Setup a basic pipeline (use [Jenkins](https://jenkins.io/)) for generating a security report for [DVNA](https://github.com/appsecco/dvna).
 2. The DVNA code should be downloaded from Github and then undergo static analysis.
 3. As part of the project understand what is the tech stack for DVNA hence what potential static analysis tools can be applied here.
@@ -10,3 +12,9 @@
 8. Additionally, there was some inferred task to address in the problem statement:
     1. To create a comparative report about how various SAST tools performed.
     2. To create a webhook to trigger the build when a `push` event occurs on the project repository on GitHub.
+
+## Task 2
+
+1. Add onto Task 1 by implementing DAST in the pipeline for [DVNA](https://github.com/appsecco/dvna) with using [OWASP ZAP](https://www.zaproxy.org/).
+2. Use [Semantic Versioning](https://semver.org/) to tag versions of the documentation created as part of the tasks.
+3. Append content for the task to the existing documentation from first task.

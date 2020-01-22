@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to set up a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the [problem statement](problem_statement.md).
+The aim of this section is to set up a basic pipeline in Jenkins to provide a solution to the 1st, 2nd, 4th and 5th points of the [problem statement](problem_statement.md) under `Task 1`.
 
 ## Pipeline
 

@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to set up the required infrastructure to perform the task and solve the 6th point of the [problem statement](problem_statement.md).
+The aim of this section is to set up the required infrastructure to perform the task and solve the 6th point of the [problem statement](problem_statement.md) under `Task 1`.
 
 ## System Configuration
 

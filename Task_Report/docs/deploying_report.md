@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to create documentation in Markdown and use `MkDocs` to deploy the documentation generated as a static site in reference to the 7th point of the [problem statement](problem_statement.md).
+The aim of this section is to create documentation in Markdown and use `MkDocs` to deploy the documentation generated as a static site in reference to the 7th point of the [problem statement](problem_statement.md) under `Task 1`.
 
 ## Format and Tools
 

@@ -3,7 +3,7 @@
 
 ## Objective
 
-The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to the 2nd, 3rd and 4th points of the [problem statement](problem_statement.md).
+The aim of this section is to understand the tech stack used for the project (DVNA), identify suitable tools to perform SAST and generate a report to provide a solution to the 2nd, 3rd and 4th points of the [problem statement](problem_statement.md) under `Task 1`.
 
 ## SAST
 

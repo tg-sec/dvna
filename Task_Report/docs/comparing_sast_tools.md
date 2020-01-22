@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to compare the findings of the various SAST tools used in the previous section and rank them to provide a solution to the first sub-segment of the 8th point of the [problem statement](problem_statement.md).
+The aim of this section is to compare the findings of the various SAST tools used in the previous section and rank them to provide a solution to the first sub-segment of the 8th point of the [problem statement](problem_statement.md) under `Task 1`.
 
 ## Vulnerability Reports
 
