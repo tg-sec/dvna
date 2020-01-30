@@ -102,7 +102,7 @@ eslint --no-color --format json --ext .ejs,.js --output-file /var/lib/jenkins/re
 echo $? > /dev/null
 ```
 
-**Note**: I added the `--no-color` flag to avoid color formatting (for linux terminals) as otherwise it would have appended additional syntactical text to provide formatting which made the report diffuclt to read.
+**Note**: I added the `--no-color` flag to avoid color formatting (for linux terminals) as otherwise it would have appended additional syntactical text to provide formatting which made the report difficult to read.
 
 Finally, I added a stage in the pipeline to run the script after I made it executable with `chmod +x`. The stage that I added was as follows:
 
