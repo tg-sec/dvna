@@ -10,6 +10,6 @@ The following is the report/documentation for the problem statement stated below
 * [Configuring Webhook](/configuring_webhook)
 * [Deploying the Report](/deploying_report)
 * [Dynamic Analysis](/dynamic_analysis)
+* [Code Lint Analysis](/code_lint_analysis)
+* [Generating Service Bill of Materials](/generating_sbom)
 * [Resources](/resources)
-
-This documentation can also be found [online](https://jenkins-report.netlify.com/).

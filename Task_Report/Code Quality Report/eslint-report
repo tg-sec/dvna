@@ -1,0 +1,722 @@
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/application.808e90bb.js
+   1:42     error  'window' is not defined                                          no-undef
+   1:967    error  Unexpected comma in middle of array                              no-sparse-arrays
+   1:1109   error  'document' is not defined                                        no-undef
+   1:1790   error  'window' is not defined                                          no-undef
+   1:1921   error  'document' is not defined                                        no-undef
+   1:1967   error  'HTMLElement' is not defined                                     no-undef
+   1:2004   error  'HTMLElement' is not defined                                     no-undef
+   1:2091   error  'document' is not defined                                        no-undef
+   1:2130   error  'HTMLElement' is not defined                                     no-undef
+   1:2277   error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+   1:2324   error  'HTMLElement' is not defined                                     no-undef
+   1:2489   error  'window' is not defined                                          no-undef
+   1:2571   error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+   1:2780   error  'document' is not defined                                        no-undef
+   1:2826   error  'HTMLElement' is not defined                                     no-undef
+   1:2902   error  'document' is not defined                                        no-undef
+   1:2941   error  'HTMLHeadingElement' is not defined                              no-undef
+   1:3208   error  'window' is not defined                                          no-undef
+   1:3296   error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+   1:3632   error  'document' is not defined                                        no-undef
+   1:3690   error  'window' is not defined                                          no-undef
+   1:3824   error  'document' is not defined                                        no-undef
+   1:3959   error  'window' is not defined                                          no-undef
+   1:4535   error  'window' is not defined                                          no-undef
+   1:4619   error  'document' is not defined                                        no-undef
+   1:4665   error  'HTMLElement' is not defined                                     no-undef
+   1:5127   error  'requestAnimationFrame' is not defined                           no-undef
+   1:5436   error  'requestAnimationFrame' is not defined                           no-undef
+   1:5635   error  'HTMLElement' is not defined                                     no-undef
+   1:6041   error  'document' is not defined                                        no-undef
+   1:6087   error  'HTMLElement' is not defined                                     no-undef
+   1:6377   error  'HTMLInputElement' is not defined                                no-undef
+   1:6479   error  'HTMLElement' is not defined                                     no-undef
+   1:6615   error  'HTMLElement' is not defined                                     no-undef
+   1:6663   error  'HTMLElement' is not defined                                     no-undef
+   1:6898   error  'HTMLElement' is not defined                                     no-undef
+   1:6981   error  'HTMLElement' is not defined                                     no-undef
+   1:7117   error  'HTMLElement' is not defined                                     no-undef
+   1:7165   error  'HTMLElement' is not defined                                     no-undef
+   1:7413   error  'HTMLElement' is not defined                                     no-undef
+   1:7589   error  'HTMLElement' is not defined                                     no-undef
+   1:7878   error  'HTMLInputElement' is not defined                                no-undef
+   1:7980   error  'HTMLElement' is not defined                                     no-undef
+   1:8116   error  'HTMLElement' is not defined                                     no-undef
+   1:8164   error  'HTMLElement' is not defined                                     no-undef
+   1:8404   error  'document' is not defined                                        no-undef
+   1:8450   error  'HTMLInputElement' is not defined                                no-undef
+   1:8508   error  'document' is not defined                                        no-undef
+   1:8558   error  'document' is not defined                                        no-undef
+   1:8693   error  'window' is not defined                                          no-undef
+   1:8734   error  'window' is not defined                                          no-undef
+   1:8883   error  'window' is not defined                                          no-undef
+   1:8976   error  'window' is not defined                                          no-undef
+   1:9123   error  'document' is not defined                                        no-undef
+   1:9169   error  'HTMLElement' is not defined                                     no-undef
+   1:9206   error  'HTMLElement' is not defined                                     no-undef
+   1:9308   error  'document' is not defined                                        no-undef
+   1:9347   error  'HTMLElement' is not defined                                     no-undef
+   1:9435   error  'window' is not defined                                          no-undef
+   1:9728   error  'window' is not defined                                          no-undef
+   1:9749   error  'window' is not defined                                          no-undef
+   1:10709  error  'fetch' is not defined                                           no-undef
+   1:11113  error  'document' is not defined                                        no-undef
+   1:11159  error  'HTMLAnchorElement' is not defined                               no-undef
+   1:11878  error  'document' is not defined                                        no-undef
+   1:11924  error  'Node' is not defined                                            no-undef
+   1:11972  error  'document' is not defined                                        no-undef
+   1:12120  error  'window' is not defined                                          no-undef
+   1:12233  error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+   1:15199  error  'document' is not defined                                        no-undef
+   1:15586  error  'Node' is not defined                                            no-undef
+   1:15680  error  't' is defined but never used                                    no-unused-vars
+   1:15793  error  'window' is not defined                                          no-undef
+   1:15825  error  't' is defined but never used                                    no-unused-vars
+   1:15827  error  'n' is defined but never used                                    no-unused-vars
+   8:1523   error  'e' is defined but never used                                    no-unused-vars
+   8:2606   error  'document' is not defined                                        no-undef
+   8:3150   error  'document' is not defined                                        no-undef
+   8:3520   error  'document' is not defined                                        no-undef
+   8:3587   error  'document' is not defined                                        no-undef
+   8:4865   error  'document' is not defined                                        no-undef
+   8:5088   error  'document' is not defined                                        no-undef
+   8:5347   error  'window' is not defined                                          no-undef
+   8:5367   error  'document' is not defined                                        no-undef
+   8:6020   error  'document' is not defined                                        no-undef
+   8:6355   error  'window' is not defined                                          no-undef
+   8:7329   error  't' is defined but never used                                    no-unused-vars
+   8:7674   error  'window' is not defined                                          no-undef
+   8:7698   error  'document' is not defined                                        no-undef
+   8:7816   error  't' is defined but never used                                    no-unused-vars
+   8:8995   error  'document' is not defined                                        no-undef
+   8:9202   error  'HTMLElement' is not defined                                     no-undef
+   8:9956   error  'document' is not defined                                        no-undef
+   8:10012  error  'document' is not defined                                        no-undef
+   8:10117  error  't' is defined but never used                                    no-unused-vars
+   8:10153  error  'Element' is not defined                                         no-undef
+   8:10186  error  'Element' is not defined                                         no-undef
+  15:20     error  Unexpected constant condition                                    no-constant-condition
+  15:118    error  'window' is not defined                                          no-undef
+  15:135    error  'window' is not defined                                          no-undef
+  15:185    error  'window' is not defined                                          no-undef
+  15:664    error  Unnecessary escape character: \{                                 no-useless-escape
+  15:666    error  Unnecessary escape character: \[                                 no-useless-escape
+  15:694    error  Empty block statement                                            no-empty
+  15:934    error  Unnecessary escape character: \(                                 no-useless-escape
+  15:936    error  Unnecessary escape character: \)                                 no-useless-escape
+  15:1038   error  'document' is not defined                                        no-undef
+  15:1129   error  'document' is not defined                                        no-undef
+  15:1145   error  'document' is not defined                                        no-undef
+  15:1357   error  Empty block statement                                            no-empty
+  15:1389   error  Empty block statement                                            no-empty
+  15:1665   error  'fetch' is not defined                                           no-undef
+  15:1743   error  'XMLHttpRequest' is not defined                                  no-undef
+  15:2295   error  'Blob' is not defined                                            no-undef
+  15:2602   error  'n' is defined but never used                                    no-unused-vars
+  15:2925   error  'document' is not defined                                        no-undef
+  15:2984   error  'HTMLMetaElement' is not defined                                 no-undef
+  15:3098   error  'document' is not defined                                        no-undef
+  15:3144   error  'HTMLElement' is not defined                                     no-undef
+  15:3752   error  'HTMLInputElement' is not defined                                no-undef
+  15:5780   error  'HTMLElement' is not defined                                     no-undef
+  15:6121   error  'document' is not defined                                        no-undef
+  15:6189   error  'HTMLInputElement' is not defined                                no-undef
+  15:6277   error  'CustomEvent' is not defined                                     no-undef
+  15:6342   error  'document' is not defined                                        no-undef
+  15:6703   error  'document' is not defined                                        no-undef
+  15:6733   error  'document' is not defined                                        no-undef
+  15:7646   error  'HTMLElement' is not defined                                     no-undef
+  15:8096   error  'document' is not defined                                        no-undef
+  15:8142   error  'HTMLElement' is not defined                                     no-undef
+  15:8671   error  'window' is not defined                                          no-undef
+  15:8686   error  'window' is not defined                                          no-undef
+  15:8730   error  'document' is not defined                                        no-undef
+  15:8789   error  'HTMLMetaElement' is not defined                                 no-undef
+  15:8902   error  'document' is not defined                                        no-undef
+  15:8946   error  'document' is not defined                                        no-undef
+  15:8971   error  'HTMLElement' is not defined                                     no-undef
+  15:9009   error  'Modernizr' is not defined                                       no-undef
+  15:9052   error  'navigator' is not defined                                       no-undef
+  15:9109   error  'document' is not defined                                        no-undef
+  15:9457   error  'document' is not defined                                        no-undef
+  15:9930   error  'HTMLElement' is not defined                                     no-undef
+  15:10270  error  'Modernizr' is not defined                                       no-undef
+  15:10295  error  'document' is not defined                                        no-undef
+  15:10549  error  'document' is not defined                                        no-undef
+  15:10579  error  'document' is not defined                                        no-undef
+  15:10603  error  'document' is not defined                                        no-undef
+  15:10694  error  'HTMLDetailsElement' is not defined                              no-undef
+  15:10761  error  'location' is not defined                                        no-undef
+  15:10775  error  'location' is not defined                                        no-undef
+  15:10793  error  'location' is not defined                                        no-undef
+  15:10815  error  'window' is not defined                                          no-undef
+  15:10859  error  'Modernizr' is not defined                                       no-undef
+  15:10880  error  'document' is not defined                                        no-undef
+  15:11145  error  'window' is not defined                                          no-undef
+  15:11309  error  'window' is not defined                                          no-undef
+  15:11433  error  'document' is not defined                                        no-undef
+  15:11508  error  'window' is not defined                                          no-undef
+  15:11613  error  'document' is not defined                                        no-undef
+  15:11688  error  'window' is not defined                                          no-undef
+  15:11863  error  'window' is not defined                                          no-undef
+  15:12000  error  'document' is not defined                                        no-undef
+  15:12120  error  'window' is not defined                                          no-undef
+  15:12319  error  'window' is not defined                                          no-undef
+  15:12401  error  'document' is not defined                                        no-undef
+  15:12827  error  'document' is not defined                                        no-undef
+  15:13182  error  'fetch' is not defined                                           no-undef
+  15:13498  error  'document' is not defined                                        no-undef
+  15:13568  error  'HTMLInputElement' is not defined                                no-undef
+  15:13748  error  'HTMLInputElement' is not defined                                no-undef
+  15:13811  error  'document' is not defined                                        no-undef
+  15:13881  error  'HTMLInputElement' is not defined                                no-undef
+  15:14037  error  'document' is not defined                                        no-undef
+  15:14105  error  'HTMLInputElement' is not defined                                no-undef
+  15:14193  error  'CustomEvent' is not defined                                     no-undef
+  15:14251  error  'window' is not defined                                          no-undef
+  15:14286  error  'document' is not defined                                        no-undef
+  15:14354  error  'HTMLInputElement' is not defined                                no-undef
+  15:14403  error  'document' is not defined                                        no-undef
+  15:14473  error  'HTMLInputElement' is not defined                                no-undef
+  15:14521  error  'document' is not defined                                        no-undef
+  15:14555  error  'HTMLElement' is not defined                                     no-undef
+  15:14568  error  'document' is not defined                                        no-undef
+  15:14672  error  'document' is not defined                                        no-undef
+  15:14721  error  'document' is not defined                                        no-undef
+  15:14816  error  'HTMLLinkElement' is not defined                                 no-undef
+  15:14834  error  'window' is not defined                                          no-undef
+  15:14906  error  'CustomEvent' is not defined                                     no-undef
+  15:15011  error  'CustomEvent' is not defined                                     no-undef
+  15:15089  error  'document' is not defined                                        no-undef
+  15:15209  error  'document' is not defined                                        no-undef
+  15:15339  error  'HTMLElement' is not defined                                     no-undef
+  15:15614  error  'document' is not defined                                        no-undef
+  15:15639  error  'document' is not defined                                        no-undef
+  15:15684  error  'document' is not defined                                        no-undef
+  15:15726  error  'document' is not defined                                        no-undef
+  15:15862  error  'window' is not defined                                          no-undef
+  15:15897  error  'document' is not defined                                        no-undef
+  15:15965  error  'HTMLInputElement' is not defined                                no-undef
+  15:16028  error  'document' is not defined                                        no-undef
+  15:16098  error  'HTMLInputElement' is not defined                                no-undef
+  15:16145  error  'document' is not defined                                        no-undef
+  15:16215  error  'document' is not defined                                        no-undef
+  15:16275  error  'document' is not defined                                        no-undef
+  15:16481  error  'document' is not defined                                        no-undef
+  15:16524  error  'document' is not defined                                        no-undef
+  15:16694  error  'document' is not defined                                        no-undef
+  15:16756  error  'document' is not defined                                        no-undef
+  15:16788  error  'document' is not defined                                        no-undef
+  15:16963  error  'document' is not defined                                        no-undef
+  15:17031  error  'HTMLInputElement' is not defined                                no-undef
+  15:17119  error  'CustomEvent' is not defined                                     no-undef
+  15:17163  error  'document' is not defined                                        no-undef
+  15:17253  error  'HTMLAnchorElement' is not defined                               no-undef
+  15:17443  error  'document' is not defined                                        no-undef
+  15:17602  error  'document' is not defined                                        no-undef
+  15:17778  error  'window' is not defined                                          no-undef
+  15:17932  error  'e' is defined but never used                                    no-unused-vars
+  15:17934  error  't' is defined but never used                                    no-unused-vars
+  15:17936  error  'n' is defined but never used                                    no-unused-vars
+  15:17962  error  'e' is defined but never used                                    no-unused-vars
+  15:17964  error  't' is defined but never used                                    no-unused-vars
+  15:17966  error  'n' is defined but never used                                    no-unused-vars
+  15:17992  error  'e' is defined but never used                                    no-unused-vars
+  15:17994  error  't' is defined but never used                                    no-unused-vars
+  15:18053  error  'window' is not defined                                          no-undef
+  15:18291  error  'document' is not defined                                        no-undef
+  15:18568  error  'window' is not defined                                          no-undef
+  15:18591  error  'window' is not defined                                          no-undef
+  15:18633  error  'window' is not defined                                          no-undef
+  15:18648  error  'window' is not defined                                          no-undef
+  15:18758  error  'self' is not defined                                            no-undef
+  15:18764  error  'window' is not defined                                          no-undef
+  15:19536  error  'self' is not defined                                            no-undef
+  15:19650  error  'self' is not defined                                            no-undef
+  15:20465  error  'MessageChannel' is not defined                                  no-undef
+  15:21369  error  'self' is not defined                                            no-undef
+  15:21411  error  't' is defined but never used                                    no-unused-vars
+  15:22858  error  'e' is defined but never used                                    no-unused-vars
+  15:22890  error  'e' is defined but never used                                    no-unused-vars
+  15:22991  error  'e' is defined but never used                                    no-unused-vars
+  27:458    error  Unnecessary escape character: \-                                 no-useless-escape
+  60:12595  error  Unexpected constant condition                                    no-constant-condition
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.ar.js
+  20:43  error  'define' is not defined  no-undef
+  20:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.da.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.de.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.du.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.es.js
+  17:43    error  'define' is not defined                     no-undef
+  17:54    error  'define' is not defined                     no-undef
+  17:7771  error  Expected a 'break' statement before 'case'  no-fallthrough
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.fi.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.fr.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.hu.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.it.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.ja.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.multi.js
+  1:43  error  'define' is not defined  no-undef
+  1:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.nl.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.no.js
+  17:43    error  'define' is not defined                                          no-undef
+  17:54    error  'define' is not defined                                          no-undef
+  17:2945  error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.pt.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.ro.js
+  17:43    error  'define' is not defined                     no-undef
+  17:54    error  'define' is not defined                     no-undef
+  17:7987  error  Expected a 'break' statement before 'case'  no-fallthrough
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.ru.js
+  17:43    error  'define' is not defined                     no-undef
+  17:54    error  'define' is not defined                     no-undef
+  17:3595  error  Expected a 'break' statement before 'case'  no-fallthrough
+  17:4521  error  Expected a 'break' statement before 'case'  no-fallthrough
+  17:4554  error  Expected a 'break' statement before 'case'  no-fallthrough
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.stemmer.support.js
+  9:43    error  'define' is not defined                                          no-undef
+  9:54    error  'define' is not defined                                          no-undef
+  9:1974  error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+  9:2439  error  Expected a conditional expression and instead saw an assignment  no-cond-assign
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.sv.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.th.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.tr.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/lunr.vi.js
+  17:43  error  'define' is not defined  no-undef
+  17:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/tinyseg.js
+  1:43  error  'define' is not defined  no-undef
+  1:54  error  'define' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/lunr/wordcut.js
+  1:124     error  'define' is not defined                                                          no-undef
+  1:135     error  'define' is not defined                                                          no-undef
+  1:190     error  'window' is not defined                                                          no-undef
+  1:256     error  'self' is not defined                                                            no-undef
+  1:771     error  'e' is defined but never used                                                    no-unused-vars
+  1:1373    error  'n' is defined but never used                                                    no-unused-vars
+  1:1448    error  'defaultDict' is not defined                                                     no-undef
+  1:1540    error  'defaultDict' is not defined                                                     no-undef
+  1:1561    error  'defaultDict' is not defined                                                     no-undef
+  1:1914    error  'words' is not defined                                                           no-undef
+  1:197122  error  'words' is not defined                                                           no-undef
+  1:197997  error  'e' is defined but never used                                                    no-unused-vars
+  1:198569  error  'n' is defined but never used                                                    no-unused-vars
+  1:198659  error  Unnecessary escape character: \@                                                 no-useless-escape
+  1:198661  error  Unnecessary escape character: \(                                                 no-useless-escape
+  1:198663  error  Unnecessary escape character: \)                                                 no-useless-escape
+  1:198665  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:198667  error  Unnecessary escape character: \,                                                 no-useless-escape
+  1:198671  error  Unnecessary escape character: \.                                                 no-useless-escape
+  1:199047  error  'e' is defined but never used                                                    no-unused-vars
+  1:199761  error  'e' is defined but never used                                                    no-unused-vars
+  1:200116  error  'e' is defined but never used                                                    no-unused-vars
+  1:200344  error  'n' is defined but never used                                                    no-unused-vars
+  1:200596  error  'n' is defined but never used                                                    no-unused-vars
+  1:201022  error  'e' is defined but never used                                                    no-unused-vars
+  1:201374  error  'n' is defined but never used                                                    no-unused-vars
+  1:201959  error  'e' is defined but never used                                                    no-unused-vars
+  1:202958  error  'e' is defined but never used                                                    no-unused-vars
+  1:205739  error  'n' is defined but never used                                                    no-unused-vars
+  1:205741  error  't' is defined but never used                                                    no-unused-vars
+  1:205743  error  'e' is defined but never used                                                    no-unused-vars
+  1:205816  error  'n' is defined but never used                                                    no-unused-vars
+  1:205818  error  't' is defined but never used                                                    no-unused-vars
+  1:206023  error  'e' is defined but never used                                                    no-unused-vars
+  1:206612  error  'e' is defined but never used                                                    no-unused-vars
+  1:207260  error  'l' is already defined                                                           no-redeclare
+  1:208688  error  'n' is defined but never used                                                    no-unused-vars
+  1:208690  error  't' is defined but never used                                                    no-unused-vars
+  1:208692  error  'e' is defined but never used                                                    no-unused-vars
+  1:208718  error  'e' is defined but never used                                                    no-unused-vars
+  1:208952  error  'e' is defined but never used                                                    no-unused-vars
+  1:214344  error  'r' is already defined                                                           no-redeclare
+  1:215571  error  'n' is defined but never used                                                    no-unused-vars
+  1:217610  error  'n' is defined but never used                                                    no-unused-vars
+  1:222095  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:223321  error  'n' is defined but never used                                                    no-unused-vars
+  1:225419  error  'h' is already defined                                                           no-redeclare
+  1:227342  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:228268  error  'n' is defined but never used                                                    no-unused-vars
+  1:228746  error  'e' is defined but never used                                                    no-unused-vars
+  1:229068  error  'e' is defined but never used                                                    no-unused-vars
+  1:229137  error  Empty block statement                                                            no-empty
+  1:230330  error  't' is defined but never used                                                    no-unused-vars
+  1:230332  error  'e' is defined but never used                                                    no-unused-vars
+  1:231057  error  't' is defined but never used                                                    no-unused-vars
+  1:231059  error  'e' is defined but never used                                                    no-unused-vars
+  1:236454  error  'e' is defined but never used                                                    no-unused-vars
+  1:237364  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:237377  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:237388  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:238178  error  't' is defined but never used                                                    no-unused-vars
+  1:239153  error  't' is defined but never used                                                    no-unused-vars
+  1:239256  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:239266  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:239273  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:239281  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:239291  error  Unnecessary escape character: \/                                                 no-useless-escape
+  1:239515  error  'e' is defined but never used                                                    no-unused-vars
+  1:240962  error  'n' is defined but never used                                                    no-unused-vars
+  1:240994  error  'n' is defined but never used                                                    no-unused-vars
+  1:241095  error  'n' is defined but never used                                                    no-unused-vars
+  1:250324  error  Do not access Object.prototype method 'propertyIsEnumerable' from target object  no-prototype-builtins
+  1:257310  error  'e' is defined but never used                                                    no-unused-vars
+  1:258723  error  't' is defined but never used                                                    no-unused-vars
+  1:259303  error  't' is defined but never used                                                    no-unused-vars
+  1:260414  error  Unexpected control character(s) in regular expression: \x1b                      no-control-regex
+  1:263559  error  'self' is not defined                                                            no-undef
+  1:263591  error  'window' is not defined                                                          no-undef
+  1:263671  error  'e' is defined but never used                                                    no-unused-vars
+
+/var/lib/jenkins/workspace/node-lint-pipeline/Task_Report/site/assets/javascripts/modernizr.268332fc.js
+  1:42    error  'window' is not defined                                                    no-undef
+  1:1028  error  't' is defined but never used                                              no-unused-vars
+  1:2991  error  'getComputedStyle' is not defined                                          no-undef
+  1:4017  error  Empty block statement                                                      no-empty
+  1:4906  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1:6711  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  1:7254  error  'window' is not defined                                                    no-undef
+  1:7261  error  'document' is not defined                                                  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/core/appHandler.js
+   30:11  error  'err' is defined but never used  no-unused-vars
+   40:3   error  'output' is not defined          no-undef
+   42:12  error  'output' is not defined          no-undef
+   49:3   error  'output' is not defined          no-undef
+   53:12  error  'output' is not defined          no-undef
+   66:3   error  'output' is not defined          no-undef
+   71:12  error  'output' is not defined          no-undef
+   78:3   error  'output' is not defined          no-undef
+   82:12  error  'output' is not defined          no-undef
+   93:4   error  'output' is not defined          no-undef
+   97:13  error  'output' is not defined          no-undef
+  125:4   error  'output' is not defined          no-undef
+  130:13  error  'output' is not defined          no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/core/passport.js
+  54:13  error  'findOrCreateUser' is not defined  no-undef
+  82:30  error  'findOrCreateUser' is not defined  no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/models/index.js
+   6:5   error  'env' is assigned a value but never used  no-unused-vars
+  12:7   error  'sequelize' is already defined            no-redeclare
+  20:19  error  'err' is defined but never used           no-unused-vars
+  29:19  error  'err' is defined but never used           no-unused-vars
+
+/var/lib/jenkins/workspace/node-lint-pipeline/public/assets/jquery-3.2.1.min.js
+  2:253    error  'window' is not defined                                                    no-undef
+  2:5774   error  Unexpected control character(s) in regular expression: \x1f, \x1f          no-control-regex
+  2:6247   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:6501   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:6932   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:7158   error  Empty block statement                                                      no-empty
+  2:7720   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:9786   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:10096  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:11897  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:12473  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:12511  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:12929  error  Empty block statement                                                      no-empty
+  2:13543  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:13855  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:15679  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:15950  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:16150  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:16526  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  2:17229  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:19571  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:19671  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:19731  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:21090  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:21704  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:21815  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  2:24136  error  Unnecessary escape character: \/                                           no-useless-escape
+  2:24200  error  Unnecessary escape character: \[                                           no-useless-escape
+  2:24202  error  Unnecessary escape character: \.                                           no-useless-escape
+  3:1907   error  Empty block statement                                                      no-empty
+  3:5602   error  Unnecessary escape character: \/                                           no-useless-escape
+  3:6813   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  3:6953   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  3:7591   error  Empty block statement                                                      no-empty
+  3:14345  error  Unnecessary escape character: \/                                           no-useless-escape
+  3:16613  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  3:18185  error  Empty block statement                                                      no-empty
+  3:25385  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  3:27946  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:246    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:1955   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:2021   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:2360   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:2426   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:2843   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:3120   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:8856   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:11348  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  4:12069  error  'j.href' is assigned to itself                                             no-self-assign
+  4:15632  error  Empty block statement                                                      no-empty
+  4:22290  error  'define' is not defined                                                    no-undef
+  4:22302  error  'define' is not defined                                                    no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/public/assets/showdown.min.js
+  3:2930   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:4209   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:5814   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:6131   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:6237   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:6364   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:6537   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:6801   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:7265   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:8141   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:8242   error  Unnecessary escape character: \/                                           no-useless-escape
+  3:8405   error  Unnecessary escape character: \[                                           no-useless-escape
+  3:8669   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+  3:10823  error  Read-only global 'console' should not be modified                          no-global-assign
+  3:10862  error  'alert' is not defined                                                     no-undef
+  3:10901  error  'alert' is not defined                                                     no-undef
+  3:11693  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:11764  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:12408  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:12619  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:12797  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:12916  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:14286  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:14375  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+  3:15476  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:15549  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:15657  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:15776  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:15848  error  Unnecessary escape character: \-                                           no-useless-escape
+  3:16294  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:16415  error  Unnecessary escape character: \/                                           no-useless-escape
+  3:18490  error  Spaces are hard to count. Use {2}                                          no-regex-spaces
+  3:20162  error  Unnecessary escape character: \/                                           no-useless-escape
+  3:20507  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:20821  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:21094  error  Unnecessary escape character: \/                                           no-useless-escape
+  3:25598  error  Unnecessary escape character: \/                                           no-useless-escape
+  3:25613  error  Unnecessary escape character: \[                                           no-useless-escape
+  3:28482  error  Unnecessary escape character: \[                                           no-useless-escape
+  4:5440   error  'define' is not defined                                                    no-undef
+  4:5451   error  'define' is not defined                                                    no-undef
+
+/var/lib/jenkins/workspace/node-lint-pipeline/server.js
+  5:5  error  'ejs' is assigned a value but never used  no-unused-vars
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/admin.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/adminusers.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/bulkproducts.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/calc.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/modifyproduct.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/ping.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/products.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/useredit.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/app/usersearch.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/common/footer.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/common/head.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/common/navigation.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/forgotpw.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/learn.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/login.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/register.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/resetpw.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a10_logging/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a10_logging/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a10_logging/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a1_injection/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a1_injection/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a1_injection/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a2_broken_auth/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a2_broken_auth/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a2_broken_auth/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a3_sensitive_data/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a3_sensitive_data/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a3_sensitive_data/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a4_xxe/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a4_xxe/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a4_xxe/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a5_broken_access_control/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a5_broken_access_control/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a5_broken_access_control/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a6_sec_misconf/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a6_sec_misconf/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a6_sec_misconf/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a7_xss/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a7_xss/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a7_xss/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a8_ides/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a8_ides/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a8_ides/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a9_vuln_component/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a9_vuln_component/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/a9_vuln_component/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_csrf/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_csrf/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_csrf/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_redirect/description.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_redirect/reference.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/ax_redirect/scenario.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+/var/lib/jenkins/workspace/node-lint-pipeline/views/vulnerabilities/layout.ejs
+  1:1  error  Parsing error: Unexpected token <
+
+✖ 549 problems (549 errors, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.

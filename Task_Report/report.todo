@@ -12,3 +12,7 @@ Project Review 9th Jan 2020:
         ✔ Change ed25519 for ssh access under VM Setup @done(20-01-09 12:30)
         ✔ Change theme to 'Material' from 'ReadTheDocs' for the site. @done(20-01-09 12:05)
         ✔ Added Sunesh and Akash as collaborators in personal fork of DVNA @done(20-01-09 12:17)
+
+Task 3:
+    ☐ Commit-based checks to perform code linting for improving code Quality and generate quality report
+    ☐ Generate service bill-of-materials for all dependencies

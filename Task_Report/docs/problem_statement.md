@@ -18,3 +18,8 @@
 1. Add onto Task 1 by implementing DAST in the pipeline for [DVNA](https://github.com/appsecco/dvna) with using [OWASP ZAP](https://www.zaproxy.org/).
 2. Implement and use [Semantic Versioning](https://semver.org/) to tag versions of the documentation created as part of the tasks.
 3. Append content for the task to the existing documentation from first task.
+
+## Task 3
+
+1. Perform commit-based checks on the source code for linting errors to improve code quality and generate quality report.
+2. Generate service bill-of-materials for all dependencies.
