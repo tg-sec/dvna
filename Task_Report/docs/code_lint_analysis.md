@@ -37,9 +37,9 @@ Since `Jshint` gave a non-zero status code, when it found issues, I had to write
 ```bash
 #!/bin/bash
 
-cd /var/lib/jenkins/workspace/node-lint-pipeline
+cd /{JENKINS HOME DIRECTORY}/workspace/node-lint-pipeline
 
-jshint $(ls ./**/*.js ./**/*.ejs | grep -v node | grep js) *.js > /var/lib/jenkins/reports/jshint-report
+jshint $(ls ./**/*.js ./**/*.ejs | grep -v node | grep js) *.js > /{JENKINS HOME DIRECTORY}/reports/jshint-report
 
 echo $? > /dev/null
 ```
@@ -49,7 +49,7 @@ Lastly, I added a stage in the pipeline to execute the script after making it ex
 ```jenkins
 stage ('Lint Analysis with Jshint') {
     steps {
-        sh '/home/chaos/jshint-script.sh'
+        sh '/{PATH TO SCRIPT}/jshint-script.sh'
     }
 }
 ```
@@ -87,7 +87,7 @@ Now, `Eslint` requires the project being scanned to have a `.eslintrc` file whic
 After initialising Eslint, I ran the scan on DVNA with the following command, to scan all files within the current folder and its sub-folder with `.ejs` and `.js` extensions (because under the `/views` directory there were `.ejs` files) and lastly, write the report to a file in JSON format:
 
 ```bash
-eslint --format json --ext .ejs,.js --output-file /var/lib/jenkins/reports/eslint-report ./
+eslint --format json --ext .ejs,.js --output-file /{JENKINS HOME DIRECTORY}/reports/eslint-report ./
 ```
 
 Like Jshint, Eslint also gave a non-zero status code if it identified issues with linting. So, I wrapped the required command in a bash script, `eslint-script.sh` whose contents are below:
@@ -95,9 +95,9 @@ Like Jshint, Eslint also gave a non-zero status code if it identified issues wit
 ```bash
 #!/bin/bash
 
-cd /var/lib/jenkins/workspace/node-lint-pipeline
+cd /{JENKINS HOME DIRECTORY}/workspace/node-lint-pipeline
 
-eslint --no-color --format json --ext .ejs,.js --output-file /var/lib/jenkins/reports/eslint-report ./
+eslint --no-color --format json --ext .ejs,.js --output-file /{JENKINS HOME DIRECTORY}/reports/eslint-report ./
 
 echo $? > /dev/null
 ```
@@ -109,7 +109,7 @@ Finally, I added a stage in the pipeline to run the script after I made it execu
 ```jenkins
 stage ('Lint Analysis with Jshint') {
     steps {
-        sh '/home/chaos/eslint-script.sh'
+        sh '/{PATH TO SCRIPT}/eslint-script.sh'
     }
 }
 ```
