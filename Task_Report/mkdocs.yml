@@ -12,7 +12,7 @@ pages:
 - Deploying the Report: 'deploying_report.md'
 - Dynamic Analysis: 'dynamic_analysis.md'
 - Linting Analysis: 'code_lint_analysis.md'
-- Generating Service Bill of Materials: 'generating_sbom.md'
+- Generating Software Bill of Materials: 'generating_sbom.md'
 - Resources: 'resources.md'
 
 

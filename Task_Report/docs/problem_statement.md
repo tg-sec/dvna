@@ -22,4 +22,4 @@
 ## Task 3
 
 1. Perform commit-based checks on the source code for linting errors to improve code quality and generate quality report.
-2. Generate service bill-of-materials for all dependencies.
+2. Generate software bill of materials for all dependencies.

@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to perform DAST for `DVNA` with `OWASP ZAP` and generate a report to provide a solution to the 1st point of the problem statement under `Task 2`.
+The aim of this section is to perform DAST for `DVNA` with `OWASP ZAP` and generate a report to provide a solution to the 1st point of the [problem statement](/problem_statement) under `Task 2`.
 
 ## DAST
 

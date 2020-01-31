@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to perform linting checks on the source code of `DVNA`  and generate a code quality report to provide a solution to the 1st point of the problem statement under `Task 3`.
+The aim of this section is to perform linting checks on the source code of `DVNA`  and generate a code quality report to provide a solution to the 1st point of the [problem statement](/problem_statement) under `Task 3`.
 
 ## Source Code Linting
 
