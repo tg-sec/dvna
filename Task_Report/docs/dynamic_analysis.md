@@ -52,107 +52,149 @@ docker exec <CONTAINER NAME/ID> zap-cli active-scan <TARGET URL>
 
 **Note**: Before a scan be be run, I had to run `open-url` to add the target URL to the configuration in ZAP-CLI, without this, `active-scan` option will not start a scan on the target.
 
-**Note**: When I ran the scan initially, it dropped an error from Python saying that the 'Connection was Refused' while sending requests to the target through the ZAP proxy. It turned out to be an issue with the command written in the blog that I was following. It exposed the wrong port and hence rectifying the port options in the command to `-p 8090:8080` and `-port 8080` solved the issue and the scan worked. Another thing is that I chose `8090` for the host port as I already had Jenkins running on `8080`. Lastly, I also appended the `--rm` flag to delete the container when I stop it.
+**Note**: When I ran the scan initially, it dropped an error from Python saying that the 'Connection was Refused' while sending requests to the target through the ZAP proxy. It turned out to be an issue with the command written in the blog that I was following. It exposed the wrong port and hence rectifying the port options in the command to `-p 8090:8080` and `-port 8080` solved the issue and the scan worked. Another thing is that I chose `8090` for the host port as I already had Jenkins running on `8080`. Lastly, I also appended the `--rm` flag to delete the container, automatically, when I stop it.
 
-* Now to be able to scan DVNA from the CLI with ZAP-CLI, I required a _context_ which basically was a cofiguration written in XML to define how to perform a scan. This context also had a set of credentials in it that were recorded with a [ZEST](https://github.com/mozilla/zest/wiki) script, which is a JSON-based form used to record interactions between a website and a user specially created for security tools focused on web applications. This context file along with the ZEST script would allow zap-cli to authenticate with DVNA to be able to scan the portion of the application that lies behind the login screen.
+* Now to be able to scan DVNA from the CLI with ZAP-CLI, I required a _context_ which basically was a cofiguration written in XML to define how to perform a scan. This context also had a set of credentials in it that were recorded with a [ZEST](https://github.com/mozilla/zest/wiki) script, which is a JSON-based form used to record interactions between a website and a user specially created for security tools focused on web applications. This context file along with the ZEST script would allow zap-cli to authenticate with DVNA to be able to scan the portion of the application that lies behind the login screen. I used the browser-based GUI to generate the context and the Zest script and exported them to the machine. But importing them created various complications as zap-cli was unable to identify the embedded Zest script in the context provided to it.
 
-## TEMP Stuff
-
-The stuff listed below here is to be formatted and put into it's required place once the proper segment for the information is identified and written.
-
-Adding jenkins user to the docker group (not recommended as it is equivalent of giving jenkins root access. Preferred way is to have dokcer infra on a separate machine to isolate access from jenkins). Command to add jenkins to docker group:
+* Due to the above complications, I decided to use Zap's baseline scan instead. To start off ZAP baseline scan with the docker image, I ran the following command, by following this [documentation](https://github.com/zaproxy/zaproxy/wiki/ZAP-Baseline-Scan):
 
 ```bash
-sudo usermod -aG docker jenkins
+docker run -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -l INFO
 ```
 
-Zap baseline scan:
+* Now, to save the report on the Jenkins machine, I needed to mount a volume with Docker. To mount the current working directory, I used the `-v` flag, as mentioned in the docker [documentation](https://docs.docker.com/storage/volumes/), save the scan output to a HTML report on the Jenkins machine:
 
 ```bash
-docker run -v /home/chaos/ZAP/:/zap/wrk/:rw --name zapbase -i owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:9090 -r baseline_report.html -l INFO
+docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
 ```
 
-* for trouble shooting 'source not found' issue with jenkins shell (`sh`) pointing to `/bin/dash` instead of `/bin/bash` was solved with the help of this [article](https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/).
+**Note**: While running ZAP scans above, I explicitly ran DVNA, without Jenkins, for it to be tested.
 
-The following context file is what is needed by the zap-cli to authenticate with the login screen in DVNA.
+## Integrating ZAP with Jenkins
 
-```zap-context
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration>
-    <context>
-        <name>Default Context</name>
-        <desc/>
-        <inscope>true</inscope>
-        <tech>
-            <include>Db</include>
-            <include>Db.CouchDB</include>
-            <include>Db.Firebird</include>
-            <include>Db.HypersonicSQL</include>
-            <include>Db.IBM DB2</include>
-            <include>Db.Microsoft Access</include>
-            <include>Db.Microsoft SQL Server</include>
-            <include>Db.MongoDB</include>
-            <include>Db.MySQL</include>
-            <include>Db.Oracle</include>
-            <include>Db.PostgreSQL</include>
-            <include>Db.SAP MaxDB</include>
-            <include>Db.SQLite</include>
-            <include>Db.Sybase</include>
-            <include>Language</include>
-            <include>Language.ASP</include>
-            <include>Language.C</include>
-            <include>Language.JSP/Servlet</include>
-            <include>Language.Java</include>
-            <include>Language.JavaScript</include>
-            <include>Language.PHP</include>
-            <include>Language.Python</include>
-            <include>Language.Ruby</include>
-            <include>Language.XML</include>
-            <include>OS</include>
-            <include>OS.Linux</include>
-            <include>OS.MacOS</include>
-            <include>OS.Windows</include>
-            <include>SCM</include>
-            <include>SCM.Git</include>
-            <include>SCM.SVN</include>
-            <include>WS</include>
-            <include>WS.Apache</include>
-            <include>WS.IIS</include>
-            <include>WS.Tomcat</include>
-        </tech>
-        <urlparser>
-            <class>org.zaproxy.zap.model.StandardParameterParser</class>
-            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
-        </urlparser>
-        <postparser>
-            <class>org.zaproxy.zap.model.StandardParameterParser</class>
-            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
-        </postparser>
-        <authentication>
-            <type>4</type>
-            <loggedin>Logout</loggedin>
-            <loggedout>Login</loggedout>
-            <script>
-                <name>Authenticating with Login Form in DVNA</name>
-                <params>cGFzc3dvcmQ=:YWRtaW4=&amp;dXNlcm5hbWU=:YWRtaW4=</params>
-            </script>
-        </authentication>
-        <users>
-            <user>57;false;VXNlciAx;4;</user>
-        </users>
-        <forceduser>57</forceduser>
-        <session>
-            <type>0</type>
-        </session>
-        <authorization>
-            <type>0</type>
-            <basic>
-                <header/>
-                <body/>
-                <logic>AND</logic>
-                <code>-1</code>
-            </basic>
-        </authorization>
-    </context>
-</configuration>
+* After figuring out how to use the baseline-scan and it's various options, I started integrating the scan as part of DAST in the Jenkins pipeline. But before I could scan DVNA with ZAP Baseline, I needed to build the dependencies and start and instance of DVNA. To do the same, I also had to fetch code from the repository on GitHub (explicitly, because I didn't use a Jenkinsfile for this task).
+
+**Note**: I chose to build a new pipeline just for DAST, as combining SAST and DAST in a single pipeline would have taken too much time during each execution which felt unnecessary at this point.
+
+* To start off, I added a stage to fetch the code from the GitHub repository as follows:
+
+```jenkins
+stage ('Fetching Code') {
+    steps {
+        git url: 'https://github.com/ayushpriya10/dvna.git'
+    }
+}
 ```
+
+* Next, I built the dependencies for DVNA, as I did while performing SAST, and started an instance of DVNA, as mentioned in the stage mentioned below:
+
+```jenkins
+stage ('Building DVNA') {
+    steps {
+        sh '''
+            npm install
+            source /{PATH TO SCRIPT}/dast/env.sh
+            pm2 start server.js
+        '''
+    }
+}
+```
+
+**Note**: I kept all the required environment variables in the `env.sh` file which can seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the `shell` that comes along with Jenkins kept throwing an error saying it didn't recognise the comand `source`. This turned out to be because that by default the `sh` shell in Jenkins point to `/bin/dash` which doesn't have the command `source`. To rectify this, I changed the Jenkins shell to point to `/bin/bash` instead with this command - `sudo ln -sf /bin/bash /bin/sh`, which I found in this [blog](https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/).
+
+* Now, that DVNA was up and running, ran the baseline scan on it with docker and Zap. But I had to wrap the command in a shell script to evade the non-zero status code that ZAP gives on finding issues. So, I wrote the script, `baseline-scan.sh`, mentioned below and made it executable with `chmod +x`:
+
+```bash
+cd /{JENKINS HOME DIRECTORY}/workspace/node-dast-pipeline
+
+docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
+
+echo $? > /dev/null
+```
+
+**Note**: One thing to take note of is that Jenkins would require to use `sudo` when running docker commands as it's not part of the `docker` user group on the system. This is the preferred way, that required docker setup is on another VM and Jenkins SSHs into the other VM with access to run docker commands as a sudo user. But for the purpose of this task, I did not setup another VM, instead I added the `jenkins` user to the docker user group with - `sudo usermod -aG docker jenkins`, for it to be able to perform operation without using `sudo`. This, however, is not recommended.
+
+* I added a stage in the Jenkins Pipeline, to execute the shell script and generate the DAST report. The stage's content is mentioned below:
+
+```jenkins
+stage ('Run ZAP for DAST') {
+    steps {
+        sh '/{PATH TO SCRIPT}/baseline-scan.sh'
+    }
+}
+```
+
+**Note**: Running the pipeline threw an access error, saying the report could not be written in the directory. This was because the `zap` user in the docker container did not have write permission for Jenkins' workspace. So, for the sake of the task, I modified the permissions of the `node-dast-pipelin/` directoy with `chmod 777 node-dast-pipeline/`. This is also not recommended. If the permissions need to be changed, they should be specific an exact in terms of the access they grant which should not be more than that is required.
+
+* Lastly, I added a stage to stop the instance of DVNA that was running as it was no longer needed and moved the report generated from the workspace directory to the reports directory that I've been using for the tasks:
+
+```jenkins
+stage ('Take DVNA offline') {
+    steps {
+        sh 'pm2 stop server.js'
+        sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
+    }
+}
+```
+
+The complete pipeline script is as follows:
+
+```jenkins
+pipeline {
+
+    agent any
+
+    stages {
+        stage ('Fetching Code') {
+            steps {
+                git url: 'https://github.com/ayushpriya10/dvna.git'
+            }
+        }
+
+        stage ('Building DVNA') {
+            steps {
+                sh '''
+                    npm install
+                    source /{PATH TO SCRIPT}/dast/env.sh
+                    pm2 start server.js
+                '''
+            }
+        }
+
+        stage ('Run ZAP for DAST') {
+            steps {
+                sh '/{PATH TO SCRIPT}/baseline-scan.sh'
+            }
+        }
+
+        stage ('Take DVNA offline') {
+            steps {
+                sh 'pm2 stop server.js'
+                sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
+            }
+        }
+    }
+}
+```
+
+**Note**: I also tried running a `docker` agent in the Jenkins pipeline to execute zap-baseline scan but it kept throwing an access error (different than the one mentioned above). This issue was not recitified yet. The stage that I wrote (but was not working) is as follows:
+
+```jenkins
+stage ('Run ZAP for DAST') {
+    agent {
+        docker {
+            image 'owasp/zap2docker-stable'
+            // args '-dir /zap/wrk/.ZAP/'
+            // args '-v $(pwd):/zap/wrk/'
+            args '-v /var/lib/jenkins/workspace/node-dast-pipeline/:/zap/wrk/'
+        }
+    }
+    steps {
+        sh 'zap-baseline.py -t http://172.17.0.1:9090 -r zap_baseline_report.html -l PASS'
+    }
+}
+```
+
+## DAST Report generated by ZAP
+
+The complete report generated by the ZAP baseline scan can be found [here]().
