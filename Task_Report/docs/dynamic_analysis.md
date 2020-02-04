@@ -18,7 +18,7 @@ Docker is a tool designed to provide ease in shipping applications across platfo
 
 To use ZAP with docker, I needed to pull the image from [docker hub](https://hub.docker.com/) and start off. I used this [documentation](https://blog.mozilla.org/fxtesteng/2016/05/11/docker-owasp-zap-part-one/) from Mozilla as it had a lot of errors demonstrated along with their rectification steps for starting out with ZAP. This was missing from all the other sources I found.
 
-**Note**: While running ZAP scans above, I explicitly ran DVNA, without Jenkins, for it to be tested.
+**Note**: While running ZAP scans below, I explicitly ran DVNA, without Jenkins, for it to be tested.
 
 * To start off with ZAP, I pulled the docker image by running:
 
