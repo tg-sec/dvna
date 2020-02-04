@@ -1,4 +1,4 @@
-# Source Code Linting Analysis
+# Source Code Quality Analysis
 
 ## Objective
 
