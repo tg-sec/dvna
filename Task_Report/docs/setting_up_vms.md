@@ -73,3 +73,7 @@ ssh-keygen -t ed25519 -C "<email>"
 **Note**: One could also use the `ssh-agent` plugin in Jenkins to use a different user to ssh into the production VM. The credentials for that user will have to be added under Jenkins Credentials Section.
 
 **Note**: `ed25519` is used instead of the `rsa` option as it provides a smaller key while providing the equivalent security of an RSA key.
+
+## Additional Notes on VirtualBox
+
+While setting up the Virtual Machines on VirtualBox, I faced trouble scaling the Guest OS's window to fit the screen. The autoscaling feature did not work on it's own. The solution, which I found in this [blog](https://selivan.github.io/2019/01/31/virtualbox-linux-guest-autoresize-screen.html), was to select `VBoxVGA` under `Machine Settings > Display > Graphics Controller`, instead of `VBoxSVGA` (even though its the recommended one).
