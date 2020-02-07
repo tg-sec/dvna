@@ -287,6 +287,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#additional-notes-on-virtualbox" class="md-nav__link">
+    Additional Notes on VirtualBox
+  </a>
+  
+</li>
+      
       
       
       
@@ -400,6 +407,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../final_pipeline/" title="Final Pipeline Structure" class="md-nav__link">
+      Final Pipeline Structure
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../resources/" title="Resources" class="md-nav__link">
       Resources
     </a>
@@ -478,6 +497,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes-on-virtualbox" class="md-nav__link">
+    Additional Notes on VirtualBox
+  </a>
   
 </li>
       
@@ -563,6 +589,8 @@ export MYSQL_PORT=3306
 </ul>
 <p><strong>Note</strong>: One could also use the <code>ssh-agent</code> plugin in Jenkins to use a different user to ssh into the production VM. The credentials for that user will have to be added under Jenkins Credentials Section.</p>
 <p><strong>Note</strong>: <code>ed25519</code> is used instead of the <code>rsa</code> option as it provides a smaller key while providing the equivalent security of an RSA key.</p>
+<h2 id="additional-notes-on-virtualbox">Additional Notes on VirtualBox</h2>
+<p>While setting up the Virtual Machines on VirtualBox, I faced trouble scaling the Guest OS's window to fit the screen. The autoscaling feature did not work on it's own. The solution, which I found in this <a href="https://selivan.github.io/2019/01/31/virtualbox-linux-guest-autoresize-screen.html">blog</a>, was to select <code>VBoxVGA</code> under <code>Machine Settings &gt; Display &gt; Graphics Controller</code>, instead of <code>VBoxSVGA</code> (even though its the recommended one).</p>
                 
                   
                 

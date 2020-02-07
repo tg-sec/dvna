@@ -12,4 +12,5 @@ The following is the report/documentation for the problem statement stated below
 * [Dynamic Analysis](/dynamic_analysis)
 * [Code Quality Analysis](/code_quality_analysis)
 * [Generating Software Bill of Materials](/generating_sbom)
+* [Final Pipeline Structure](/final_pipeline)
 * [Resources](/resources)

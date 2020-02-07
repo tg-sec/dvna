@@ -387,6 +387,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../final_pipeline/" title="Final Pipeline Structure" class="md-nav__link">
+      Final Pipeline Structure
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../resources/" title="Resources" class="md-nav__link">
       Resources
     </a>
@@ -531,7 +543,7 @@ docker exec &lt;CONTAINER NAME/ID&gt; zap-cli active-scan &lt;TARGET URL&gt;
 <ul>
 <li>After understanding how to use the baseline-scan and its various options, I started integrating the scan as part of DAST in the Jenkins pipeline. But before I could scan DVNA with ZAP Baseline, I needed to build the dependencies and start an instance of DVNA. To do the same, I also had to fetch code from the repository on GitHub (explicitly, because I didn't use a Jenkinsfile for this task).</li>
 </ul>
-<p><strong>Note</strong>: I chose to build a new pipeline just for DAST, as combining SAST and DAST in a single pipeline would have taken too much time during each execution which felt unnecessary at this point.</p>
+<p><strong>Note</strong>: I chose to build a new pipeline just for DAST, as combining SAST and DAST in a single pipeline would have taken too much time during each execution which felt unnecessary at the time of development.</p>
 <ul>
 <li>To start off, I added a stage to fetch the code from the GitHub repository as follows:</li>
 </ul>
@@ -556,7 +568,7 @@ docker exec &lt;CONTAINER NAME/ID&gt; zap-cli active-scan &lt;TARGET URL&gt;
 }
 </code></pre>
 
-<p><strong>Note</strong>: I kept all the required environment variables in the <code>env.sh</code> file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the <code>shell</code> that comes along with Jenkins kept throwing an error saying it didn't recognize the command <code>source</code>. This turned out to be because that by default the <code>sh</code> shell in Jenkins points to <code>/bin/dash</code> which doesn't have the command <code>source</code>. To rectify this, I changed the Jenkins shell to point to <code>/bin/bash</code> instead with this command - <code>sudo ln -sf /bin/bash /bin/sh</code>, which I found in this <a href="https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/">blog</a>.</p>
+<p><strong>Note</strong>: I kept all the required environment variables in the <code>env.sh</code> file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the <code>shell</code> that comes along with Jenkins kept throwing an error saying it didn't recognize the command <code>source</code>. This turned out to be because that by default the <code>sh</code> shell in Jenkins points to <code>/bin/dash</code> which doesn't have the command <code>source</code>. To rectify this, I changed the Jenkins shell to point to <code>/bin/bash</code> instead with this command - <code>sudo ln -sf /bin/bash /bin/sh</code>, which I found in this <a href="https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/">blog</a>. This method, however, will change the symlink for <code>sh</code> to <code>bash</code> for every user on the system (which can be created by other applications, such as Jenkins itself). This might break the functioning of the other applications and hence, it is more advisable to specify the changed shell for the specific user on the system that needs it. In the context of Jenkins, the recommended way would be to use <code>usermod -s /bin/bash jenkins</code> to change the default shell only for Jenkins.</p>
 <ul>
 <li>Now, that DVNA was up and running, ran the baseline scan on it with docker and Zap. But I had to wrap the command in a shell script to evade the non-zero status code that ZAP gives on finding issues. So, I wrote the script, <code>baseline-scan.sh</code>, mentioned below and made it executable with <code>chmod +x</code>:</li>
 </ul>

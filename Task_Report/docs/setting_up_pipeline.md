@@ -118,7 +118,6 @@ pipeline {
     }
 
 }
-
 ```
 
 * The `pipeline` block constitutes the entire definition of the pipeline.

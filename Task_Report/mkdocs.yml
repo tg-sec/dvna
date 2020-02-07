@@ -13,6 +13,7 @@ pages:
 - Dynamic Analysis: 'dynamic_analysis.md'
 - Code Quality Analysis: 'code_quality_analysis.md'
 - Generating Software Bill of Materials: 'generating_sbom.md'
+- Final Pipeline Structure: 'final_pipeline.md'
 - Resources: 'resources.md'
 
 
