@@ -14,5 +14,17 @@ Project Review 9th Jan 2020:
         ✔ Added Sunesh and Akash as collaborators in personal fork of DVNA @done(20-01-09 12:17)
 
 Task 3:
-    ☐ Commit-based checks to perform code linting for improving code Quality and generate quality report
-    ☐ Generate service bill-of-materials for all dependencies
+    ✔ Commit-based checks to perform code linting for improving code Quality and generate quality report @done(20-02-10 13:22)
+    ✔ Generate service bill-of-materials for all dependencies @done(20-02-10 13:22)
+
+Amendments:
+    SAST Analysis:
+        ✔ Put the comparitive table of the various SAST tools on top @done(20-02-10 14:19)
+        ✔ Make separate columns for Dependency vulnerabilities and Web-based vulnerabilities @done(20-02-10 13:58)
+    
+    DAST Analysis:
+        ☐ DAST needs to run in Jenkins Slave - https://wiki.jenkins.io/display/JENKINS/Distributed+builds
+        ☐ DAST ZAP + another tool(w3af) - create a comparison/analysis similar to SAST analysis
+    
+    Pipeline Structure:
+        ☐ Create an image/flowchart-like diagram which depicting the steps of the pipeline
