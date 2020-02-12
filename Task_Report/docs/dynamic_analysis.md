@@ -349,3 +349,55 @@ stage ('Copy Report to Jenkins Home') {
     }
 }
 ```
+
+The complete pipeline script, after adding stages for W3AF and removing redundant steps, is as follows:
+
+```jenkins
+pipeline {
+
+    agent any
+
+    stages {
+        stage ('Fetching Code') {
+            steps {
+                git url: 'https://github.com/ayushpriya10/dvna.git'
+            }
+        }
+
+        stage ('Building DVNA') {
+            steps {
+                sh '''
+                    npm install
+                    source /home/chaos/dast/env.sh
+                    pm2 start server.js
+                '''
+            }
+        }
+
+        stage ('Run ZAP for DAST') {
+            steps {
+                sh '/home/chaos/baseline-scan.sh'
+            }
+        }
+
+        stage ('Run W3AF for DAST') {
+            agent {
+                label 'raf-vm'
+            }
+
+            steps {
+                sh '/home/ayush/w3af/w3af_console -s /home/ayush/scripts/w3af_scan_script.w3af'
+                sh 'scp -r /home/ayush/w3af/output-w3af.txt chaos@10.0.2.19:/home/chaos/'
+            }
+        }
+
+        stage ('Take DVNA offline') {
+            steps {
+                sh 'pm2 stop server.js'
+                sh 'cp /home/chaos/output-w3af.txt /var/lib/jenkins/reports/w3af-report'
+                sh 'mv baseline-report.html /var/lib/jenkins/reports/zap-report.html'
+            }
+        }
+    }
+}
+```
