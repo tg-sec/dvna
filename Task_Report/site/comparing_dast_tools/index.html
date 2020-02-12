@@ -36,7 +36,7 @@
     
     
       
-        <title>Configuring Webhook - Jenkins Pipeline</title>
+        <title>Comparing DAST Tools - Jenkins Pipeline</title>
       
     
     
@@ -75,7 +75,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#configuring-trigger-with-webhook" tabindex="1" class="md-skip">
+      <a href="#comparing-dast-tools" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -101,7 +101,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Configuring Webhook
+                Comparing DAST Tools
               
             </span>
           
@@ -252,77 +252,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Configuring Webhook
-      </label>
-    
-    <a href="./" title="Configuring Webhook" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../configuring_webhook/" title="Configuring Webhook" class="md-nav__link">
       Configuring Webhook
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objective" class="md-nav__link">
-    Objective
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#webhooks" class="md-nav__link">
-    Webhooks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-jenkins-pipeline-for-webhook" class="md-nav__link">
-    Configuring Jenkins Pipeline for Webhook
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-github-for-webhook" class="md-nav__link">
-    Configuring GitHub for Webhook
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-ngrok-to-handle-webhook-over-internet" class="md-nav__link">
-    Using ngrok to handle Webhook over Internet
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -354,11 +288,83 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../comparing_dast_tools/" title="Comparing DAST Tools" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Comparing DAST Tools
+      </label>
+    
+    <a href="./" title="Comparing DAST Tools" class="md-nav__link md-nav__link--active">
       Comparing DAST Tools
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vulnerability-reports" class="md-nav__link">
+    Vulnerability Reports
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zap" class="md-nav__link">
+    ZAP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w3af" class="md-nav__link">
+    W3AF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -438,29 +444,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#webhooks" class="md-nav__link">
-    Webhooks
+  <a href="#vulnerability-reports" class="md-nav__link">
+    Vulnerability Reports
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zap" class="md-nav__link">
+    ZAP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w3af" class="md-nav__link">
+    W3AF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-jenkins-pipeline-for-webhook" class="md-nav__link">
-    Configuring Jenkins Pipeline for Webhook
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-github-for-webhook" class="md-nav__link">
-    Configuring GitHub for Webhook
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-ngrok-to-handle-webhook-over-internet" class="md-nav__link">
-    Using ngrok to handle Webhook over Internet
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
   </a>
   
 </li>
@@ -482,53 +494,76 @@
               
                 
                 
-                <h1 id="configuring-trigger-with-webhook">Configuring Trigger with Webhook</h1>
+                <h1 id="comparing-dast-tools">Comparing DAST Tools</h1>
 <h2 id="objective">Objective</h2>
-<p>The aim of this section is to create and configure a webhook to automate builds based on defined events occurring on the project repository in reference to the second sub-segment of the 8th point in the <a href="../problem_statement/">problem statement</a> under <code>Task 1</code>.</p>
-<h2 id="webhooks">Webhooks</h2>
-<p>Webhooks, sometimes referred to as <em>Reverse APIs</em>, are functions that are triggered by the occurrence of selected events. These functions, generally, are used to notify a different interface/endpoint about the occurrence of the event.</p>
-<p>To build and deploy the application based on <code>push</code> events and new <code>releases</code> on the project repository on GitHub automatically, I needed a Jenkins Webhook to handle a trigger that GitHub will send when selected events occur.</p>
-<p>To create a webhook as part of the solution for the problem statement, I used this <a href="https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline">article</a> as it also used <code>ngrok</code> as I was supposed to use in further sections. I, however, did not add the GitHub repository link under <code>Configure Jenkins &gt; GitHub Pull Requests</code> mentioned in the article, as the webhook worked without it as well.</p>
-<h2 id="configuring-jenkins-pipeline-for-webhook">Configuring Jenkins Pipeline for Webhook</h2>
-<p>For Jenkins, the configuration was straightforward and simple. All I had to do was to select the <code>GitHub hook trigger for GITScm polling</code> option under <code>Build triggers</code> for the Jenkins pipeline. This option allows Jenkins to listen for any requests sent to it via GitHub (in this case) and then trigger a new build for the project which has the option checked.</p>
-<h2 id="configuring-github-for-webhook">Configuring GitHub for Webhook</h2>
-<p>Then I needed to add a webhook trigger on GitHub for the project repository. Following the documentation, mentioned above, I went to the <code>Settings</code> page for the repository and from there, I went to the <code>Webhooks</code> page. Then clicking on the <code>Add New</code> button, I got a page asking for specifics about the webhook that I wanted to create:</p>
-<p><img alt="Add Webhook Page" src="/img/add_webhook.png" /></p>
-<ul>
-<li>The <code>Payload URL</code> is where I had to put my Jenkins Servers domain/IP which would be handling the webhook. As required by Jenkins, a valid Jenkins Webhook is a domain/IP appended with <code>/github-webhook/</code> at the end. For example, <code>http://{JENKINS_VM_IP}/github-webhook/</code> is a valid Jenkins webhook.</li>
-<li>I put the <code>Content Type</code> as <code>application/json</code> as Jenkins expects a JSON formatted request.</li>
-<li>Then I selected the required events that should trigger the webhook, and in turn, start the build via Jenkins. In this case, the events that were required by the problem statement were 'Pushes' and 'Releases'.</li>
-<li>Lastly, I checked the <code>Active</code> option and saved the Webhook. The active option is necessary to be set to checked else, GitHub does not send any request. I tried triggering the selected events, after unchecking the option, and it did not send any request.</li>
-</ul>
-<p><img alt="Configure Webhook Options" src="/img/configure_webhook.png" /></p>
-<p><strong>Note</strong>: The webhook's payload URL should have exactly <code>/github-webhook/</code> at the end. Missing the slash at the end will not be handled and thus, no build will be triggered if the exact route is not appended to the payload URL.</p>
-<h2 id="using-ngrok-to-handle-webhook-over-internet">Using <code>ngrok</code> to handle Webhook over Internet</h2>
-<p>Now, GitHub needed a public IP/domain to send the event payload to when the webhook gets triggered over the internet. Since the setup I had was on my local machine, I ended up using <code>ngrok</code>.</p>
-<p><code>Ngrok</code> is a tool that helps to expose a machine to the internet by providing a dynamically generated URL that can be used to tunnel traffic from the internet to our local machine and use it as needed.</p>
-<p>I found the basic documentation, which was enough for me to use it for the purpose of this task, on the <a href="https://ngrok.com/download">downloads page</a> itself. So, as specified in the instructions given at the site:</p>
-<ul>
-<li>I downloaded the <code>ngrok</code> executable, which was available for download <a href="https://ngrok.com/download">here</a>, on the Jenkins VM.</li>
-<li>Then I unzipped the downloaded file as follows:</li>
-</ul>
-<pre><code class="bash">unzip /path/to/ngrok.zip
-</code></pre>
-
-<ul>
-<li><code>Ngrok</code> requires an <em>authentication token</em> to work. Hence, I signed up for an account to get an Authentication Token and then authenticated <code>ngrok</code> for initialization as follows:</li>
-</ul>
-<pre><code class="bash">./ngrok authtoken &lt;AUTH_TOKEN&gt;
-</code></pre>
-
-<ul>
-<li>Finally, to run <code>ngrok</code> and start an HTTP Tunnel, I used the following command:</li>
-</ul>
-<pre><code class="bash">./ngrok http 8080
-</code></pre>
-
-<p><strong>Note</strong>: I used port 8080, instead of the usual 80 used for HTTP traffic, as my instance of Jenkins was running on 8080.</p>
-<ul>
-<li>Lastly, I took the URL provided by <code>ngrok</code>, appended <code>/github-webhook/</code> at the end, and used it as the <code>PAYLOAD URL</code> on GitHub for the Webhook as mentioned in the <a href="#configuring-github-for-webhook">Configuring GitHub for Webhook</a> section above. The final payload URL was like - <code>http://{DYNAMIC_SUBDOMAIN}.ngrok.io/github-webhook/</code> where the <em>dynamic subdomain</em>  was generated by <code>ngrok</code> to create a unique tunnel for us to use.</li>
-</ul>
+<p>The aim of this section is to compare the findings of the various DAST tools used in the previous section and rank them to provide a solution to the 2nd point of the <a href="../problem_statement/">problem statement</a> under <code>Task 2</code>.</p>
+<h2 id="vulnerability-reports">Vulnerability Reports</h2>
+<h3 id="zap">ZAP</h3>
+<p>ZAP's baseline scan found a total of 10 issues with DVNA. The split-up of the issues found is listed in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Sl. No.</th>
+<th>Description</th>
+<th align="center">Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>X-Frame-Options Header Not Set</td>
+<td align="center">Medium</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>CSP Scanner: Wildcard Directive</td>
+<td align="center">Medium</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Cross-Domain JavaScript Source File Inclusion</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>Absence of Anti-CSRF Tokens</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>X-Content-Type-Options Header Missing</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>Cookie Without SameSite Attribute</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>Web Browser XSS Protection Not Enabled</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>9.</td>
+<td>Content Security Policy (CSP) Header Not Set</td>
+<td align="center">Low</td>
+</tr>
+<tr>
+<td>10.</td>
+<td>Information Disclosure - Suspicious Comments</td>
+<td align="center">Informational</td>
+</tr>
+</tbody>
+</table>
+<p>The complete report generated by the ZAP baseline scan can be found <a href="https://github.com/ayushpriya10/dvna/blob/master/Task_Report/DAST%20Report/zap-report.html">here</a>.</p>
+<h3 id="w3af">W3AF</h3>
+<h2 id="conclusion">Conclusion</h2>
                 
                   
                 
@@ -550,7 +585,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../comparing_sast_tools/" title="Comparing SAST Tools" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../dynamic_analysis/" title="Dynamic Analysis" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -559,19 +594,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Comparing SAST Tools
+                Dynamic Analysis
               </span>
             </div>
           </a>
         
         
-          <a href="../deploying_report/" title="Deploying the Report" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../code_quality_analysis/" title="Code Quality Analysis" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Deploying the Report
+                Code Quality Analysis
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -11,6 +11,7 @@ pages:
 - Configuring Webhook: 'configuring_webhook.md'
 - Deploying the Report: 'deploying_report.md'
 - Dynamic Analysis: 'dynamic_analysis.md'
+- Comparing DAST Tools: 'comparing_dast_tools.md'
 - Code Quality Analysis: 'code_quality_analysis.md'
 - Generating Software Bill of Materials: 'generating_sbom.md'
 - Final Pipeline Structure: 'final_pipeline.md'
