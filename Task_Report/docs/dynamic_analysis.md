@@ -368,7 +368,7 @@ pipeline {
             steps {
                 sh '''
                     npm install
-                    source /home/chaos/dast/env.sh
+                    source /{PATH TO SCRIPT}/env.sh
                     pm2 start server.js
                 '''
             }
@@ -376,7 +376,7 @@ pipeline {
 
         stage ('Run ZAP for DAST') {
             steps {
-                sh '/home/chaos/baseline-scan.sh'
+                sh '/{PATH TO SCRIPT}/baseline-scan.sh'
             }
         }
 
@@ -386,16 +386,15 @@ pipeline {
             }
 
             steps {
-                sh '/home/ayush/w3af/w3af_console -s /home/ayush/scripts/w3af_scan_script.w3af'
-                sh 'scp -r /home/ayush/w3af/output-w3af.txt chaos@10.0.2.19:/home/chaos/'
-            }
+                sh '/{PATH TO SCRIPT}/w3af/w3af_console -s /{PATH TO SCRIPT}/scripts/w3af_scan_script.w3af'
+                sh 'scp -r /{PATH TO OUPUT}/w3af/output-w3af.txt chaos@10.0.2.19:/{HOME DIRECTORY}/'            }
         }
 
         stage ('Take DVNA offline') {
             steps {
                 sh 'pm2 stop server.js'
-                sh 'cp /home/chaos/output-w3af.txt /var/lib/jenkins/reports/w3af-report'
-                sh 'mv baseline-report.html /var/lib/jenkins/reports/zap-report.html'
+                sh 'cp /{HOME DIRECTORY}/output-w3af.txt /{JENKINS HOME DIRECTORY}/reports/w3af-report'
+                sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
             }
         }
     }
