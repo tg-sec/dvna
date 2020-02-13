@@ -274,7 +274,7 @@ exit
 ./w3af_console -s w3af_scan_script.w3af
 ```
 
-### Integrating W3AF with Jenkins
+### Configuring Jenkins for Distributed Builds
 
 After having so many tools configured on the Jenkins VM, it was getting tedious to manage all of them on the same server. So, to do away with this issue, I used to Master-Agent architecture that Jenkins supports to use a new VM to run DAST on DVNA with W3AF installed on a _jenkins agent_ running under the new VM.
 
@@ -319,7 +319,7 @@ sudo chmod u+w /var/jenkins
 
 * The only thing remaining was to install W3AF on the Agent VM. I followed steps 1, 2 and 3 as mentioned under the ['Configuring W3AF'](#configuring-w3af) above to do the same.
 
-#### Configuring Jenkins Pipeline
+### Integrating W3AF with Jenkins
 
 Now that the Agent VM was fully configured and integrated with Jenkins, I had to amend the pipeline script, that I was using previously, to accommodate the new tool being used as well as utilize the newly provisioned _agent_ node.
 
