@@ -24,7 +24,7 @@ Amendments:
     
     DAST Analysis:
         ✔ DAST needs to run in Jenkins Slave - https://wiki.jenkins.io/display/JENKINS/Distributed+builds @done(20-02-12 16:30)
-        ☐ DAST ZAP + another tool(w3af) - create a comparison/analysis similar to SAST analysis
+        ✔ DAST ZAP + another tool(w3af) - create a comparison/analysis similar to SAST analysis @done(20-02-13 12:36)
     
     Pipeline Structure:
         ☐ Create an image/flowchart-like diagram which depicting the steps of the pipeline with some utility like https://www.draw.io/

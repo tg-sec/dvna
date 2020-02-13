@@ -6,7 +6,11 @@ The aim of this section is to define the final structure achieved for the pipeli
 
 ## Final Pipeline
 
-After completing various testing stages (SAST, DAST, Code Quality Analysis) for DVNA, the last task was to combine all the segments together as all three tasks were tested on separate pipelines. Combining them also meant removing redundant steps from the stages to create a lean pipeline. All the scripts used in this pipeline remain the same as what they were when mentioned in the previous sections in the report. The final pipeline that was the result of combining all three segregated pipelines and removing redundancies is mentioned below:
+After completing various testing stages (SAST, DAST, Code Quality Analysis) for DVNA, the last task was to combine all the segments together as all three tasks were tested on separate pipelines. Combining them also meant removing redundant steps from the stages to create a lean pipeline. All the scripts used in this pipeline remain the same as what they were when mentioned in the previous sections in the report. Below is a diagrammatic representation of the flow of the entire pipeline:
+
+![Pipeline Diagram](/img/jenkins_pipeline.png)
+
+The final pipeline script that was the result of combining all three segregated pipelines and removing redundancies is mentioned below:
 
 ```jenkins
 pipeline {
@@ -90,10 +94,22 @@ pipeline {
             }
         }
 
+        stage ('Run W3AF for DAST') {
+            agent {
+                label 'raf-vm'
+            }
+
+            steps {
+                sh '/{PATH TO SCRIPT}/w3af/w3af_console -s /{PATH TO SCRIPT}/scripts/w3af_scan_script.w3af'
+                sh 'scp -r /{PATH TO OUPUT}/w3af/output-w3af.txt chaos@10.0.2.19:/{HOME DIRECTORY}/'
+            }
+        }
+
         stage ('Take DVNA offline') {
             steps {
                 sh 'pm2 stop server.js'
                 sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
+                sh 'cp /{HOME DIRECTORY}/output-w3af.txt /{JENKINS HOME DIRECTORY}/reports/w3af-report'
             }
         }
 
@@ -103,7 +119,7 @@ pipeline {
             }
         }
 
-        stage ('Lint Analysis with Jshint') {
+        stage ('Lint Analysis with EsLint') {
             steps {
                 sh '/{PATH TO SCRIPT}/eslint-script.sh'
             }

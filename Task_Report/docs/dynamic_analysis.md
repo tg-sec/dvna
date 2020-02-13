@@ -393,8 +393,8 @@ pipeline {
         stage ('Take DVNA offline') {
             steps {
                 sh 'pm2 stop server.js'
-                sh 'cp /{HOME DIRECTORY}/output-w3af.txt /{JENKINS HOME DIRECTORY}/reports/w3af-report'
                 sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
+                sh 'cp /{HOME DIRECTORY}/output-w3af.txt /{JENKINS HOME DIRECTORY}/reports/w3af-report'
             }
         }
     }
