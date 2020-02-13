@@ -559,6 +559,12 @@
             }
         }
 
+        stage ('Generating Software Bill of Materials') {
+            steps {
+                sh 'cyclonedx-bom -o /{JENKINS HOME DIRECTORY}/reports/sbom.xml'
+            }
+        }
+
         stage ('Deploy to App Server') {
             steps {
                 sh 'echo &quot;Deploying App to Server&quot;'

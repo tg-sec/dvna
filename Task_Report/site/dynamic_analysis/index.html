@@ -857,7 +857,7 @@ exit
 </code></pre>
 
 <ul>
-<li>Once, the directory was created I had to change the ownership of the file to the non-root user (<code>ayush</code>) to avoid having to use <code>sudo</code> with commands that run on the Agent. To change the ownership of the directory, I used the following command:</li>
+<li>Once, the directory was created I had to change the ownership of the directory to the non-root user (<code>ayush</code>) to avoid having to use <code>sudo</code> with commands that run on the Agent. To change the ownership of the directory, I used the following command:</li>
 </ul>
 <pre><code class="bash">sudo chown ayush: /var/jenkins/
 </code></pre>
@@ -869,9 +869,7 @@ exit
 </code></pre>
 
 <ul>
-<li>
-<p>To create an agent with Jenkins, I followed the following steps:</p>
-<ol>
+<li>To create an agent with Jenkins, I followed the following steps:<ol>
 <li>I navigated to <code>Dashboard &gt; Manage Jenkins &gt; Manage Nodes &gt; New Node</code>.</li>
 <li>I gave a name to the node, <code>Agent VM</code>, in this case, selected the <code>Permanent Agent</code> option (as the VM being used was managed outside of Jenkins) and clicked on <code>Okay</code>.</li>
 <li>Then I gave a brief description of what the Agent will be used for.</li>
@@ -879,23 +877,25 @@ exit
 <li>Under <code>Remote root directory</code>, I provided <code>/var/jenkins</code> which I configured earlier while setting up the Agent VM.</li>
 <li>I added the label <code>raf-vm</code> so I could use this label to specify stage(s) to use this agent instead of the master node.</li>
 <li>I chose the <code>Use this node as much as possible</code> option but since it is being used for only one task, it does not make any difference.</li>
-<li>Under <code>Launch method</code>, I chose the <code>Launch agent agents with SSH</code> option. I added the IP of the Agent VM and provided the credentials required to log on to the VM. I left <code>Host Key Verification Strategy</code> to the default of <code>Known hosts file Verification Strategy</code>.</li>
+<li>Under <code>Launch method</code>, I chose the <code>Launch agent agents with SSH</code> option. I added the IP of the Agent VM and provided the credentials required to log on to the VM. I left <code>Host Key Verification Strategy</code> to the default of <code>Manually trusted key Verification Strategy</code>.</li>
 <li>Under <code>Availability</code>, I left the default option of <code>Keep this agent online as much as possible</code>.</li>
 <li>Lastly, I clicked on <code>Save</code>.</li>
 </ol>
 </li>
-<li>
-<p>Now, I had to <em>launch</em> the agent so Jenkins can provision jobs to it. The following are the steps I performed to do so:</p>
-<ol>
+</ul>
+<p><img alt="Agent Node Setup" src="/img/agent_vm.png" /></p>
+<ul>
+<li>Now, I had to <em>launch</em> the agent so Jenkins can provision jobs to it. The following are the steps I performed to do so:<ol>
 <li>I navigated to <code>Dashboard &gt; Manage Jenkins &gt; Manage Nodes</code>.</li>
 <li>I clicked on <code>Agent VM</code> (the name of the node I gave).</li>
 <li>I clicked on <code>Launch agent</code> button to bring the node online and connect it to the Jenkins master node.</li>
 </ol>
 </li>
 </ul>
+<p><img alt="Agent Node Setup" src="/img/agent_vm_launch.png" /></p>
 <p><strong>Note</strong>: When I launched the agent for the first time, it did not work as I did not have Java installed on the VM. So, I installed the required JRE with the command - <code>sudo apt install default-jre</code>. Relaunching the agent after installing Java worked and the agent was online and connected to the master node of Jenkins successfully.</p>
 <ul>
-<li>The only thing remaining was to install W3AF on the Agent VM. I followed steps 1, 2 and 3 as mentioned under the <a href="#configuring-w3af">'Configuring W3AF'</a> above to do the same.</li>
+<li>The only thing remaining was to install W3AF on the Agent VM. I followed the first three steps as mentioned under the <a href="#configuring-w3af">'Configuring W3AF'</a> above to do the same.</li>
 </ul>
 <h3 id="integrating-w3af-with-jenkins">Integrating W3AF with Jenkins</h3>
 <p>Now that the Agent VM was fully configured and integrated with Jenkins, I had to amend the pipeline script, that I was using previously, to accommodate the new tool being used as well as utilize the newly provisioned <em>agent</em> node.</p>

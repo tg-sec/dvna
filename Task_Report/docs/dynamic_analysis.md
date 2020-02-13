@@ -286,7 +286,7 @@ After having so many tools configured on the Jenkins VM, it was getting tedious 
 mkdir /var/jenkins
 ```
 
-* Once, the directory was created I had to change the ownership of the file to the non-root user (`ayush`) to avoid having to use `sudo` with commands that run on the Agent. To change the ownership of the directory, I used the following command:
+* Once, the directory was created I had to change the ownership of the directory to the non-root user (`ayush`) to avoid having to use `sudo` with commands that run on the Agent. To change the ownership of the directory, I used the following command:
 
 ```bash
 sudo chown ayush: /var/jenkins/
@@ -306,18 +306,22 @@ sudo chmod u+w /var/jenkins
     5. Under `Remote root directory`, I provided `/var/jenkins` which I configured earlier while setting up the Agent VM.
     6. I added the label `raf-vm` so I could use this label to specify stage(s) to use this agent instead of the master node.
     7. I chose the `Use this node as much as possible` option but since it is being used for only one task, it does not make any difference.
-    8. Under `Launch method`, I chose the `Launch agent agents with SSH` option. I added the IP of the Agent VM and provided the credentials required to log on to the VM. I left `Host Key Verification Strategy` to the default of `Known hosts file Verification Strategy`.
+    8. Under `Launch method`, I chose the `Launch agent agents with SSH` option. I added the IP of the Agent VM and provided the credentials required to log on to the VM. I left `Host Key Verification Strategy` to the default of `Manually trusted key Verification Strategy`.
     9. Under `Availability`, I left the default option of `Keep this agent online as much as possible`.
     10. Lastly, I clicked on `Save`.
+
+![Agent Node Setup](/img/agent_vm.png)
 
 * Now, I had to _launch_ the agent so Jenkins can provision jobs to it. The following are the steps I performed to do so:
     1. I navigated to `Dashboard > Manage Jenkins > Manage Nodes`.
     2. I clicked on `Agent VM` (the name of the node I gave).
     3. I clicked on `Launch agent` button to bring the node online and connect it to the Jenkins master node.
 
+![Agent Node Setup](/img/agent_vm_launch.png)
+
 **Note**: When I launched the agent for the first time, it did not work as I did not have Java installed on the VM. So, I installed the required JRE with the command - `sudo apt install default-jre`. Relaunching the agent after installing Java worked and the agent was online and connected to the master node of Jenkins successfully.
 
-* The only thing remaining was to install W3AF on the Agent VM. I followed steps 1, 2 and 3 as mentioned under the ['Configuring W3AF'](#configuring-w3af) above to do the same.
+* The only thing remaining was to install W3AF on the Agent VM. I followed the first three steps as mentioned under the ['Configuring W3AF'](#configuring-w3af) above to do the same.
 
 ### Integrating W3AF with Jenkins
 

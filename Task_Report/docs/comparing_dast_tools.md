@@ -59,4 +59,4 @@ The actual Text report contains a lot of `debug` output. So, I redacted the repo
 
 ## Conclusion
 
-In conclusion, I'd say both the performance of both the tools was quite close to the other. The ranking I gave is my personal opinion based solely on the results they provided and their relevance to the solution of the problem statement. I did not consider additional factors, such as user experience, while ranking them.
+In conclusion, I would say both the performance of both the tools was quite close to the other. The ranking I gave is my personal opinion based solely on the results they provided and their relevance to the solution of the problem statement. I did not consider additional factors, such as user experience, while ranking them.
