@@ -55,7 +55,7 @@ Below mentioned is the table of the consolidated discoveries that W3AF made alon
 
 The Text report I used to analyze the observations of the tool can be found [here](https://raw.githubusercontent.com/ayushpriya10/dvna/master/Task_Report/DAST%20Report/w3af-text-report). The initial HTML report (which I left and instead used the Text report) can be found [here](https://github.com/ayushpriya10/dvna/blob/master/Task_Report/DAST%20Report/w3af-html-report.html).
 
-The actual Text report contains a lot of `debug` output. So, I redacted the reported and only kept the information relevant to security issues in a separate file which can be found [here]().
+The actual Text report contains a lot of `debug` output. So, I redacted the reported and only kept the information relevant to security issues in a separate file which can be found [here](https://github.com/ayushpriya10/dvna/blob/master/Task_Report/DAST%20Report/w3af-text-report-no-debug).
 
 ## Conclusion
 
