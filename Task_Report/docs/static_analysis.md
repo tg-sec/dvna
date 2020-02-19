@@ -158,7 +158,7 @@ unzip dependency-check-5.2.4-release.zip
 /{JENKINS HOME DIRECTORY}/dependency-check/bin/dependency-check.sh --scan /{JENKINS HOME DIRECTORY}/workspace/node-app-pipeline --format JSON --out /{JENKINS HOME DIRECTORY}/reports/dependency-check-report --prettyPrint
 ```
 
-* Since, Dependency-Check doesn't change the status code to a non-zero one, I added the command directly as a stage in the Jenkinfile:
+* Since, Dependency-Check doesn't change the status code to a non-zero one, I added the command directly as a stage in the Jenkinsfile:
 
 ```jenkins
 stage ('Dependency-Check Analysis') {

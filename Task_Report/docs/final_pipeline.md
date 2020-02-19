@@ -101,7 +101,7 @@ pipeline {
 
             steps {
                 sh '/{PATH TO SCRIPT}/w3af/w3af_console -s /{PATH TO SCRIPT}/scripts/w3af_scan_script.w3af'
-                sh 'scp -r /{PATH TO OUPUT}/w3af/output-w3af.txt chaos@10.0.2.19:/{HOME DIRECTORY}/'
+                sh 'scp -r /{PATH TO OUTPUT}/w3af/output-w3af.txt chaos@10.0.2.19:/{HOME DIRECTORY}/'
             }
         }
 

@@ -16,7 +16,7 @@ The lab setup is of two VMs running Ubuntu 18.04 on VirtualBox as it is an LTS (
 
 ## Installing Jenkins
 
-Jenkins is a Continous Integration (CI) Tool used to automate actions for CI operations for building and deploying applications. Jenkins was used as the tool to build the application deployment pipeline as it was a requisite of the problem statement given.
+Jenkins is a Continuos Integration (CI) Tool used to automate actions for CI operations for building and deploying applications. Jenkins was used as the tool to build the application deployment pipeline as it was a requisite of the problem statement given.
 
 * Installed Jenkins following Digital Ocean's [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04). I went along with this particular documentation as it seemed the easiest to follow with clear steps, and I like the style of Digital Ocean's documentation. For this documentation, I didn't skip any step.
 

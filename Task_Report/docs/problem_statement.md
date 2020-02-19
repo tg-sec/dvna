@@ -16,7 +16,7 @@
 ## Task 2
 
 1. Add onto Task 1 by implementing DAST in the pipeline for [DVNA](https://github.com/appsecco/dvna) with [OWASP ZAP](https://www.zaproxy.org/) and [W3AF](http://w3af.org/).
-2. Make a report on the performance of the tools used to perform DAST by doing a comparitive analysis of the results they provide.
+2. Make a report on the performance of the tools used to perform DAST by doing a comparative analysis of the results they provide.
 3. Implement and use [Semantic Versioning](https://semver.org/) to tag versions of the documentation created as part of the tasks.
 4. Append content for the task to the existing documentation from first task.
 
@@ -24,3 +24,7 @@
 
 1. Perform commit-based checks on the source code for linting errors to improve code quality and generate quality report.
 2. Generate software bill of materials for all dependencies.
+
+## Task 4
+
+1. Move the setup from the local machine to Cloud (AWS).
