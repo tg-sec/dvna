@@ -14,4 +14,5 @@ The following is the report/documentation for the problem statement stated below
 * [Code Quality Analysis](/code_quality_analysis)
 * [Generating Software Bill of Materials](/generating_sbom)
 * [Final Pipeline Structure](/final_pipeline)
+* [Shifting Local Setup to AWS](/moving_setup_to_aws)
 * [Resources](/resources)

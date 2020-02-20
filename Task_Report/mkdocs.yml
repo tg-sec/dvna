@@ -15,6 +15,7 @@ pages:
 - Code Quality Analysis: 'code_quality_analysis.md'
 - Generating Software Bill of Materials: 'generating_sbom.md'
 - Final Pipeline Structure: 'final_pipeline.md'
+- Shifting Local Setup to AWS: 'moving_setup_to_aws.md'
 - Resources: 'resources.md'
 
 

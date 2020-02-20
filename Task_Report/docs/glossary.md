@@ -11,3 +11,4 @@ There are some terms used in this report which might not be common and/or might 
 |**Agent VM**            | The VM which has a Jenkins Agent installed to use the distributed build architecture. |
 |**Jenkins User**        | The system user created on the VM after installing Jenkins.                           |
 |**Infrastructure**      | The environment with the two VMs, the Jenkins VM and the Production VM.               |
+|**EC2 Instance**        | A virtual machine on AWS Cloud.                                                       |

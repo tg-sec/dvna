@@ -466,6 +466,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../moving_setup_to_aws/" title="Shifting Local Setup to AWS" class="md-nav__link">
+      Shifting Local Setup to AWS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../resources/" title="Resources" class="md-nav__link">
       Resources
     </a>
@@ -746,7 +758,7 @@ echo $? &gt; /dev/null
 </code></pre>
 
 <ul>
-<li>Since, Dependency-Check doesn't change the status code to a non-zero one, I added the command directly as a stage in the Jenkinfile:</li>
+<li>Since, Dependency-Check doesn't change the status code to a non-zero one, I added the command directly as a stage in the Jenkinsfile:</li>
 </ul>
 <pre><code class="jenkins">stage ('Dependency-Check Analysis') {
     steps {

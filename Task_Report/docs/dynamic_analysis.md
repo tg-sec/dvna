@@ -194,7 +194,7 @@ stage ('Run ZAP for DAST') {
 * Referring to the official [documentation](http://docs.w3af.org/en/latest/) for W3AF, I first cloned the project's repository and moved into the project directory:
 
 ```bash
-git clone https://github.com/andresriancho/w3af/git && cd w3af/
+git clone https://github.com/andresriancho/w3af.git && cd w3af/
 ```
 
 * Since, I was ultimately going to run the tool with the command-line interface as part of the pipeline, I skipped using the GUI that was available and started the CLI as follows:
