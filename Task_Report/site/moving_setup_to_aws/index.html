@@ -465,11 +465,58 @@
     Configuring DAST Tools
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#owasp-zap" class="md-nav__link">
+    OWASP ZAP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w3af" class="md-nav__link">
+    W3AF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#configuring-code-analysis-tools" class="md-nav__link">
     Configuring Code Analysis Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jshint" class="md-nav__link">
+    JsHint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eslint" class="md-nav__link">
+    EsLint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-software-bill-of-materials" class="md-nav__link">
+    Generating Software Bill of Materials
   </a>
   
 </li>
@@ -483,14 +530,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuring-webhook-for-jenkins-on-aws" class="md-nav__link">
-    Configuring Webhook for Jenkins on AWS
+  <a href="#webhook-for-jenkins-on-aws" class="md-nav__link">
+    Webhook for Jenkins on AWS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-dvna-on-aws" class="md-nav__link">
+    Deploying DVNA on AWS
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-pipeline-structure" class="md-nav__link">
+    Final Pipeline Structure
+  </a>
   
 </li>
       
@@ -638,11 +699,58 @@
     Configuring DAST Tools
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#owasp-zap" class="md-nav__link">
+    OWASP ZAP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w3af" class="md-nav__link">
+    W3AF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#configuring-code-analysis-tools" class="md-nav__link">
     Configuring Code Analysis Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jshint" class="md-nav__link">
+    JsHint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eslint" class="md-nav__link">
+    EsLint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-software-bill-of-materials" class="md-nav__link">
+    Generating Software Bill of Materials
   </a>
   
 </li>
@@ -656,14 +764,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuring-webhook-for-jenkins-on-aws" class="md-nav__link">
-    Configuring Webhook for Jenkins on AWS
+  <a href="#webhook-for-jenkins-on-aws" class="md-nav__link">
+    Webhook for Jenkins on AWS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-dvna-on-aws" class="md-nav__link">
+    Deploying DVNA on AWS
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-pipeline-structure" class="md-nav__link">
+    Final Pipeline Structure
+  </a>
   
 </li>
       
@@ -689,18 +811,18 @@
 <p>The aim of this section is to shift the entire setup from the local machine to AWS Cloud to provide a solution to the 1st point of the <a href="../problem_statement/">problem statement</a> under <code>Task 4</code>.</p>
 <h2 id="configuring-jenkins-with-ec2-instances">Configuring Jenkins with EC2 Instances</h2>
 <h3 id="starting-an-ec2-instance">Starting an EC2 instance</h3>
-<p>To start shifting the entire setup that I had locally on my machine, firstly I brought up an EC2 instance to install and run Jenkins on. Below mentioned are the steps to spin-up an EC2 instance:</p>
+<p>To start shifting the entire setup that I had locally on my machine, firstly I brought up an EC2 instance to install and run Jenkins on. Below mentioned are the steps to spin up an EC2 instance:</p>
 <ul>
 <li>
 <p>Firstly, I navigated to the EC2 page under 'Services'.
 <img alt="Services Page" src="/img/services.PNG" /></p>
 </li>
 <li>
-<p>Then I clicked on 'Launch instance' button and selected the 'Launch instance' option from the drop-down menu instead of the 'Launch instance from template' option as I did not have any template configured.
+<p>Then I clicked on the 'Launch instance' button and selected the 'Launch instance' option from the drop-down menu instead of the 'Launch instance from template' option as I did not have any template configured.
 <img alt="Launch Instance" src="/img/launch_instance.PNG" /></p>
 </li>
 <li>
-<p>Under the 'Choose AMI' menu, I selected 'Ubuntu Server 18.04 LTS (HVM), SSD Volume Type' option as I was using Ubuntu 18.04 as the OS on my local setup.
+<p>Under the 'Choose AMI' menu, I selected the 'Ubuntu Server 18.04 LTS (HVM), SSD Volume Type' option as I was using Ubuntu 18.04 as the OS on my local setup.
 <img alt="Choosing AMI" src="/img/choose_ami.png" /></p>
 </li>
 <li>
@@ -708,10 +830,10 @@
 <img alt="Instance Type" src="/img/instance_type.PNG" /></p>
 </li>
 <li>
-<p>I left everything under 'Configure Instance Details' page to their default values as no change was needed here.</p>
+<p>I left everything under the 'Configure Instance Details' page to their default values as no change was needed here.</p>
 </li>
 <li>
-<p>Under 'Add Storage' page, I changed the storage size from 8GB to 10GB, again, to accommodate all the tools that will be installed on the system. I left all the other options to their defaults.
+<p>Under the 'Add Storage' page, I changed the storage size from 8GB to 10GB, again, to accommodate all the tools that will be installed on the system. I left all the other options to their defaults.
 <img alt="Add Storage" src="/img/add_storage.PNG" /></p>
 </li>
 <li>
@@ -723,7 +845,7 @@
 <ul>
 <li>I clicked on the "Add Rule" button to add a new 'Custom TCP Rule', gave '8080' as the 'Port Range' because that is where the Jenkins UI is accessible.</li>
 <li>Under the 'Source' column, I selected the 'My IP' option to allow access only from the office IP.</li>
-<li>I gave a brief description for both the rules I added for the instance.
+<li>I gave a brief description of both the rules I added for the instance.
 <img alt="Security Rules" src="/img/security_rules.PNG" /></li>
 </ul>
 </li>
@@ -734,7 +856,7 @@
 </ul>
 <h3 id="installing-jenkins-on-ec2-instance">Installing Jenkins on EC2 Instance</h3>
 <p>After successfully starting the instance, I had to install Jenkins on it. I used the steps from the <a href="/setting_up_vms/#installing-jenkins">previous section</a> that I wrote on the same.</p>
-<p>Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on it own and failed trying to install any plugin. To rectify this issue, I ended up using <a href="https://www.nginx.com/">Nginx</a>, which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">documentation</a>. I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, <code>jenkins-config</code>, whose contents are mentioned below:</p>
+<p>Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on its own and failed to install any plugin. To rectify this issue, I ended up using <a href="https://www.nginx.com/">Nginx</a>, which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">documentation</a>. I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, <code>jenkins-config</code>, whose contents are mentioned below:</p>
 <pre><code class="nginx">server {
     listen 80;
     server_name &lt;EC2 PUBLIC IP&gt;;
@@ -762,12 +884,12 @@
 
 <p>After resolving the issue, I installed the plugins that Jenkins recommends.</p>
 <h2 id="configuring-sast-tools">Configuring SAST Tools</h2>
-<p>After Jenkins was setup on an EC2 instance on AWS, the next step was to add all the tools required to perform the various tests on the application. Below, I have mentioned how I went about doing the same on AWS with a note about any additional steps I took when I deviate from the setup instructions mentioned in <a href="/static_analysis">Static Analysis</a>.</p>
+<p>After Jenkins was set up on an EC2 instance on AWS, the next step was to add all the tools required to perform the various tests on the application. Below, I have mentioned how I went about doing the same on AWS with a note about any additional steps I took when I deviate from the setup instructions mentioned in <a href="/static_analysis">Static Analysis</a>.</p>
 <p>I, once again, made a <code>reports/</code> directory inside <code>Jenkins Home Directory</code> to store all reports generated in a single location. This time, I also added a <code>tool_scripts/</code> directory in the same location to house the various scripts I was required to use through the entire pipeline.</p>
 <h3 id="sonarqube">SonarQube</h3>
-<p>The installation for SonarQube is divided in two halves - setting up SonarQube Server and setting up the SonarQube Scanner. I was using docker previously to run the SonarQube Server on the local setup and hence, I had to use available services on AWS to run the SonarQube server as container. For the second half, I re-used the steps from my <a href="/static_analysis/#sonarqube">documentation</a> on installing SonarQube.</p>
+<p>The installation for SonarQube is divided into two halves - setting up SonarQube Server and setting up the SonarQube Scanner. I was using docker previously to run the SonarQube Server on the local setup and hence, I had to use available services on AWS to run the SonarQube server as a container. For the second half, I re-used the steps from my <a href="/static_analysis/#sonarqube">documentation</a> on installing SonarQube.</p>
 <ul>
-<li>To setup a container with SonarQube Server running in it, I followed this <a href="https://itnext.io/run-your-containers-on-aws-fargate-c2d4f6a47fda">tutorial</a> as it explained things in a simpler language as compared to other available articles. I however skipped steps <code>1</code> and <code>5</code> as I directly pulled the docker image from docker hub and I did not wanted to use a domain to point to the container. So, in essence, I started off by creating a cluster (which is a collective of services and tasks), created a new task definition (which is the details about the container) and lastly, created a service to run the task (container). There was one other thing where I deviated from the tutorial I used, in the security group configuration, I added rules to allow access to the container only from the Office IP by selecting the 'My IP' option under the 'Source' field and another rule to allow the Jenkins EC2 instance to access the container via it's public IP.</li>
+<li>To set up a container with SonarQube Server running in it, I followed this <a href="https://itnext.io/run-your-containers-on-aws-fargate-c2d4f6a47fda">tutorial</a> as it explained things in a simpler language as compared to other available articles. I, however, skipped steps <code>1</code> and <code>5</code> as I directly pulled the docker image from docker hub and I did not want to use a domain to point to the container. So, in essence, I started off by creating a cluster (which is a collective of services and tasks), created a new task definition (which is the details about the container) and lastly, created a service to run the task (container). There was one other thing where I deviated from the tutorial I used, in the security group configuration, I added rules to allow access to the container only from the Office IP by selecting the 'My IP' option under the 'Source' field and another rule to allow the Jenkins EC2 instance to access the container via its public IP.</li>
 </ul>
 <p><strong>Note</strong>: I had a doubt initially whether or not I could pull images from Docker hub directly. After searching for a bit, it turned that I could. I just had to specify the repository URL structure as <code>docker.io/&lt;docker-image-name&gt;:version</code> while creating the task definition.</p>
 <ul>
@@ -777,9 +899,10 @@
 <p>For NPM Audit, I did not have to do any AWS specific configuration as it was installed on the Jenkins EC2 Instance itself and followed the steps from the <a href="/static_analysis/#npm-audit">documentation</a> I wrote for the local setup. There were a few things that I did:</p>
 <ul>
 <li>I placed the bash script inside the <code>tool_scripts/</code> directory mentioned at the start of this section.</li>
-<li>I amended the <code>stage</code> in the pipeline to execute the script from the the new directory mentioned in the previous step.</li>
+<li>I amended the <code>stage</code> in the pipeline to execute the script from the new directory mentioned in the previous step.</li>
 </ul>
 <h3 id="nodejsscan">NodeJsScan</h3>
+<p>For NodeJsScan, I again did not have to any additional step or deviate from the <a href="/static_analysis/#nodejsscan">documentation</a> I wrote in the static analysis section.</p>
 <h3 id="retirejs">Retire.js</h3>
 <p>For Retire.js, I followed the <a href="/static_analysis/#retirejs">documentation</a> exactly as I had when I was setting it up on the local VM as there are no scripts or special requirements associated with this tool.</p>
 <h3 id="owasp-dependency-check">OWASP Dependency Check</h3>
@@ -789,11 +912,289 @@
 <li>I amended the <code>stage</code> by changing the paths wherever necessary.</li>
 </ul>
 <h3 id="auditjs">Auditjs</h3>
+<p>For Auditjs, I followed the steps from the <a href="/static_analysis/#auditjs">documentation</a> I wrote for the local setup. There were a few additional things that I did:</p>
+<ul>
+<li>I placed the bash script inside the <code>tool_scripts/</code> directory mentioned at the start of this section.</li>
+<li>I amended the <code>stage</code> in the pipeline to execute the script from the new directory mentioned in the previous step.</li>
+</ul>
 <h3 id="snyk">Snyk</h3>
+<p>For Auditjs, I followed the steps from the <a href="/static_analysis/#snyk">documentation</a> I wrote for the local setup. There were a few additional things that I did:</p>
+<ul>
+<li>I placed the bash script inside the <code>tool_scripts/</code> directory mentioned at the start of this section.</li>
+<li>I amended the <code>stage</code> in the pipeline to execute the script from the new directory mentioned in the previous step.</li>
+</ul>
 <h2 id="configuring-dast-tools">Configuring DAST Tools</h2>
+<p>Both DAST tools, ZAP and W3AF, were set up on an EC2 instance different than the one running Jenkins Master node. This new EC2 instance was configured as a Jenkins Agent to run jobs making use of Jenkins' ability of distributed builds. To allow Jenkins Master EC2 instance to have access to the Jenkins Agent EC2, I configured SSH Keys and added a new node as I did previously with the local setup mentioned <a href="/dynamic_analysis/#configuring-agent-vm-for-jenkins">here</a>.</p>
+<p><strong>Note</strong>: Since DVNA had to be running for DAST, I used PM2 to run DVNA on the Jenkins Master EC2 instance. At one point, DVNA was trying to fetch view from a wrong directory even after restarting, stopping and starting again. This turned out to be because of the existence of caching when an app is run with PM2 as mentioned in this <a href="https://github.com/Unitech/pm2/issues/1698">article</a>. The rectification of this issue was also mentioned in the article. I had to delete the app from PM2's app list and then start it afterward. This solved the problem.</p>
+<h3 id="owasp-zap">OWASP ZAP</h3>
+<p>I used ZAP with its docker image as I did in the local setup. I followed these <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04">instructions</a> to first install Docker on the Agent EC2 instance. I then followed my own <a href="/dynamic_analysis/#configuring-owasp-zap-with-docker">documentation</a> to run the <code>ZAP baseline</code> scan with the official docker image.</p>
+<p>After pulling the image from Docker Hub, I skipped to running the baseline scan as I had already tested the usage mentioned in the report previously and hence, there was no need to repeat the process.</p>
+<h3 id="w3af">W3AF</h3>
+<p>I used W3AF exactly as before in the local setup, by installing it on the Agent EC2 instance. I configured W3AF exactly as mentioned in the <a href="/dynamic_analysis/#configuring-w3af">documentation</a> I wrote previously.</p>
 <h2 id="configuring-code-analysis-tools">Configuring Code Analysis Tools</h2>
+<h3 id="jshint">JsHint</h3>
+<p>I followed the <a href="/code_quality_analysis/#integrating-jshint-with-jenkins-pipeline">documentation</a> I wrote for JsHint while setting it up locally exactly as mentioned.</p>
+<h3 id="eslint">EsLint</h3>
+<p>I followed the <a href="/code_quality_analysis/#integrating-eslint-with-jenkins-pipeline">documentation</a> I wrote for Eslint while setting it up locally exactly as mentioned. I also stored the required configurations JSON (<code>.eslintrc.json</code>) in the <code>tool_scripts/</code> directory and copied it to the workspace directory during the execution of the lint analysis stage with EsLint.</p>
+<h2 id="generating-software-bill-of-materials">Generating Software Bill of Materials</h2>
+<p>I followed the <a href="/generating_sbom/#generating-sbom-for-dvna">documentation</a> I wrote previously to generate the Software Bill of Materials for DVNA with CycloneDX. I installed CycloneDX as I did before for the local setup. In the pipeline stage to generate the SBoM, I skipped the <code>npm install</code> step as here, I had already built the dependencies in a prior stage in the pipeline.</p>
 <h2 id="configuring-jenkins-pipeline">Configuring Jenkins Pipeline</h2>
-<h3 id="configuring-webhook-for-jenkins-on-aws">Configuring Webhook for Jenkins on AWS</h3>
+<h3 id="webhook-for-jenkins-on-aws">Webhook for Jenkins on AWS</h3>
+<p>To configure the webhook to trigger the execution of the pipeline on <code>push</code> and <code>release</code> events, I followed the steps exactly as mentioned in <a href="/configuring_webhook/">this report</a>. I just replaced the payload URL to use the public IP of the EC2 instance running Jenkins. I also skipped the segment on <code>Ngrok</code> as in this case, the VM was accessible over the web via the public IP provided by AWS to the instance, hence, there was no need to use <code>Ngrok</code>.</p>
+<h3 id="deploying-dvna-on-aws">Deploying DVNA on AWS</h3>
+<p>Since I was shifting everything to AWS I thought of changing the deployment strategy for DVNA from running it on a VM to running it as a Docker Container on AWS. I redid the deployment from scratch specifically for AWS utilizing features it offers. The steps I followed to deploy DVNA on AWS as a container are mentioned below:</p>
+<ul>
+<li>
+<p>I decided to use the Jenkins Agent EC2 machine to build and deploy DVNA on AWS as a docker container.</p>
+</li>
+<li>
+<p>I installed AWS CLI to perform actions from the terminal itself and not the web console. I followed along with Amazon's official <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html">documentation</a> for the same as it was well written and concise. I, however, skipped the section on 'Install Pip' as I already had <code>pip</code> installed on the machine.</p>
+</li>
+<li>
+<p>Next, I authenticated the AWS CLI by running <code>aws configure</code> and providing the prompt with my <code>Access Key ID</code>, <code>Secret Access Key</code>, <code>Default Region</code> and <code>Output Format</code>.</p>
+</li>
+<li>
+<p>Since, I wanted to use the docker images I build and not from the official docker images available on Docker Hub, I had to create a Registry on Amazon Container Registry (ECR) to store these custom images. For this, I required an additional policy, <code>AmazonEC2ContainerRegistryPowerUser</code>, to be attached to my IAM role.</p>
+</li>
+<li>
+<p>After the policy was attached to my IAM Role, I created a new registry, <code>dvna-aws-registry</code>, by executing <code>aws ecr create-repository --repository-name dvna-aws-registry</code> on the Jenkins Agent EC2 instance's terminal with help from this <a href="https://towardsdatascience.com/how-to-deploy-a-docker-container-python-on-amazon-ecs-using-amazon-ecr-9c52922b738f">blog</a>.</p>
+</li>
+<li>
+<p>The next step was to build the initial image and push to the registry I made in the previous step to be able to launch the initial deployment of DVNA on AWS ECS. To do this, I pulled DVNA from GitHub and ran <code>docker build -t dvna_app .</code> to create the image locally on the Jenkins Agent EC2 instance.</p>
+</li>
+<li>
+<p>Then I had to tag the image to be able to push it to the ECR registry I created previously. I did so by running the following command:</p>
+</li>
+</ul>
+<pre><code class="docker">docker tag dvna_app:latest &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+</code></pre>
+
+<ul>
+<li>I, then, pushed the image to the registry on ECR with the following command:</li>
+</ul>
+<pre><code class="docker">docker push &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+</code></pre>
+
+<ul>
+<li>
+<p>I decided on another alteration to the deployment strategy I had for the local setup, I used AWS RDS to host a MySQL database for DVNA. I created a database instance, <code>mysql-db</code>, on RDS using the console, added the Master User as root, set the password for it and took note of the database URL.</p>
+</li>
+<li>
+<p>Next, I created a task definition (<code>deployDVNA</code>), as I did for SonarQube following this <a href="https://itnext.io/run-your-containers-on-aws-fargate-c2d4f6a47fda">tutorial</a>, to run DVNA by pulling the image I created from the ECR registry. Since the database was not another container, I just passed along the database connection configuration details as environment variables while configuring the container details.</p>
+</li>
+<li>
+<p>I created a new cluster from the console, <code>deploymentCluster</code>, added a new service (<code>dvnaDeployService</code>) and added a new task inside it from the task definition in the previous step and ran the task.</p>
+</li>
+</ul>
+<p><strong>Note</strong>: Running the task failed initially. Going through the logs, it turned out to be because the app was not able to connect with the database as there was no database named <code>dvna</code> as was needed. So, I created this database manually by connecting to the RDS database instance from the terminal by logging in to the mysql with <code>mysql -u root -h &lt;RDS DB URL&gt; -p</code> and then creating the database with <code>create database dvna;</code> and then exited. Re-running the task again resulted in successful deployment on DVNA with ECS on AWS.</p>
+<ul>
+<li>
+<p>Now, to deploy the new image every time, I decided on stopping the currently running tasks under <code>dvnaDeployService</code> as then the service would automatically fetch the image with the tag 'latest' and run a new task. Since, every time I push a new image with the 'latest' tag, the previous one would get untagged, the service would always fetch the latest build. To do this I looked up how to list and stop tasks. I followed Amazon's official documentation to <a href="https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html">list tasks</a> and to <a href="https://docs.aws.amazon.com/cli/latest/reference/ecs/stop-task.html">stop tasks</a>.</p>
+</li>
+<li>
+<p>Since, I was now clear with the individual steps, I created a script to combine each action rather than running them individually from the pipeline. The script first authenticated the docker CLI to be able to push images, cloned the project repository, built the image, tagged it with 'latest' and pushed to ECR. It then fetched all active tasks running DVNA and stopped them and waited for them to brought back up with the latest image. Lastly, it again fetched the URLs for the latest deployment of DVNA. The script's contents are mentioned below:</p>
+</li>
+</ul>
+<pre><code class="bash">#!/bin/bash
+
+# Login to the ECR Registry to push docker images
+$(aws ecr get-login --no-include-email --region us-east-2)
+
+# Cloning the project repository to build the image
+git clone https://github.com/ayushpriya10/dvna.git
+cd dvna
+
+# Building the docker image, tagging it as 'latest' and pushing it to the registry
+docker build -t dvna_app .
+docker tag dvna_app:latest &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+docker push &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+
+# Fetching all active tasks running under the 'deploymentCluster'
+task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
+
+# Stopping all tasks which are running the older docker image of DVNA
+for task in $task_arns
+do
+    echo &quot;Stopping Task: $task&quot;
+    task_id=`echo $task | cut -d '/' -f 2 | cut -d '&quot;' -f 1`
+    aws ecs stop-task --cluster deploymentCluster --task $task_id
+done
+
+# Waiting for 'dvnaDeployService' to automatically run a new task
+echo &quot;Waiting for 1 minute for AWS to bring up new ECS Task...&quot;
+sleep 1m
+
+# Fetching all active tasks under 'deploymentCluster'
+task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
+echo &quot;New Task ARN: $task_arns&quot;
+
+# Printing the URL where DVNA instance(s) were deployed
+for task in $task_arns
+do
+    task_id=`echo $task | cut -d '/' -f 2 | cut -d '&quot;' -f 1`
+    task_attachments=`aws ecs describe-tasks --cluster deploymentCluster --tasks $task_id | jq '.tasks[0].attachments[0].details' | jq -c '.[]'`
+    for attachment in $task_attachments
+    do
+        name=`echo $attachment | jq '.name'`
+
+        if [ &quot;$name&quot; == &quot;\&quot;networkInterfaceId\&quot;&quot; ]; then
+            interface_id=`echo $attachment | jq '.value'`
+            interface_id=`echo $interface_id | tr -d &quot;\&quot;&quot;`
+        fi
+    done
+    public_ip=`aws ec2 describe-network-interfaces --network-interface-ids $interface_id | jq '.NetworkInterfaces[0].Association.PublicIp' | tr -d &quot;\&quot;&quot;`
+    echo &quot;DVNA is deployed at: http://$public_ip:9090&quot;
+done
+</code></pre>
+
+<ul>
+<li>Next, I added a stage in the pipeline to execute this script on the Jenkins Agent EC2 instance.</li>
+</ul>
+<p><strong>Note</strong>: Due to a issue in the <code>$PATH</code> variable, <code>aws</code> was not recognized as a command (even though it worked fine when I ran it on the machine directly over SSH). To solve this issue I added a <em>symlink</em> as follows:</p>
+<pre><code class="bash">sudo ln -s /home/ubuntu/.local/bin/aws /usr/local/bin/aws
+</code></pre>
+
+<ul>
+<li>Though the deployment setup was complete, I added additional steps to clear out all the older docker images from the machine using the following command:</li>
+</ul>
+<pre><code class="bash">docker rmi $(docker images | grep none | awk '{print $3}')
+</code></pre>
+
+<h2 id="final-pipeline-structure">Final Pipeline Structure</h2>
+<p>After making all the amendments required to shift the entire setup from a local machine to AWS, the pipeline structure was altered a bit. I took this opportunity to rename a few stages and make small changes to the pipeline syntax to make it more uniform and clean. The updated pipeline script, though identical in function as the local version, with the amendments is mentioned below:</p>
+<pre><code class="jenkins">pipeline {
+    agent any
+
+    stages {
+        stage ('Fetching Code from Repository') {
+            steps {
+                git url: 'https://github.com/ayushpriya10/dvna.git'
+            }
+        }
+
+        stage ('Building Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage ('SAST with SonarQube') {
+            environment {
+                scannerHome = tool 'SonarQube Scanner'
+            }
+
+            steps {
+                withSonarQubeEnv ('SonarQube Server') {
+                    sh '${scannerHome}/bin/sonar-scanner'
+                    sh 'cat .scannerwork/report-task.txt &gt; /var/lib/jenkins/reports/sonarqube-report'
+                }
+            }
+        }
+
+        stage ('SAST with NPM Audit') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/npm-audit.sh'
+            }
+        }
+
+        stage ('SAST with NodeJsScan') {
+            steps {
+                sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
+            }
+        }
+
+        stage ('SAST with Retire.js') {
+            steps {
+                sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
+            }
+        }
+
+        stage ('SAST with  Dependency Check') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/dependency-check/bin/dependency-check.sh --scan /var/lib/jenkins/workspace/dvna-aws-pipeline --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
+            }
+        }
+
+        stage ('SAST with Auditjs') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/auditjs.sh'
+            }
+        }
+
+        stage ('SAST with Snyk') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/snyk.sh'
+            }
+        }
+
+        stage ('Starting DVNA for DAST') {
+            steps {
+                sh '''
+                source /var/lib/jenkins/tool_scripts/env.sh
+                pm2 restart server.js
+                '''
+            }
+        }
+
+        stage ('DAST with ZAP') {
+            agent {
+                label 'jenkins-agent-ec2'
+            }
+            steps {
+                sh '/home/ubuntu/zap_baseline.sh'
+                sh 'scp baseline-report.html jenkins@3.14.249.80:/var/lib/jenkins/reports/zap-report'
+            }
+        }
+
+        stage ('DAST with W3AF') {
+            agent {
+                label 'jenkins-agent-ec2'
+            }
+            steps {
+                sh '/home/ubuntu/w3af/w3af_console -s /home/ubuntu/w3af_config'
+                sh 'scp output-w3af.txt jenkins@3.14.249.80:/var/lib/jenkins/reports/w3af-report'
+            }
+        }
+
+        stage ('Stopping DVNA Instance') {
+            steps {
+                sh 'pm2 stop server.js'
+            }
+        }
+
+        stage ('Code Quality Analysis with JsHint') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/jshint.sh'
+            }
+        }
+
+        stage ('Code Quality Analysis with EsLint') {
+            steps {
+                sh '/var/lib/jenkins/tool_scripts/eslint.sh'
+            }
+        }
+
+        stage ('Generating Software Bill of Materials') {
+            steps {
+                sh 'cyclonedx-bom -o /var/lib/jenkins/reports/sbom.xml'
+            }
+        }
+
+        stage ('Build and Deploy DVNA') {
+            agent {
+                label 'jenkins-agent-ec2'
+            }
+
+            steps {
+                sh '/home/ubuntu/task-manager.sh'
+                sh 'rm -rf ./*'
+                sh 'docker rmi $(docker images | grep none | awk \'{print $3}\')'
+            }
+        }
+
+    }
+}
+</code></pre>
                 
                   
                 

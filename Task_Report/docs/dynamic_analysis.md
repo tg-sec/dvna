@@ -53,13 +53,13 @@ docker exec <CONTAINER NAME/ID> zap-cli active-scan <TARGET URL>
 * Due to the above complications, I decided to use Zap's baseline scan instead. To start off ZAP baseline scan with the docker image, I ran the following command, where the `-t` flag specified the target and `-l` flag defined the alert/severity level, by following this [documentation](https://github.com/zaproxy/zaproxy/wiki/ZAP-Baseline-Scan):
 
 ```bash
-docker run -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -l INFO
+docker run -i owasp/zap2docker-stable zap-baseline.py -t "http://172.17.0.1:9090" -l INFO
 ```
 
 * Now, to save the report on the Jenkins machine, I needed to mount a volume with Docker. I used the `-v` flag (as mentioned in the docker [documentation](https://docs.docker.com/storage/volumes/)) to mount the present working directory of the host to the `/zap/wrk` directory of the container and also added the `-r` flag to save scan output to a HTML report on the Jenkins machine:
 
 ```bash
-docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
+docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker-stable zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
 ```
 
 ### Integrating ZAP with Jenkins
@@ -92,14 +92,14 @@ stage ('Building DVNA') {
 }
 ```
 
-**Note**: I kept all the required environment variables in the `env.sh` file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the `shell` that comes along with Jenkins kept throwing an error saying it didn't recognize the command `source`. This turned out to be because that by default the `sh` shell in Jenkins points to `/bin/dash` which doesn't have the command `source`. To rectify this, I changed the Jenkins shell to point to `/bin/bash` instead with this command - `sudo ln -sf /bin/bash /bin/sh`, which I found in this [blog](https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/). This method, however, will change the symlink for `sh` to `bash` for every user on the system (which can be created by other applications, such as Jenkins itself). This might break the functioning of the other applications and hence, it is more advisable to specify the changed shell for the specific user on the system that needs it. In the context of Jenkins, the recommended way would be to use `usermod -s /bin/bash jenkins` to change the default shell only for Jenkins.
+**Note**: I kept all the required environment variables in the `env.sh` file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the `shell` that comes along with Jenkins kept throwing an error 'source not found' i.e. saying it didn't recognize the command `source`. This turned out to be because that by default the `sh` shell in Jenkins points to `/bin/dash` which doesn't have the command `source`. To rectify this, I changed the Jenkins shell to point to `/bin/bash` instead with this command - `sudo ln -sf /bin/bash /bin/sh`, which I found in this [blog](https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/). This method, however, will change the symlink for `sh` to `bash` for every user on the system (which can be created by other applications, such as Jenkins itself). This might break the functioning of the other applications and hence, it is more advisable to specify the changed shell for the specific user on the system that needs it. In the context of Jenkins, the recommended way would be to use `usermod -s /bin/bash jenkins` to change the default shell only for Jenkins.
 
 * Now, that DVNA was up and running, ran the baseline scan on it with docker and Zap. But I had to wrap the command in a shell script to evade the non-zero status code that ZAP gives on finding issues. So, I wrote the script, `baseline-scan.sh`, mentioned below and made it executable with `chmod +x`:
 
 ```bash
 cd /{JENKINS HOME DIRECTORY}/workspace/node-dast-pipeline
 
-docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
+docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker-stable zap-baseline.py -t "http://172.17.0.1:9090" -r baseline-report.html -l PASS
 
 echo $? > /dev/null
 ```

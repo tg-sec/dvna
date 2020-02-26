@@ -646,13 +646,13 @@ docker exec &lt;CONTAINER NAME/ID&gt; zap-cli active-scan &lt;TARGET URL&gt;
 <p>Due to the above complications, I decided to use Zap's baseline scan instead. To start off ZAP baseline scan with the docker image, I ran the following command, where the <code>-t</code> flag specified the target and <code>-l</code> flag defined the alert/severity level, by following this <a href="https://github.com/zaproxy/zaproxy/wiki/ZAP-Baseline-Scan">documentation</a>:</p>
 </li>
 </ul>
-<pre><code class="bash">docker run -i owasp/zap2docker zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -l INFO
+<pre><code class="bash">docker run -i owasp/zap2docker-stable zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -l INFO
 </code></pre>
 
 <ul>
 <li>Now, to save the report on the Jenkins machine, I needed to mount a volume with Docker. I used the <code>-v</code> flag (as mentioned in the docker <a href="https://docs.docker.com/storage/volumes/">documentation</a>) to mount the present working directory of the host to the <code>/zap/wrk</code> directory of the container and also added the <code>-r</code> flag to save scan output to a HTML report on the Jenkins machine:</li>
 </ul>
-<pre><code class="bash">docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -r baseline-report.html -l PASS
+<pre><code class="bash">docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker-stable zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -r baseline-report.html -l PASS
 </code></pre>
 
 <h3 id="integrating-zap-with-jenkins">Integrating ZAP with Jenkins</h3>
@@ -684,13 +684,13 @@ docker exec &lt;CONTAINER NAME/ID&gt; zap-cli active-scan &lt;TARGET URL&gt;
 }
 </code></pre>
 
-<p><strong>Note</strong>: I kept all the required environment variables in the <code>env.sh</code> file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the <code>shell</code> that comes along with Jenkins kept throwing an error saying it didn't recognize the command <code>source</code>. This turned out to be because that by default the <code>sh</code> shell in Jenkins points to <code>/bin/dash</code> which doesn't have the command <code>source</code>. To rectify this, I changed the Jenkins shell to point to <code>/bin/bash</code> instead with this command - <code>sudo ln -sf /bin/bash /bin/sh</code>, which I found in this <a href="https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/">blog</a>. This method, however, will change the symlink for <code>sh</code> to <code>bash</code> for every user on the system (which can be created by other applications, such as Jenkins itself). This might break the functioning of the other applications and hence, it is more advisable to specify the changed shell for the specific user on the system that needs it. In the context of Jenkins, the recommended way would be to use <code>usermod -s /bin/bash jenkins</code> to change the default shell only for Jenkins.</p>
+<p><strong>Note</strong>: I kept all the required environment variables in the <code>env.sh</code> file which can be seen in the above stage, and used it to export those variables for DVNA to be able to connect with the database. While trying to export the variables, the <code>shell</code> that comes along with Jenkins kept throwing an error 'source not found' i.e. saying it didn't recognize the command <code>source</code>. This turned out to be because that by default the <code>sh</code> shell in Jenkins points to <code>/bin/dash</code> which doesn't have the command <code>source</code>. To rectify this, I changed the Jenkins shell to point to <code>/bin/bash</code> instead with this command - <code>sudo ln -sf /bin/bash /bin/sh</code>, which I found in this <a href="https://www.ionutgavrilut.com/2019/jenkins-pipelines-sh-source-not-found/">blog</a>. This method, however, will change the symlink for <code>sh</code> to <code>bash</code> for every user on the system (which can be created by other applications, such as Jenkins itself). This might break the functioning of the other applications and hence, it is more advisable to specify the changed shell for the specific user on the system that needs it. In the context of Jenkins, the recommended way would be to use <code>usermod -s /bin/bash jenkins</code> to change the default shell only for Jenkins.</p>
 <ul>
 <li>Now, that DVNA was up and running, ran the baseline scan on it with docker and Zap. But I had to wrap the command in a shell script to evade the non-zero status code that ZAP gives on finding issues. So, I wrote the script, <code>baseline-scan.sh</code>, mentioned below and made it executable with <code>chmod +x</code>:</li>
 </ul>
 <pre><code class="bash">cd /{JENKINS HOME DIRECTORY}/workspace/node-dast-pipeline
 
-docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -r baseline-report.html -l PASS
+docker run -v $(pwd):/zap/wrk/ -i owasp/zap2docker-stable zap-baseline.py -t &quot;http://172.17.0.1:9090&quot; -r baseline-report.html -l PASS
 
 echo $? &gt; /dev/null
 </code></pre>
