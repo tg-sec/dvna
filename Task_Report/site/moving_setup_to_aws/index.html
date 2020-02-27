@@ -572,6 +572,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../secrets_management/" title="Secrets Management" class="md-nav__link">
+      Secrets Management
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../resources/" title="Resources" class="md-nav__link">
       Resources
     </a>
@@ -997,12 +1009,12 @@
 </ul>
 <pre><code class="bash">#!/bin/bash
 
-# Login to the ECR Registry to push docker images
-$(aws ecr get-login --no-include-email --region us-east-2)
-
 # Cloning the project repository to build the image
 git clone https://github.com/ayushpriya10/dvna.git
 cd dvna
+
+# Login to the ECR Registry to push docker images
+$(aws ecr get-login --no-include-email --region us-east-2)
 
 # Building the docker image, tagging it as 'latest' and pushing it to the registry
 docker build -t dvna_app .
@@ -1021,16 +1033,17 @@ do
 done
 
 # Waiting for 'dvnaDeployService' to automatically run a new task
-echo &quot;Waiting for 1 minute for AWS to bring up new ECS Task...&quot;
+echo &quot;Waiting for 1 minute for AWS to bring up new ECS Tasks...&quot;
 sleep 1m
 
 # Fetching all active tasks under 'deploymentCluster'
 task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
-echo &quot;New Task ARN: $task_arns&quot;
 
 # Printing the URL where DVNA instance(s) were deployed
 for task in $task_arns
 do
+    echo &quot;New Task ARN: $task&quot;
+
     task_id=`echo $task | cut -d '/' -f 2 | cut -d '&quot;' -f 1`
     task_attachments=`aws ecs describe-tasks --cluster deploymentCluster --tasks $task_id | jq '.tasks[0].attachments[0].details' | jq -c '.[]'`
     for attachment in $task_attachments
@@ -1231,13 +1244,13 @@ done
           </a>
         
         
-          <a href="../resources/" title="Resources" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../secrets_management/" title="Secrets Management" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Resources
+                Secrets Management
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

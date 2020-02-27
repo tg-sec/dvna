@@ -16,6 +16,7 @@ pages:
 - Generating Software Bill of Materials: 'generating_sbom.md'
 - Final Pipeline Structure: 'final_pipeline.md'
 - Shifting Local Setup to AWS: 'moving_setup_to_aws.md'
+- Secrets Management: 'secrets_management.md'
 - Resources: 'resources.md'
 
 

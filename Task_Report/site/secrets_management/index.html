@@ -36,7 +36,7 @@
     
     
       
-        <title>Final Pipeline Structure - Jenkins Pipeline</title>
+        <title>Secrets Management - Jenkins Pipeline</title>
       
     
     
@@ -75,7 +75,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#final-pipeline-structure" tabindex="1" class="md-skip">
+      <a href="#secrets-management" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -101,7 +101,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Final Pipeline Structure
+                Secrets Management
               
             </span>
           
@@ -324,6 +324,30 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../final_pipeline/" title="Final Pipeline Structure" class="md-nav__link">
+      Final Pipeline Structure
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../moving_setup_to_aws/" title="Shifting Local Setup to AWS" class="md-nav__link">
+      Shifting Local Setup to AWS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -335,11 +359,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Final Pipeline Structure
+        Secrets Management
       </label>
     
-    <a href="./" title="Final Pipeline Structure" class="md-nav__link md-nav__link--active">
-      Final Pipeline Structure
+    <a href="./" title="Secrets Management" class="md-nav__link md-nav__link--active">
+      Secrets Management
     </a>
     
       
@@ -360,8 +384,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-pipeline" class="md-nav__link">
-    Final Pipeline
+  <a href="#secrets-management_1" class="md-nav__link">
+    Secrets Management
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-secrets-manager" class="md-nav__link">
+    AWS Secrets Manager
   </a>
   
 </li>
@@ -374,30 +405,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../moving_setup_to_aws/" title="Shifting Local Setup to AWS" class="md-nav__link">
-      Shifting Local Setup to AWS
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../secrets_management/" title="Secrets Management" class="md-nav__link">
-      Secrets Management
-    </a>
   </li>
 
     
@@ -441,8 +448,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-pipeline" class="md-nav__link">
-    Final Pipeline
+  <a href="#secrets-management_1" class="md-nav__link">
+    Secrets Management
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-secrets-manager" class="md-nav__link">
+    AWS Secrets Manager
   </a>
   
 </li>
@@ -464,145 +478,32 @@
               
                 
                 
-                <h1 id="final-pipeline-structure">Final Pipeline Structure</h1>
+                <h1 id="secrets-management">Secrets Management</h1>
 <h2 id="objective">Objective</h2>
-<p>The aim of this section is to define the final structure achieved for the pipeline after the various testing stages integrated into the pipeline as part of the solutions for all the three tasks in the <a href="/problem_statement">problem statement</a>.</p>
-<h2 id="final-pipeline">Final Pipeline</h2>
-<p>After completing various testing stages (SAST, DAST, Code Quality Analysis) for DVNA, the last task was to combine all the segments together as all three tasks were tested on separate pipelines. Combining them also meant removing redundant steps from the stages to create a lean pipeline. All the scripts used in this pipeline remain the same as what they were when mentioned in the previous sections in the report. Below is a diagrammatic representation of the flow of the entire pipeline:</p>
-<p><img alt="Pipeline Diagram" src="/img/jenkins_pipeline.png" /></p>
-<p>The final pipeline script that was the result of combining all three segregated pipelines and removing redundancies is mentioned below:</p>
-<pre><code class="jenkins">pipeline {
-
-    agent any
-
-    stages {
-
-        stage ('Initialization') {
-            steps {
-                sh 'echo &quot;Starting the build&quot;'
-            }
-        }
-
-        stage ('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage ('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarQube Scanner'
-            }
-            steps {
-                withSonarQubeEnv ('SonarQube') {
-                    sh '${scannerHome}/bin/sonar-scanner'
-                    sh 'cat .scannerwork/report-task.txt &gt; /{JENKINS HOME DIRECTORY}/reports/sonarqube-report'
-                }
-            }
-        }
-
-        stage ('NPM Audit Analysis') {
-            steps {
-                sh '/{PATH TO SCRIPT}/npm-audit.sh'
-            }
-        }
-
-        stage ('NodeJsScan Analysis') {
-            steps {
-                sh 'nodejsscan --directory `pwd` --output /{JENKINS HOME DIRECTORY}/reports/nodejsscan-report'
-            }
-        }
-
-        stage ('Retire.js Analysis') {
-            steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath /{JENKINS HOME DIRECTORY}/reports/retirejs-report --exitwith 0'
-            }
-        }
-
-        stage ('Dependency-Check Analysis') {
-            steps {
-                sh '/{JENKINS HOME DIRECTORY}/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /{JENKINS HOME DIRECTORY}/reports/dependency-check-report --prettyPrint'
-            }
-        }
-
-        stage ('Audit.js Analysis') {
-            steps {
-                sh '/{PATH TO SCRIPT}/auditjs.sh'
-            }
-        }
-
-        stage ('Snyk Analysis') {
-            steps {
-                sh '/{PATH TO SCRIPT}/snyk.sh'
-            }
-        }
-
-        stage ('Building DVNA') {
-            steps {
-                sh '''
-                    source /{PATH TO SCRIPT}/env.sh
-                    pm2 start server.js
-                '''
-            }
-        }
-
-        stage ('Run ZAP for DAST') {
-            steps {
-                sh '/{PATH TO SCRIPT}/baseline-scan.sh'
-            }
-        }
-
-        stage ('Run W3AF for DAST') {
-            agent {
-                label 'raf-vm'
-            }
-
-            steps {
-                sh '/{PATH TO SCRIPT}/w3af/w3af_console -s /{PATH TO SCRIPT}/scripts/w3af_scan_script.w3af'
-                sh 'scp -r /{PATH TO OUTPUT}/w3af/output-w3af.txt chaos@10.0.2.19:/{HOME DIRECTORY}/'
-            }
-        }
-
-        stage ('Take DVNA offline') {
-            steps {
-                sh 'pm2 stop server.js'
-                sh 'mv baseline-report.html /{JENKINS HOME DIRECTORY}/reports/zap-report.html'
-                sh 'cp /{HOME DIRECTORY}/output-w3af.txt /{JENKINS HOME DIRECTORY}/reports/w3af-report'
-            }
-        }
-
-        stage ('Lint Analysis with Jshint') {
-            steps {
-                sh '/{PATH TO SCRIPT}/jshint-script.sh'
-            }
-        }
-
-        stage ('Lint Analysis with EsLint') {
-            steps {
-                sh '/{PATH TO SCRIPT}/eslint-script.sh'
-            }
-        }
-
-        stage ('Generating Software Bill of Materials') {
-            steps {
-                sh 'cyclonedx-bom -o /{JENKINS HOME DIRECTORY}/reports/sbom.xml'
-            }
-        }
-
-        stage ('Deploy to App Server') {
-            steps {
-                sh 'echo &quot;Deploying App to Server&quot;'
-                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;cd dvna &amp;&amp; pm2 stop server.js&quot;'
-                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;rm -rf dvna/ &amp;&amp; mkdir dvna&quot;'
-                sh 'scp -r * chaos@10.0.2.20:~/dvna'
-                sh 'ssh -o StrictHostKeyChecking=no chaos@10.0.2.20 &quot;source ./env.sh &amp;&amp; cd dvna &amp;&amp; pm2 start server.js&quot;'
-            }
-        }
-
-    }
-
-}
+<p>The aim of this section is to set up a <em>secrets management</em> service on the cloud to segregate the app and the associated secrets required for it to function and provide a solution to the 2nd point of the problem statement under <code>Task 4</code>.</p>
+<h2 id="secrets-management_1">Secrets Management</h2>
+<p>Secrets management refers to the tools and methods for managing digital authentication credentials (secrets), including passwords, keys, APIs, and tokens for use in applications, services, and privileged accounts. Secret Management services also provide additional services associated with managing various credentials such as rotation of secrets.</p>
+<h2 id="aws-secrets-manager">AWS Secrets Manager</h2>
+<p>The secrets in the context of DVNA are the values for database configuration that DVNA requires to access the database. These secrets are the database host, port, username, password, and database name. Up to this point, I was using <code>bash</code> scripts to <em>source</em> the required values and export them as environment variables. For the deployment on AWS with ECS, I added these values as environment variables while creating the task definition for DVNA deployment. But these values were in plaintext. To make use of secrets management, I decided to use Amazon's Secrets Manager, a secrets management service that comes along with AWS services.</p>
+<p>To utilize Secrets Manager and import secrets through it for the container's database configuration I needed the <code>SecretsManagerReadWrite</code> policy to be attached to my IAM role. After the policy was attached, I followed the following steps:</p>
+<ul>
+<li>The first thing I had to do was to create the secrets themselves. I used the AWS CLI to create the secrets with the names <code>/db/dvna/username</code>, <code>/db/dvna/password</code>, <code>/db/dvna/host</code>, <code>/db/dvna/port</code> and <code>/db/dvna/database</code>, provided a description and the secret values. I also took note of the <code>Secret ARN</code> received in the response for each secret created. The command I used is mentioned below:</li>
+</ul>
+<pre><code class="bash">aws secretsmanager create-secret --name &lt;SECRET NAME&gt; --secret-string &lt;SECRET VALUE&gt; --description &lt;DESCRIPTION&gt;
 </code></pre>
+
+<p><strong>Note</strong>: Using the console to create the secrets was a bit confusing initially. Selecting 'Other type of secrets' option prompted for either a <code>key-value</code> or a <code>plaintext</code> type secret. The field for entering a plaintext secret had a JSON-like template structure present which turned out to be unnecessary. Removing the template JSON with just the required value worked as well to create secrets from the web console.</p>
+<ul>
+<li>
+<p>Now, instead of creating a <em>revision</em> to the existing task definition, I created a new task definition following the <a href="/moving_setup_to_aws/#deploying-dvna-on-aws">steps</a> I used earlier (skipping the first nine steps as they did not need to be redone) with the new task definition's name as <code>deployDvnaSecretsManager</code>. This time, however, instead of directly passing the values for the database configurations, I chose the <code>ValueFrom</code> option and passed the respective <code>Secret ARN</code> that I took note of in the first step as the value for each secret under the environment variables section while providing the container details.</p>
+</li>
+<li>
+<p>Next, I created a new service (<code>dvnaSSMDeployService</code>) under the previously created cluster named <code>deploymentCluster</code> and created a task from the task definition created in the previous step. This launched DVNA on a new ECS instance with the secrets retrieved from the Secrets Manager.</p>
+</li>
+<li>
+<p>I did not have to change anything in the pipeline or the script I wrote earlier to manage deployments through the pipeline as the script was programmed to stop all running tasks under the designated cluster and then display all new tasks that were spun by the services to fetch the public IPs of the DVNA instances deployed.</p>
+</li>
+</ul>
                 
                   
                 
@@ -624,7 +525,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../generating_sbom/" title="Generating Software Bill of Materials" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../moving_setup_to_aws/" title="Shifting Local Setup to AWS" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -633,19 +534,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Generating Software Bill of Materials
+                Shifting Local Setup to AWS
               </span>
             </div>
           </a>
         
         
-          <a href="../moving_setup_to_aws/" title="Shifting Local Setup to AWS" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../resources/" title="Resources" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Shifting Local Setup to AWS
+                Resources
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

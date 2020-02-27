@@ -204,12 +204,12 @@ docker push <ID>.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
 ```bash
 #!/bin/bash
 
-# Login to the ECR Registry to push docker images
-$(aws ecr get-login --no-include-email --region us-east-2)
-
 # Cloning the project repository to build the image
 git clone https://github.com/ayushpriya10/dvna.git
 cd dvna
+
+# Login to the ECR Registry to push docker images
+$(aws ecr get-login --no-include-email --region us-east-2)
 
 # Building the docker image, tagging it as 'latest' and pushing it to the registry
 docker build -t dvna_app .
@@ -228,16 +228,17 @@ do
 done
 
 # Waiting for 'dvnaDeployService' to automatically run a new task
-echo "Waiting for 1 minute for AWS to bring up new ECS Task..."
+echo "Waiting for 1 minute for AWS to bring up new ECS Tasks..."
 sleep 1m
 
 # Fetching all active tasks under 'deploymentCluster'
 task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
-echo "New Task ARN: $task_arns"
 
 # Printing the URL where DVNA instance(s) were deployed
 for task in $task_arns
 do
+    echo "New Task ARN: $task"
+
     task_id=`echo $task | cut -d '/' -f 2 | cut -d '"' -f 1`
     task_attachments=`aws ecs describe-tasks --cluster deploymentCluster --tasks $task_id | jq '.tasks[0].attachments[0].details' | jq -c '.[]'`
     for attachment in $task_attachments

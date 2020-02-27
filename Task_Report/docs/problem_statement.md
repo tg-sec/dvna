@@ -28,3 +28,4 @@
 ## Task 4
 
 1. Move the setup from the local machine to Cloud (AWS).
+2. Store required secrets separately with a Secrets Management Service.
