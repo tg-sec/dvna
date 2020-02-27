@@ -262,7 +262,7 @@ done
 sudo ln -s /home/ubuntu/.local/bin/aws /usr/local/bin/aws
 ```
 
-* Though the deployment setup was complete, I added additional steps to clear out all the older docker images from the machine using the following command:
+* Though the deployment setup was complete, I added an additional step to clear out all the older docker images (which got untagged) from the machine using the following command:
 
 ```bash
 docker rmi $(docker images | grep none | awk '{print $3}')
