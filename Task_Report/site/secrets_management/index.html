@@ -397,6 +397,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hashicorp-vault" class="md-nav__link">
+    HashiCorp Vault
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-hashicorp-vault" class="md-nav__link">
+    Configuring HashiCorp Vault
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-vault-with-pipeline" class="md-nav__link">
+    Integrating Vault with Pipeline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparing-aws-secrets-manager-and-hashicorp-vault" class="md-nav__link">
+    Comparing AWS Secrets Manager and HashiCorp Vault
+  </a>
+  
+</li>
+      
       
       
       
@@ -461,6 +495,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hashicorp-vault" class="md-nav__link">
+    HashiCorp Vault
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-hashicorp-vault" class="md-nav__link">
+    Configuring HashiCorp Vault
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-vault-with-pipeline" class="md-nav__link">
+    Integrating Vault with Pipeline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparing-aws-secrets-manager-and-hashicorp-vault" class="md-nav__link">
+    Comparing AWS Secrets Manager and HashiCorp Vault
+  </a>
+  
+</li>
+      
       
       
       
@@ -504,6 +572,164 @@
 <p>I did not have to change anything in the pipeline or the script I wrote earlier to manage deployments through the pipeline as the script was programmed to stop all running tasks under the designated cluster and then display all new tasks that were spun by the services to fetch the public IPs of the DVNA instances deployed.</p>
 </li>
 </ul>
+<h2 id="hashicorp-vault">HashiCorp Vault</h2>
+<p>HashiCorp Vault is another secrets manager which is more generic in terms of a solution as it addresses the general problem of managing secrets and is not specific to a particular cloud vendor. It also more configurable than AWS Secrets Manager as it comes along with various secrets engines built-in that can be used as per the project requirements.</p>
+<h3 id="configuring-hashicorp-vault">Configuring HashiCorp Vault</h3>
+<p>Since Vault is an application itself, it was needed to be installed to be used as a Secrets Manager. I used the Jenkins Agent EC2 instance to install and configure Vault with the steps mentioned below:</p>
+<ul>
+<li>
+<p>I followed along with this <a href="https://phoenixnap.com/kb/how-to-install-vault-ubuntu">article</a> exactly as it also explained how to set up <a href="https://www.consul.io/">Consul</a> which is a storage backend, also built by HashiCorp, which can be used in conjunction with Vault to store secrets. The tutorial also helped set up both Vault and Consul as system services which I felt was a better way to use them than explicitly running them manually.</p>
+</li>
+<li>
+<p>After completing all the steps mentioned in the article above, I took note of the <code>root initialization token</code> used to initialize Vault and the <strong>5</strong> keys required to <em>unseal</em> Vault to retrieve secrets.</p>
+</li>
+<li>
+<p>I added all the 5 keys and the root initialization token as <code>Secret Text</code> type credentials in Jenkins to use them in the pipeline as and when required.</p>
+</li>
+</ul>
+<h3 id="integrating-vault-with-pipeline">Integrating Vault with Pipeline</h3>
+<p>After Vault was configured and was ready to be used, I went through the steps, mentioned below, to add the secrets and figure out how to retrieve them so I could use them to launch a new ECS task on AWS with the required parameters:</p>
+<ul>
+<li>I <em>unsealed</em> Vault with 3 (out of the 5) keys that were given during the installation of Vault with the command - <code>vault operator unseal &lt;KEY VALUE&gt;</code>.</li>
+<li>After Vault was unsealed, I used <code>vault kv put dvna/db &lt;NAME&gt;=&lt;VALUE&gt;</code> to add secrets to vault. Here, <code>dvna/db</code> path was chosen by me to represent the relevance of the secrets being stored in that particular path.</li>
+</ul>
+<p><strong>Note</strong>: Initially <code>put</code> command was not working and I received an error saying - <code>preflight capability check returned 403, please ensure client's policies grant access to path "kv/dvna/"</code>. It turned out to be because of the path <code>dvna/db</code> not being initialized with the <code>kv</code> secrets engine. To solve this I used the command <code>vault secrets enable -path=dvna kv</code> according to the official <a href="https://learn.hashicorp.com/vault/getting-started/secrets-engines">documentation</a>.</p>
+<ul>
+<li>
+<p>To retrieve secrets I used the command - <code>vault kv get dvna/db</code> which printed all the secrets in that path (Database name, host, port, username, and password) in a tabular format. Now, I had to fetch just the secret out of the output, instead of formatting the output to suit my needs, Vault came with a utility to only print the value of the secret by specifying the name of the field I need. The command I used to retrieve the secrets' values was <code>vault kv get -field=&lt;SECRET NAME&gt; dvna/db</code> where <code>SECRET NAME</code> was one the values from - database, username, password, port, and host.</p>
+</li>
+<li>
+<p>Now, for the secrets to be retrieved in the pipeline, the vault needs to be unsealed first and then it should also be resealed after the secrets are fetched. To achieve this, firstly, I made use of the <code>withCredentials</code> section in the pipeline syntax to fetch secrets from Jenkins' credential manager to retrieve Vault Keys that we stored their earlier and used them with the unseal command in the pipeline stage. I then amended the script I used to stop the currently running ECS tasks and fetch new deployed ECS instances running the latest container images of DVNA and lastly, I sealed the vault again.</p>
+</li>
+<li>
+<p>Unsealing (and resealing) Vault with keys from Jenkins Secret Manager in the pipeline script:</p>
+</li>
+</ul>
+<pre><code class="jenkins">
+stage ('Build and Deploy DVNA') {
+    agent {
+        label 'jenkins-agent-ec2'
+    }
+
+    steps {
+        withCredentials([string(credentialsId: 'vault-key-1', variable: 'key1'), string(credentialsId: 'vault-key-2', variable: 'key2'), string(credentialsId: 'vault-key-3', variable: 'key3')]) {
+            sh '''
+                export VAULT_ADDR=http://127.0.0.1:8200
+                vault operator unseal $key1
+                vault operator unseal $key2
+                vault operator unseal $key3
+                /home/ubuntu/task-manager.sh
+                vault operator seal
+                '''
+        }
+        sh 'rm -rf ./*'
+        sh 'docker rmi $(docker images | grep none | awk \'{print $3}\')'
+    }
+}
+</code></pre>
+
+<ul>
+<li>Amendments made to the previous deployment script, in the <a href="/moving_setup_to_aws/#deploying-dvna-on-aws">previous section</a>, to launch ECS tasks with the updated DVNA docker image:</li>
+</ul>
+<pre><code class="bash">#!/bin/bash
+
+# Cloning the project repository to build the image
+git clone https://github.com/ayushpriya10/dvna.git
+cd dvna
+
+# Login to the ECR Registry to push docker images
+$(aws ecr get-login --no-include-email --region us-east-2)
+
+# Building the docker image, tagging it as 'latest' and pushing it to the registry
+docker build -t dvna_app .
+docker tag dvna_app:latest &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+docker push &lt;ID&gt;.dkr.ecr.us-east-2.amazonaws.com/dvna-aws-registry:latest
+
+# Fetching all active tasks running under the 'deploymentCluster'
+task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
+
+# Stopping all tasks which are running the older docker image of DVNA
+for task in $task_arns
+do
+    echo &quot;Stopping Task: $task&quot;
+    task_id=`echo $task | cut -d '/' -f 2 | cut -d '&quot;' -f 1`
+    aws ecs stop-task --cluster deploymentCluster --task $task_id &gt; /dev/null
+done
+
+# Retrieving secrets from Vault
+MYSQL_DATABASE=$(vault kv get -field=database dvna/db)
+MYSQL_HOST=$(vault kv get -field=host dvna/db)
+MYSQL_PORT=$(vault kv get -field=port dvna/db)
+MYSQL_USER=$(vault kv get -field=username dvna/db)
+MYSQL_PASSWORD=$(vault kv get -field=password dvna/db)
+
+# Creating JSON with container parameters to override for ECS Task
+OVERRIDES=&quot;{
+    \&quot;containerOverrides\&quot;: [{
+        \&quot;name\&quot;: \&quot;dvna-latest-ssm\&quot;,
+        \&quot;environment\&quot;: [{
+            \&quot;name\&quot;: \&quot;MYSQL_DATABASE\&quot;,
+            \&quot;value\&quot;: \&quot;$MYSQL_DATABASE\&quot;
+        }, {
+            \&quot;name\&quot;: \&quot;MYSQL_HOST\&quot;,
+            \&quot;value\&quot;: \&quot;$MYSQL_HOST\&quot;
+        }, {
+            \&quot;name\&quot;: \&quot;MYSQL_PORT\&quot;,
+            \&quot;value\&quot;: \&quot;$MYSQL_PORT\&quot;
+        }, {
+            \&quot;name\&quot;: \&quot;MYSQL_PASSWORD\&quot;,
+            \&quot;value\&quot;: \&quot;$MYSQL_PASSWORD\&quot;
+        }, {
+            \&quot;name\&quot;: \&quot;MYSQL_USER\&quot;,
+            \&quot;value\&quot;: \&quot;$MYSQL_USER\&quot;
+        }]
+    }]
+}&quot;
+
+# Creating JSON with Network Configuration for the ECS Task
+NETWORK_CONFIG='{
+    &quot;awsvpcConfiguration&quot;: {
+        &quot;subnets&quot;: [&quot;subnet-fb41fdb7&quot;],
+        &quot;securityGroups&quot;: [&quot;sg-0b3be5dc4044f6f52&quot;],
+        &quot;assignPublicIp&quot;: &quot;ENABLED&quot;
+    }
+}'
+
+# Launching a new ECS Task, independent of existing services in the cluster, to run a Task with overriden parameters
+aws ecs run-task --overrides &quot;$OVERRIDES&quot;  --cluster deploymentCluster --task-definition deployDvnaSecretsManager:6 --count 1 --launch-type FARGATE --network-configuration &quot;$NETWORK_CONFIG&quot; &gt; /dev/null
+
+# Waiting for 'dvnaDeployService' to automatically run a new task
+echo &quot;Waiting for 1 minute for AWS to bring up new ECS Tasks...&quot;
+sleep 1m
+
+# Fetching all active tasks under 'deploymentCluster'
+task_arns=`aws ecs list-tasks --cluster deploymentCluster | jq '.taskArns' | jq -c '.[]'`
+
+# Printing the URL where DVNA instance(s) were deployed
+for task in $task_arns
+do
+    echo &quot;New Task ARN: $task&quot;
+
+    task_id=`echo $task | cut -d '/' -f 2 | cut -d '&quot;' -f 1`
+    task_attachments=`aws ecs describe-tasks --cluster deploymentCluster --tasks $task_id | jq '.tasks[0].attachments[0].details' | jq -c '.[]'`
+    for attachment in $task_attachments
+    do
+        name=`echo $attachment | jq '.name'`
+
+        if [ &quot;$name&quot; == &quot;\&quot;networkInterfaceId\&quot;&quot; ]; then
+            interface_id=`echo $attachment | jq '.value'`
+            interface_id=`echo $interface_id | tr -d &quot;\&quot;&quot;`
+        fi
+    done
+    public_ip=`aws ec2 describe-network-interfaces --network-interface-ids $interface_id | jq '.NetworkInterfaces[0].Association.PublicIp' | tr -d &quot;\&quot;&quot;`
+    echo &quot;DVNA is deployed at: http://$public_ip:9090&quot;
+done
+</code></pre>
+
+<h2 id="comparing-aws-secrets-manager-and-hashicorp-vault">Comparing AWS Secrets Manager and HashiCorp Vault</h2>
+<p>The tools I used for Secrets Management are a bit difficult to compare, unlike the other comparative observations I wrote as part of this report previously as both of these tools solve the same problem but have different use-cases.</p>
+<p>AWS Secrets Manager required minimal effort in terms of storing secrets, unlike HashiCorp Vault which required extensive setup and configuration. It also had the added ease of fetching secrets from it directly by using the <code>ARN</code> for the required in the container details while defining a new task. The biggest downside for AWS Secrets Manager was that it was an AWS-specific solution and that is exactly one of the strongest benefits of HashiCorp's Vault that it is independent of platform or cloud providers. Vault also is more customizable as compared to AWS Secret Manager. Some of these customizable features are - allowing the user to decide what path to store secrets on, what secrets engine to use to encrypt the secrets and which set of keys to use to unseal Vault.</p>
+<p>In the context of the problem statement that I had, AWS Secrets Manager is a better solution to use as I was specifically supposed to use AWS as the cloud provider and hence, it makes sense to use the tool/system which requires the least effort to operate. However, if a more general solution was needed or a scenario where the secrets are to be shared with services that do not integrate with AWS Secrets Manager, HashiCorp Vault would be the optimal choice because of its portability in terms on integration with external systems.</p>
                 
                   
                 

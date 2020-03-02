@@ -224,7 +224,7 @@ for task in $task_arns
 do
     echo "Stopping Task: $task"
     task_id=`echo $task | cut -d '/' -f 2 | cut -d '"' -f 1`
-    aws ecs stop-task --cluster deploymentCluster --task $task_id
+    aws ecs stop-task --cluster deploymentCluster --task $task_id > /dev/null
 done
 
 # Waiting for 'dvnaDeployService' to automatically run a new task
