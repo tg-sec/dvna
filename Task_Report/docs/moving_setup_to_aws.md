@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to shift the entire setup from the local machine to AWS (Amazon Web Services) Cloud to provide a solution to the 1st point of the [problem statement](problem_statement.md) under `Task 4`.
+The aim of this section is to shift the entire setup from the local machine to Amazon Web Services (AWS) Cloud to provide a solution to the 1st point of the [problem statement](problem_statement.md) under `Task 4`.
 
 ## Configuring Jenkins with EC2 Instances
 
@@ -43,7 +43,7 @@ To start shifting the entire setup that I had locally on my machine, firstly I b
 
 After successfully starting the instance, I had to install Jenkins on it. I used the steps from the [previous section](/setting_up_vms/#installing-jenkins) that I wrote on the same.
 
-* Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on its own and failed to install any plugin. To rectify this issue, I ended up using [Nginx](https://www.nginx.com/), which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04). I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, `jenkins-config`, whose contents are mentioned below:
+* Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on its own and failed to install any plugin. To rectify this issue, I ended up using [Nginx](https://www.nginx.com/)(pronounced as 'Engine-X'), which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this [documentation](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04). I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, `jenkins-config`, whose contents are mentioned below:
 
 ```nginx
 server {
