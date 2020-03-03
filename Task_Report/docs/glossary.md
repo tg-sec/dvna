@@ -11,4 +11,8 @@ There are some terms used in this report which might not be common and/or might 
 |**Agent VM**            | The VM which has a Jenkins Agent installed to use the distributed build architecture. |
 |**Jenkins User**        | The system user created on the VM after installing Jenkins.                           |
 |**Infrastructure**      | The environment with the two VMs, the Jenkins VM and the Production VM.               |
-|**EC2 Instance**        | A virtual machine on AWS Cloud.                                                       |
+|**EC2**                 | Elastic Cloud Compute; A virtual machine on AWS Cloud.                                |
+|**ECS**                 | Elastic Container Service; A container orchestration service on AWS Cloud.            |
+|**ECR**                 | Elastic Container Registry; A container registry on AWS Cloud.                        |
+|**RDS**                 | Relational Database Service; A managed relational DB on AWS Cloud.                    |
+|**IAM**                 | Identity and Access Management; A service to manage and access resources on AWS Cloud.|

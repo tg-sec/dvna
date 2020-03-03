@@ -22,7 +22,14 @@ aws secretsmanager create-secret --name <SECRET NAME> --secret-string <SECRET VA
 
 **Note**: Using the console to create the secrets was a bit confusing initially. Selecting 'Other type of secrets' option prompted for either a `key-value` or a `plaintext` type secret. The field for entering a plaintext secret had a JSON-like template structure present which turned out to be unnecessary. Removing the template JSON with just the required value worked as well to create secrets from the web console.
 
+* Here's the AWS Secrets Manager web console after I added all the secrets:
+![AWS Secrets Manager](/img/secrets_manager.PNG)
+
+* Below is an image depicting where to retrieve the Secret's ARN on the web console:
+![Secret ARN](/img/secret_value.PNG)
+
 * Now, instead of creating a _revision_ to the existing task definition, I created a new task definition following the [steps](/moving_setup_to_aws/#deploying-dvna-on-aws) I used earlier (skipping the first nine steps as they did not need to be redone) with the new task definition's name as `deployDvnaSecretsManager`. This time, however, instead of directly passing the values for the database configurations, I chose the `ValueFrom` option and passed the respective `Secret ARN` that I took note of in the first step as the value for each secret under the environment variables section while providing the container details.
+![Fetching Secret with ARN](/img/secrets_fromvalue_arn.PNG)
 
 * Next, I created a new service (`dvnaSSMDeployService`) under the previously created cluster named `deploymentCluster` and created a task from the task definition created in the previous step. This launched DVNA on a new ECS instance with the secrets retrieved from the Secrets Manager.
 
@@ -53,7 +60,7 @@ After Vault was configured and was ready to be used, I went through the steps, m
 
 * To retrieve secrets I used the command - `vault kv get dvna/db` which printed all the secrets in that path (Database name, host, port, username, and password) in a tabular format. Now, I had to fetch just the secret out of the output, instead of formatting the output to suit my needs, Vault came with a utility to only print the value of the secret by specifying the name of the field I need. The command I used to retrieve the secrets' values was `vault kv get -field=<SECRET NAME> dvna/db` where `SECRET NAME` was one the values from - database, username, password, port, and host.
 
-* Now, for the secrets to be retrieved in the pipeline, the vault needs to be unsealed first and then it should also be resealed after the secrets are fetched. To achieve this, firstly, I made use of the `withCredentials` section in the pipeline syntax to fetch secrets from Jenkins' credential manager to retrieve Vault Keys that we stored their earlier and used them with the unseal command in the pipeline stage. I then amended the script I used to stop the currently running ECS tasks and fetch new deployed ECS instances running the latest container images of DVNA and lastly, I sealed the vault again.
+* Now, for the secrets to be retrieved in the pipeline, the vault needs to be unsealed first and then it should also be resealed after the secrets are fetched. To achieve this, firstly, I made use of the `withCredentials` section in the pipeline syntax to fetch secrets from Jenkins' credential manager to retrieve Vault Keys that we stored there earlier and used them with the unseal command in the pipeline stage. I then amended the script I used to stop the currently running ECS tasks and fetch new deployed ECS instances running the latest container images of DVNA and lastly, I sealed the vault again.
 
 * Unsealing (and resealing) Vault with keys from Jenkins Secret Manager in the pipeline script:
 

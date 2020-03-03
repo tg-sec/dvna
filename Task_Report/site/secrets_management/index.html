@@ -563,7 +563,16 @@
 <p><strong>Note</strong>: Using the console to create the secrets was a bit confusing initially. Selecting 'Other type of secrets' option prompted for either a <code>key-value</code> or a <code>plaintext</code> type secret. The field for entering a plaintext secret had a JSON-like template structure present which turned out to be unnecessary. Removing the template JSON with just the required value worked as well to create secrets from the web console.</p>
 <ul>
 <li>
-<p>Now, instead of creating a <em>revision</em> to the existing task definition, I created a new task definition following the <a href="/moving_setup_to_aws/#deploying-dvna-on-aws">steps</a> I used earlier (skipping the first nine steps as they did not need to be redone) with the new task definition's name as <code>deployDvnaSecretsManager</code>. This time, however, instead of directly passing the values for the database configurations, I chose the <code>ValueFrom</code> option and passed the respective <code>Secret ARN</code> that I took note of in the first step as the value for each secret under the environment variables section while providing the container details.</p>
+<p>Here's the AWS Secrets Manager web console after I added all the secrets:
+<img alt="AWS Secrets Manager" src="/img/secrets_manager.PNG" /></p>
+</li>
+<li>
+<p>Below is an image depicting where to retrieve the Secret's ARN on the web console:
+<img alt="Secret ARN" src="/img/secret_value.PNG" /></p>
+</li>
+<li>
+<p>Now, instead of creating a <em>revision</em> to the existing task definition, I created a new task definition following the <a href="/moving_setup_to_aws/#deploying-dvna-on-aws">steps</a> I used earlier (skipping the first nine steps as they did not need to be redone) with the new task definition's name as <code>deployDvnaSecretsManager</code>. This time, however, instead of directly passing the values for the database configurations, I chose the <code>ValueFrom</code> option and passed the respective <code>Secret ARN</code> that I took note of in the first step as the value for each secret under the environment variables section while providing the container details.
+<img alt="Fetching Secret with ARN" src="/img/secrets_fromvalue_arn.PNG" /></p>
 </li>
 <li>
 <p>Next, I created a new service (<code>dvnaSSMDeployService</code>) under the previously created cluster named <code>deploymentCluster</code> and created a task from the task definition created in the previous step. This launched DVNA on a new ECS instance with the secrets retrieved from the Secrets Manager.</p>
@@ -599,7 +608,7 @@
 <p>To retrieve secrets I used the command - <code>vault kv get dvna/db</code> which printed all the secrets in that path (Database name, host, port, username, and password) in a tabular format. Now, I had to fetch just the secret out of the output, instead of formatting the output to suit my needs, Vault came with a utility to only print the value of the secret by specifying the name of the field I need. The command I used to retrieve the secrets' values was <code>vault kv get -field=&lt;SECRET NAME&gt; dvna/db</code> where <code>SECRET NAME</code> was one the values from - database, username, password, port, and host.</p>
 </li>
 <li>
-<p>Now, for the secrets to be retrieved in the pipeline, the vault needs to be unsealed first and then it should also be resealed after the secrets are fetched. To achieve this, firstly, I made use of the <code>withCredentials</code> section in the pipeline syntax to fetch secrets from Jenkins' credential manager to retrieve Vault Keys that we stored their earlier and used them with the unseal command in the pipeline stage. I then amended the script I used to stop the currently running ECS tasks and fetch new deployed ECS instances running the latest container images of DVNA and lastly, I sealed the vault again.</p>
+<p>Now, for the secrets to be retrieved in the pipeline, the vault needs to be unsealed first and then it should also be resealed after the secrets are fetched. To achieve this, firstly, I made use of the <code>withCredentials</code> section in the pipeline syntax to fetch secrets from Jenkins' credential manager to retrieve Vault Keys that we stored there earlier and used them with the unseal command in the pipeline stage. I then amended the script I used to stop the currently running ECS tasks and fetch new deployed ECS instances running the latest container images of DVNA and lastly, I sealed the vault again.</p>
 </li>
 <li>
 <p>Unsealing (and resealing) Vault with keys from Jenkins Secret Manager in the pipeline script:</p>
