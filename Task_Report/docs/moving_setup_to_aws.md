@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to shift the entire setup from the local machine to Amazon Web Services (AWS) Cloud to provide a solution to the 1st point of the [problem statement](problem_statement.md) under `Task 4`.
+The aim of this section is to shift the entire setup from the local machine to Amazon Web Services (AWS) Cloud to provide a solution to the 1st point of the [problem statement](/problem_statement) under `Task 4`.
 
 ## Configuring Jenkins with EC2 Instances
 

@@ -820,7 +820,7 @@
                 
                 <h1 id="shifting-local-setup-to-aws">Shifting Local Setup to AWS</h1>
 <h2 id="objective">Objective</h2>
-<p>The aim of this section is to shift the entire setup from the local machine to AWS (Amazon Web Services) Cloud to provide a solution to the 1st point of the <a href="../problem_statement/">problem statement</a> under <code>Task 4</code>.</p>
+<p>The aim of this section is to shift the entire setup from the local machine to Amazon Web Services (AWS) Cloud to provide a solution to the 1st point of the <a href="../problem_statement/">problem statement</a> under <code>Task 4</code>.</p>
 <h2 id="configuring-jenkins-with-ec2-instances">Configuring Jenkins with EC2 Instances</h2>
 <h3 id="starting-an-ec2-instance">Starting an EC2 instance</h3>
 <p>To start shifting the entire setup that I had locally on my machine, firstly I brought up an EC2 instance to install and run Jenkins on. Below mentioned are the steps to spin up an EC2 instance:</p>
@@ -869,7 +869,7 @@
 <h3 id="installing-jenkins-on-ec2-instance">Installing Jenkins on EC2 Instance</h3>
 <p>After successfully starting the instance, I had to install Jenkins on it. I used the steps from the <a href="/setting_up_vms/#installing-jenkins">previous section</a> that I wrote on the same.</p>
 <ul>
-<li>Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on its own and failed to install any plugin. To rectify this issue, I ended up using <a href="https://www.nginx.com/">Nginx</a>, which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">documentation</a>. I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, <code>jenkins-config</code>, whose contents are mentioned below:</li>
+<li>Starting Jenkins after the installation, I encountered an issue that I had not faced when I was running it on my machine locally. The URLs from where Jenkins fetches plugins had a few redirects which it was not able to handle on its own and failed to install any plugin. To rectify this issue, I ended up using <a href="https://www.nginx.com/">Nginx</a>(pronounced as 'Engine-X'), which is a reverse proxy and was able to handle the redirects successfully. To install Nginx, I followed this <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">documentation</a>. I, however, skipped step 5 on 'Setting Up Server Blocks' as it was not needed in the context of the problem statement. Lastly, as part of configuring Nginx, I wrote a config file, <code>jenkins-config</code>, whose contents are mentioned below:</li>
 </ul>
 <pre><code class="nginx">server {
     listen 80;

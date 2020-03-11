@@ -2,7 +2,7 @@
 
 ## Objective
 
-The aim of this section is to set up a _secrets management_ service on the cloud to segregate the app and the associated secrets required for it to function and provide a solution to the 2nd point of the problem statement under `Task 4`.
+The aim of this section is to set up a _secrets management_ service on the cloud to segregate the app and the associated secrets required for it to function and provide a solution to the 2nd point of the [problem statement](/problem_statement) under `Task 4`.
 
 ## Secrets Management
 

@@ -29,3 +29,7 @@
 
 1. Move the setup from the local machine to Cloud (AWS).
 2. Store required secrets separately with a Secrets Management Service.
+
+## Task 5
+
+1. Identify assumptions made while creating the pipeline for DVNA by implementing a similar setup for another application (SuiteCRM).

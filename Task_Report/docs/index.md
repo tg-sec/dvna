@@ -16,4 +16,5 @@ The following is the report/documentation for the problem statement stated below
 * [Final Pipeline Structure](/final_pipeline)
 * [Shifting Local Setup to AWS](/moving_setup_to_aws)
 * [Secrets Management](/secrets_management)
+* [Limitations](/limitations)
 * [Resources](/resources)

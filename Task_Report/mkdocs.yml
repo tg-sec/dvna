@@ -17,6 +17,7 @@ pages:
 - Final Pipeline Structure: 'final_pipeline.md'
 - Shifting Local Setup to AWS: 'moving_setup_to_aws.md'
 - Secrets Management: 'secrets_management.md'
+- Limitations: 'limitations.md'
 - Resources: 'resources.md'
 
 
