@@ -524,6 +524,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
       
       
       
@@ -703,6 +710,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
       
       
       
@@ -725,9 +739,9 @@
 <p>The aim of this section is to create a similar pipeline for SuiteCRM, a different application than DVNA, to identify assumptions made whilst creating the pipeline for DVNA to provide a solution for 1st point of the <a href="/problem_statement">problem statement</a> under <code>Task 5</code>.</p>
 <h2 id="suitecrm">SuiteCRM</h2>
 <p>The application that I chose for the validation of the previously built pipeline was <a href="https://suitecrm.com/">SuiteCRM</a>. It is a Customer Relationship Management tool which is the open-source forked version of <a href="https://www.sugarcrm.com/">SugarCRM</a>. SuiteCRM adds a few additional features to its fork and is free to use.</p>
-<p>I chose the application because of of it being a bigger application than DVNA and it is also an application that is used in the real-world and is not just a dummy application. Another reason was that it is written in PHP and hence, the difference in stack from DVNA also would help identifying assumptions made in the previous pipeline created as the solution to the problem statements.</p>
+<p>I chose the application because of it being a bigger application than DVNA and it is also an application that is used in the real-world and is not just a dummy application. Another reason was that it is written in PHP and hence, the difference in the stack from DVNA also would help to identify assumptions made in the previous pipeline created as the solution to the problem statements.</p>
 <h3 id="configuration">Configuration</h3>
-<p>Before I began setting up tools on the virtual machine, I forked the SuiteCRM GitHub repository on my own account. My fork of SuiteCRM can be found <a href="https://github.com/ayushpriya10/SuiteCRM">here</a>.</p>
+<p>Before I began setting up tools on the virtual machine, I forked the SuiteCRM GitHub repository on my account. My fork of SuiteCRM can be found <a href="https://github.com/ayushpriya10/SuiteCRM">here</a>.</p>
 <p>I also created a new pipeline, named <code>suitecrm-aws-pipeline</code>, following the steps from this report's earlier section on <a href="/setting_up_pipeline/#jenkins-pipeline-project">Setting Up Pipeline</a>.</p>
 <p>Since SuiteCRM is written in PHP, I had to install a few things on the Jenkins EC2 instance. I followed this <a href="https://dzone.com/articles/step-by-step-guide-to-setting-up-a-local-suitecrm">article</a> to perform the necessary configurations for the application. I did, however, skipped all steps related to installing and configuring <code>MariaDB</code> as I already had <code>MySQL Community</code> installed on the system. I also skipped the 10th step as I cloned my fork of the SuiteCRM GitHub repository and did not use the zipped archive to get the source code of the applications. Lastly, I also skipped steps 19 and 20 because I did not need to set up the <code>Cron</code> job as it was not required in the context of the problem statement.</p>
 <ul>
@@ -735,7 +749,7 @@
 <p>Trying to view SuiteCRM from the browser (step 12 from the article) I faced an issue that the packages were not built. This was due to me cloning the repository instead of using the zip archive. Hence, I had to install <code>Composer</code>, the package manager for PHP. I followed the <a href="https://getcomposer.org/doc/00-intro.md">official documentation</a> and performed to required steps to install <code>Composer</code> globally. After a successful installation, I ran <code>composer install</code> in the project's root directory to build the dependencies for SuiteCRM.</p>
 </li>
 <li>
-<p>Since SuiteCRM is a PHP application, I also needed to install a web-server to serve the application. I chose <code>Apache</code> for this as mentioned in the article I was using to set up SuiteCRM. Since, I had previously mapped port 80 to Jenkins' port 8080, I had to change the port Apache would listen on. To do this, I used the command - <code>sudo nano /etc/apache2/ports.conf</code> and made the following changes to make Apache listen on port 9090:</p>
+<p>Since SuiteCRM is a PHP application, I also needed to install a web-server to serve the application. I chose <code>Apache</code> for this as mentioned in the article I was using to set up SuiteCRM. Since I had previously mapped port 80 to Jenkins' port 8080, I had to change the port Apache would listen on. To do this, I used the command - <code>sudo nano /etc/apache2/ports.conf</code> and made the following changes to make Apache listen on port 9090:</p>
 </li>
 </ul>
 <pre><code class="apache2-conf">#Listen 80
@@ -753,12 +767,12 @@ Listen 9090
 <h2 id="sast">SAST</h2>
 <p>The first thing that came to light while creating the pipeline for SuiteCRM was the fact that since it was based on a different tech stack than DVNA, most of the SAST tools I used previously were incompatible with it. The only two tools that worked with both DVNA and SuiteCRM are mentioned below:</p>
 <h3 id="dependency-check"><strong>Dependency Check</strong></h3>
-<p>Since it was already installed I did not need do a fresh installation for Dependency Check. I amended the command to point to the workspace directory of the new pipeline (<code>/{JENKINS HOME DIRECTORY}/workspace/suitecrm-aws-pipeline</code>). I also renamed the output to be called <code>suitecrm-dependency-check-report</code>.</p>
+<p>Since it was already installed I did not need to do a fresh installation for Dependency Check. I amended the command to point to the workspace directory of the new pipeline (<code>/{JENKINS HOME DIRECTORY}/workspace/suitecrm-aws-pipeline</code>). I also renamed the output to be called <code>suitecrm-dependency-check-report</code>.</p>
 <p>The complete report generated by Dependency Check for SuiteCRM can be <a href="">here</a>.</p>
 <h3 id="snyk"><strong>Snyk</strong></h3>
-<p>Like Dependency Checkm, since Snyk was already installed I just created a new script to run Synk from. I amended the script, like Dependency Check,to point to <code>/{JENKINS HOME DIRECTORY}/workspace/suitecrm-aws-pipeline</code> and renamed the output report as <code>suitecrm-snyk-report</code>. The rest of the script remained as it is.</p>
+<p>Like Dependency Check, since Snyk was already installed I just created a new script to run Synk from. I amended the script, like Dependency Check, to point to <code>/{JENKINS HOME DIRECTORY}/workspace/suitecrm-aws-pipeline</code> and renamed the output report as <code>suitecrm-snyk-report</code>. The rest of the script remained as it is.</p>
 <p>The complete report generated by Snyk for SuiteCRM can be <a href="">here</a>.</p>
-<p>Since majority of the previously used SAST tools were not suitable to test a PHP application, I found two new tools built to perform SAST specifically on PHP applications. These applications are mentioned below:</p>
+<p>Since the majority of the previously used SAST tools were not suitable to test a PHP application, I found two new tools built to perform SAST specifically on PHP applications. These applications are mentioned below:</p>
 <h3 id="symfony"><strong>Symfony</strong></h3>
 <p>I followed the <a href="https://github.com/sensiolabs/security-checker">official documentation</a> to download the <code>Symfony CLI</code> executable from this <a href="https://symfony.com/download">link</a> mentioned in the documentation and moved it to <code>/usr/local/bin</code> to be accessible for all users. I used the binary executable as it was more convenient than using <code>Composer</code> to install it as a package. Symfony gave a non-zero status code on identifying issues so I wrote a bash script (<code>suitecrm-symfony.sh</code>) and placed it under <code>tool_scripts/</code> directory.</p>
 <p>The complete report generated by Symfony for SuiteCRM can be <a href="">here</a>.</p>
@@ -774,12 +788,12 @@ echo $?&gt; /dev/null
 <p>I followed the <a href="https://github.com/jvoisin/php-malware-finder">documentation</a> present in the official GitHub repository for PHP Malware Finder (PMF). I first installed <code>Yara</code> with <code>apt</code> and then cloned the repository as instructed in the documentation in the <code>tool_scripts</code> directory. Since PMF did not exited with a non-zero code even after identifying a security issue, I added the scan command <code>/{JENKINS HOME DIRECTORY}/tool_scripts/php-malware-finder/php-malware-finder/phpmalwarefinder $(pwd) &gt; /{JENKINS HOME DIRECTORY}/reports/suitecrm-pmf-report</code> as it is to a stage in the pipeline.</p>
 <p>The complete report generated by PHP Malware Finder for SuiteCRM can be <a href="">here</a>.</p>
 <h2 id="dast">DAST</h2>
-<p>To perform DAST, I had to deploy SuiteCRM on the Jenkins EC2 instance for the tools to perform scans and attack the application. Another limitation that became evident was the fact that removing all application files and <em>cloning</em> a new copy from the source code repository required me to do the configuration for the application through the web-based console even if the database had the relevant entries persisted on the database. I looked around in the changes that happened after doing the initial configuration with the web-based console and found that SuiteCRM creates a new file, <code>config.php</code>, which stored the settings. The solution to this was to retain this configuration file while being able to fetch changes made to the source-code of the application. I thought of two solutions - store this config file locally and copy it after a fresh fetch of the source code or, the simpler solution, pull changes from the repository with a <code>git pull</code>. I chose the latter as it was the simpler solution.</p>
-<p>The next limitation surfaced when I had to use Apache as the web-server as SuiteCRM, unlike DVNA, does not ship with a development server. The problem was that starting and stopping Apache's service on the virtual machine required <code>sudo</code> privileges, that were not granted to the Jenkins system user. I found this <a href="https://serverfault.com/questions/69847/linux-how-to-give-a-user-permission-to-restart-apache">answer</a> on StackOverflow which explained how to grant <em>passwordless</em> <code>sudo</code> privileges for specific executables/scripts. I used this answer as reference to add the Jenkins system user to the <code>sudoers</code> file and grant it <code>sudo</code> privilege to start and stop the Apache web-server. I amended the <code>sudoers</code> file by adding the following line to it under <code>User privilege specification</code>:</p>
+<p>To perform DAST, I had to deploy SuiteCRM on the Jenkins EC2 instance for the tools to perform scans and attack the application. Another limitation that became evident was the fact that removing all application files and <em>cloning</em> a new copy from the source code repository required me to do the configuration for the application through the web-based console even if the database had the relevant entries persisted on the database. I looked around in the changes that happened after doing the initial configuration with the web-based console and found that SuiteCRM creates a new file, <code>config.php</code>, which stored the settings. The solution to this was to retain this configuration file while being able to fetch changes made to the source code of the application. I thought of two solutions - store this config file locally and copy it after a fresh fetch of the source code or, the simpler solution, pull changes from the repository with a <code>git pull</code>. I chose the latter as it was the simpler solution.</p>
+<p>The next limitation surfaced when I had to use Apache as the web-server as SuiteCRM, unlike DVNA, does not ship with a development server. The problem was that starting and stopping Apache's service on the virtual machine required <code>sudo</code> privileges, that were not granted to the Jenkins system user. I found this <a href="https://serverfault.com/questions/69847/linux-how-to-give-a-user-permission-to-restart-apache">answer</a> on StackOverflow which explained how to grant <em>passwordless</em> <code>sudo</code> privileges for specific executables/scripts. I used this answer as a reference to add the Jenkins system user to the <code>sudoers</code> file and grant it <code>sudo</code> privilege to start and stop the Apache web-server. I amended the <code>sudoers</code> file by adding the following line to it under <code>User privilege specification</code>:</p>
 <pre><code class="sudoers">jenkins ALL= NOPASSWD: /etc/init.d/apache2
 </code></pre>
 
-<p>After granting the required privilege to Jenkins system user, I used the following commands to start and stop the Apache web-server:</p>
+<p>After granting the required privilege to the Jenkins system user, I used the following commands to start and stop the Apache web-server:</p>
 <pre><code class="bash"># To start the web-server
 sudo /etc/init.d/apache2 start
 
@@ -787,7 +801,7 @@ sudo /etc/init.d/apache2 start
 sudo /etc/init.d/apache2 stop
 </code></pre>
 
-<p>Since DAST is a black-box testing, where the tool interacts with the application being tested by performing actions like an attacker would, both the previously used tools (OWASP ZAP and W3AF) worked with SuiteCRM without any issues. I used the Jenkins Agent EC2 instance to run the tests like I did previously. The changes I made are mentioned below:</p>
+<p>Since DAST is black-box testing, where the tool interacts with the application being tested by performing actions like an attacker would, both the previously used tools (OWASP ZAP and W3AF) worked with SuiteCRM without any issues. I used the Jenkins Agent EC2 instance to run the tests as I did previously. The changes I made are mentioned below:</p>
 <h3 id="owasp-zap"><strong>OWASP ZAP</strong></h3>
 <p>I wrote an identical script as before and changed the output report's name to <code>suitecrm-zap-report</code>. I added a stage in the pipeline to use this new script to perform DAST on SuiteCRM.</p>
 <p>The complete report generated by OWASP ZAP for SuiteCRM can be <a href="">here</a>.</p>
@@ -818,6 +832,8 @@ mv phpcs.phar /usr/local/bin/phpcs
 import os
 import sys
 
+print('[+] Starting scan with PHP Code Sniffer...')
+
 try:
     BASE_PATH = sys.argv[1]
 
@@ -846,12 +862,12 @@ while paths != []:
 
 print('[+] Scan completed...')
 
-print('[+] Running linter on PHP files...')
+print('[+] Running PHPCS on PHP files...')
 try:
     for php_file in php_files:
         print(f'[+] Scanning {php_file}')
         os.system(f'phpcs {php_file} &gt;&gt; /var/lib/jenkins/reports/suitecrm-phpcs-report')
-    print('[+] All PHP files scanned...')
+    print(f'[+] {len(php_files)} PHP files scanned...')
     print('[+] Code Quality Report generated...')
 
 except KeyboardInterrupt:
@@ -859,13 +875,13 @@ except KeyboardInterrupt:
 </code></pre>
 
 <ul>
-<li>Lastly, I added the a stage in the pipeline to execute the Python script by supplying it the path of the project directory to scan.</li>
+<li>Lastly, I added a stage in the pipeline to execute the Python script by supplying it the path of the project directory to scan.</li>
 </ul>
 <p>The code analysis report generated by PHP Code Sniffer can be found <a href="">here</a>.</p>
 <h3 id="php-mess-detector">PHP Mess Detector</h3>
-<p>PHP Mess Detector is another tool that finds Linting issues in PHP code. It is quite similar to PHPCS in terms of installation but has more customisability by allowing the user to write custom rules for the analysis as well as writing the output to a file in XML, HTML, Text and JSON formats.</p>
+<p>PHP Mess Detector is another tool that finds Linting issues in PHP code. It is quite similar to PHPCS in terms of installation but is more customizable by allowing the user to write custom rules for the analysis as well as writing the output to a file in XML, HTML, Text and JSON formats.</p>
 <ul>
-<li>To start off, I downloaded the <code>phar</code> executable with the below mentioned command, as instructed in the <a href="https://phpmd.org/download/index.html">official documentation</a>:</li>
+<li>To start, I downloaded the <code>phar</code> executable with the below-mentioned command, as instructed in the <a href="https://phpmd.org/download/index.html">official documentation</a>:</li>
 </ul>
 <pre><code class="bash">wget https://phpmd.org/static/latest/phpmd.phar
 </code></pre>
@@ -878,9 +894,57 @@ mv phpmd.phar /usr/local/bin/phpmd
 </code></pre>
 
 <ul>
-<li>Then I tested the tool by executing it against the project directory for SuiteCRM with the below mentioned command, where the output report would be in XML format and the rule-set used would be <code>cleancode</code> that comes along with PHPMD:</li>
+<li>Then I tested the tool by executing it against the project directory for SuiteCRM with the below-mentioned command, where the output report would be in XML format and the rule-set used would be <code>cleancode</code> that comes along with PHPMD:</li>
 </ul>
 <pre><code class="bash">phpmd /path/to/source/ xml cleancode --reportfile /{JENKINS HOME DIRECTORY}/reports/suitecrm-phpmd-report
+</code></pre>
+
+<p><strong>Note</strong>: PHPMD too ran out of memory trying to load all the files at once, so I reused the script I wrote earlier and edited it to execute PHPMD, instead of PHPCS, on individual PHP files present in SuiteCRM. The contents of the script are mentioned below:</p>
+<pre><code class="python">#!/usr/bin/python3
+
+import os
+import sys
+
+print('[+] Starting scan with PHP Mess Detector...')
+
+try:
+    BASE_PATH = sys.argv[1]
+
+except IndexError:
+    print('[-] Path not supplied...')
+    sys.exit(1)
+
+paths = [BASE_PATH]
+php_files = []
+
+print('[+] Scanning directory for PHP files...')
+while paths != []:
+    base_path = paths.pop()
+
+    try:
+        with os.scandir(base_path) as entries:
+            for entry in entries:
+                if entry.is_file():
+                    if entry.name.endswith('.php'):
+                        php_files.append(os.path.join(base_path, entry.name))
+                else:
+                    paths.append(os.path.join(base_path, entry.name))
+
+    except PermissionError:
+        print(f'[-] Could not open {base_path} due to insufficient permission...')
+
+print('[+] Scan completed...')
+
+print('[+] Running PHPMD on PHP files...')
+try:
+    for php_file in php_files:
+        print(f'[+] Scanning {php_file}')
+        os.system(f'phpmd {php_file} xml cleancode &gt;&gt; /var/lib/jenkins/reports/suitecrm-phpmd-report')
+    print(f'[+] {len(php_files)} PHP files scanned...')
+    print('[+] Code Quality Report generated...')
+
+except KeyboardInterrupt:
+    print('[-] Exiting...')
 </code></pre>
 
 <ul>
@@ -906,7 +970,7 @@ mv phpmd.phar /usr/local/bin/phpmd
 </ul>
 <p>The Software Bill of Materials generated by CycloneDX can be found <a href="">here</a>.</p>
 <h2 id="deploying-suitecrm">Deploying SuiteCRM</h2>
-<p>SuiteCRM posed another challenge when it came to deploying it to production. Since, it created a dynamic configuration file (<code>config.php</code>) after the initial installation and using the Docker image would require to go through the set up after each deployment, I chose to use a EC2 instance to deploy SuiteCRM. Also, now that I was using a full-fledged virtual machine, I set up the database for SuiteCRM also on the instance itself. The following are the steps I added to the stage to deploy SuiteCRM to the production EC2 instance:</p>
+<p>SuiteCRM posed another challenge when it came to deploying it to production. Since it created a dynamic configuration file (<code>config.php</code>) after the initial installation and using the Docker image would require to go through the set up after each deployment, I chose to use an EC2 instance to deploy SuiteCRM. Also, now that I was using a full-fledged virtual machine, I set up the database for SuiteCRM on the instance itself. The following are the steps I added to the stage to deploy SuiteCRM to the production EC2 instance:</p>
 <ul>
 <li>First, I copied the dependencies built locally in the Jenkins EC2 instance over to the production instance in a directory <code>suitecrm/</code>.</li>
 </ul>
@@ -950,8 +1014,16 @@ mv phpmd.phar /usr/local/bin/phpmd
 </code></pre>
 
 <ul>
-<li>Lastly, I created a stage in the pipeline to add all the above mentioned steps for deployment.</li>
+<li>Lastly, I created a stage in the pipeline to add all the above-mentioned steps for deployment.</li>
 </ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Recreating the steps from the pipeline for DVNA to create a similar one for SuiteCRM helped in identifying some assumptions that were not apparent at the time when I made them. Most of it came in the form of tools that were specific to a particular tech-stack as I had to find new tools to perform similar functions in the new pipeline for SuiteCRM.</p>
+<p>For SAST, most of the tools I had used for DVNA were incompatible with SuiteCRM as it is written in PHP. I did reuse the few tools that did support multiple languages but also had to find a few new tools to have multiple checks.</p>
+<p>For DAST, there was no need to find new tools primarily because of how DAST tools work. However, a difference in this stage arose when I had to deploy SuiteCRM locally for the DAST tools to run a scan on it. Unlike Nodejs, which has built-in development server, I had to make use of Apache as the web-server to deploy the application.</p>
+<p>For code quality analysis, no previous tools worked as they all were meant to be used with JavaScript applications. Hence, I had to find different tools that performed lint scans for PHP.</p>
+<p>For deploying SuiteCRM, I again had to use Apache as the web-server on the new EC2 instance.</p>
+<p>Another inference came in the form of the size of the reports generated as part of the various scans and analysis stages in the pipeline. DVNA, being a small application, generated minuscule reports when compared to the reports generated for SuiteCRM. Since I had initially allotted 10GB of storage to each EC2 instance I was using for the pipelines, the reports filled the entirety of the available disk space and I had to increase the storage capacity. Also, I had not realized how small DVNA was in terms of application sizes and functionality as the total runtime for the pipeline made for DVNA was about 25 minutes whereas the pipeline for SuiteCRM ran for over 4 hours.</p>
+<p>In conclusion, I realized that each pipeline has its own quirks based on the application the pipeline is built for. Though, this seems like an obvious inference but the realization by actually experiencing it was more a appreciative way.</p>
                 
                   
                 
