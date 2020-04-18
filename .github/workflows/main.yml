@@ -21,10 +21,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #     - uses: actions/checkout@v2
-#     - name: Set up Python 3.x
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: '3.x'
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
     # Runs a single command using the runners shell
 #     - name: Listing directory contents
 #       run: ls -l
@@ -32,7 +32,7 @@ jobs:
 #     Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        pip3 install trufflehog
+        pip install trufflehog
 #        truffleHog -h
 #        whereis trufflehog
 
