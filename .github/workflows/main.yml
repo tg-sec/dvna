@@ -30,6 +30,7 @@ jobs:
     - name: Run a multi-line script
       run: |
         pip3 install trufflehog
+        whereis trufflehog
 #         truffleHog -h
 
 #     - name: trufflehog-actions-scan
