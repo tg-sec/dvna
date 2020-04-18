@@ -37,6 +37,7 @@ jobs:
 #       with:
 #         scanArguments: "--regex --entropy=False"
 #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json"
-    - name:
+    - name: Locating Python
         run: |
-            whereis python3
+          whereis python3
+          echo PYTHONPATH
