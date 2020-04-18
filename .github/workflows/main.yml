@@ -33,7 +33,7 @@ jobs:
     - name: Run a multi-line script
       run: |
         pip install trufflehog
-        truffleHog -h
+#        truffleHog -h
 #        whereis trufflehog
 
 #     - name: trufflehog-actions-scan
@@ -42,8 +42,7 @@ jobs:
 #         scanArguments: "--regex --entropy=False"
 #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json"
 
-#     - name: Locating Python
-#       run: |
-#         whereis python3
-#         whereis trufflehog
-#        echo PYTHONPATH
+    - name: Locating Python
+      run: |
+        whereis python3
+        whereis trufflehog
