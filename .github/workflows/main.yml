@@ -46,4 +46,4 @@ jobs:
       run: |
         whereis python3
         whereis trufflehog
-        trufflehog -h
+        trufflehog --regex --entropy=False https://github.com/ayushpriya10/dvna.git
