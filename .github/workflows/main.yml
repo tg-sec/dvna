@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+#     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
 #     - name: Listing directory contents
@@ -32,9 +32,11 @@ jobs:
 #         pip3 install trufflehog
 #         truffleHog -h
 
-    - name: trufflehog-actions-scan
-      uses: edplato/trufflehog-actions-scan@master
-      with:
-        scanArguments: "--regex --entropy=False"
+#     - name: trufflehog-actions-scan
+#       uses: edplato/trufflehog-actions-scan@master
+#       with:
+#         scanArguments: "--regex --entropy=False"
 #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json"
-
+    - name:
+        run: |
+            whereis python3
