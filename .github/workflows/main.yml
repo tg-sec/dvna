@@ -25,16 +25,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.x'
-    # Runs a single command using the runners shell
-#     - name: Listing directory contents
-#       run: ls -l
 
-#     Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Install TruffleHog on the Runner
       run: |
         pip install trufflehog
-#        truffleHog -h
-#        whereis trufflehog
 
 #     - name: trufflehog-actions-scan
 #       uses: edplato/trufflehog-actions-scan@master
@@ -42,8 +36,5 @@ jobs:
 #         scanArguments: "--regex --entropy=False"
 #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json"
 
-    - name: Locating Python
-      run: |
-        whereis python3
-        whereis trufflehog
-        trufflehog --regex --entropy=False https://github.com/ayushpriya10/dvna.git
+    - name: Running TruffleHog
+      run: trufflehog --regex --entropy=False https://github.com/ayushpriya10/dvna.git
