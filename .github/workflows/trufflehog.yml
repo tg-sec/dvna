@@ -7,8 +7,6 @@ name: Identifying Secrets in the Repository
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,8 +25,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install TruffleHog on the Runner
-      run: |
-        pip install trufflehog
+      run: pip install trufflehog
 
 #     - name: trufflehog-actions-scan
 #       uses: edplato/trufflehog-actions-scan@master
@@ -37,4 +34,7 @@ jobs:
 #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json"
 
     - name: Running TruffleHog
-      run: trufflehog --regex --entropy=False https://github.com/ayushpriya10/dvna.git
+      run: |
+        export URL=https://gist.githubusercontent.com/ayushpriya10/f8164acfae2b69256c56a8a83e532e76/raw/9db61d9d36de522d757bc717784d8351054d4137/trufflehog-signatures
+        curl $URL > rules
+        trufflehog --regex --entropy=False --rules=rules https://github.com/ayushpriya10/dvna.git
