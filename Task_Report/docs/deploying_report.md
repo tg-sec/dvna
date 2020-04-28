@@ -27,6 +27,7 @@ site_name: 'Jenkins Pipeline'
 
 pages:
 - Introduction: 'index.md'
+- Contents: 'intro.md'
 - Problem Statement: 'problem_statement.md'
 - Glossary: 'glossary.md'
 - Setting Up VMs: 'setting_up_vms.md'

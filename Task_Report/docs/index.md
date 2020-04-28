@@ -1,20 +1,7 @@
-# Table of contents
+# Introduction
 
-The following is the report/documentation for the problem statement stated below. The contents of the report are:
+**Project Title:** Managing a DevSecOps Pipeline with Secure Development and Operations
 
-* [Problem Statement](/problem_statement)
-* [Setting Up VMs](/setting_up_vms)
-* [Setting Up Pipeline](/setting_up_pipeline)
-* [Static Analysis](/static_analysis)
-* [Comparing SAST Tools](/comparing_sast_tools)
-* [Configuring Webhook](/configuring_webhook)
-* [Deploying the Report](/deploying_report)
-* [Dynamic Analysis](/dynamic_analysis)
-* [Comparing DAST Tools](/comparing_dast_tools)
-* [Code Quality Analysis](/code_quality_analysis)
-* [Generating Software Bill of Materials](/generating_sbom)
-* [Final Pipeline Structure](/final_pipeline)
-* [Shifting Local Setup to AWS](/moving_setup_to_aws)
-* [Secrets Management](/secrets_management)
-* [Limitations](/limitations)
-* [Resources](/resources)
+**Author:** [Ayush Priya](https://www.linkedin.com/in/ayushpriya10/)
+
+This report was created as part of my internship at [Appsecco](https://appsecco.com/) as a DevSecOps Engineer under the mentorship of [Akash Mahajan](https://twitter.com/makash) and [Sunesh Govindaraj](https://twitter.com/suneshgovind). The report documents the tasks I worked on as part of my internship as well as the solutions I created for them along with various notes on issues I faced and their rectification measures.
