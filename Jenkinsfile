@@ -1,6 +1,11 @@
 pipeline {
     agent any
-    
+   
+
+    environment{
+	JENKINS_HOME = '/var/lib/jenkins'
+	SAST_REPORTS = '/var/lib/jenkins/reports'
+	} 
     stages {
         
         stage ('Initialization') {
@@ -29,26 +34,26 @@ pipeline {
             steps {
                 withSonarQubeEnv ('SonarQube') {
                     sh '${scannerHome}/bin/sonar-scanner'
-        //            sh 'cat .scannerwork/report-task.txt > /var/lib/jenkins/reports/sonarqube-report'
+        //            sh 'cat .scannerwork/report-task.txt > ${SAST_REPORTS}/sonarqube-report'
                 }
             }    
         }
         
         stage ('NPM Audit Analysis') {
             steps {
-                sh '/home/chaos/npm-audit.sh'
+               sh '$/home/test/npm-audit.sh'
             }
         }
         
         stage ('NodeJsScan Analysis') {
             steps {
-                sh 'nodejsscan --directory `pwd` --output /var/lib/jenkins/reports/nodejsscan-report'
+                sh 'nodejsscan --directory `pwd` --output ${SAST_REPORTS}/nodejsscan-report'
             }
         }
         
         stage ('Retire.js Analysis') {
             steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath /var/lib/jenkins/reports/retirejs-report --exitwith 0'
+                sh 'retire --path `pwd` --outputformat json --outputpath ${SAST_REPORTS}/retirejs-report --exitwith 0'
             }
         }
         
