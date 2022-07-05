@@ -42,8 +42,8 @@ pipeline {
             steps {
                sh 'scripts/npm-audit.sh'
             }
-        }*/
-        working on shell but not in Jenkins env
+        }
+*/
         stage ('NodeJsScan Analysis') {
             steps {
                 sh 'scripts/nodejsscan.sh'
