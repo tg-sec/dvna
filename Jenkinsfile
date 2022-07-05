@@ -42,8 +42,8 @@ pipeline {
             steps {
                sh 'scripts/npm-audit.sh'
             }
-        }
-        //working on shell but not in Jenkins env
+        }*/
+        working on shell but not in Jenkins env
         stage ('NodeJsScan Analysis') {
             steps {
                 sh 'scripts/nodejsscan.sh'
@@ -55,7 +55,7 @@ pipeline {
                 sh 'retire --path `pwd` --outputformat json --outputpath ${SAST_REPORTS}/retirejs-report --exitwith 0'
             }
         }
-       */ 
+        
         stage ('Dependency-Check Analysis') {
             steps {
                 sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
