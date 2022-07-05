@@ -43,16 +43,16 @@ pipeline {
                sh 'scripts/npm-audit.sh'
             }
         }
-*/
+
         stage ('NodeJsScan Analysis') {
             steps {
                 sh 'scripts/nodejsscan.sh'
             }
         }
-        
+*/        
         stage ('Retire.js Analysis') {
             steps {
-                sh 'retire --path `pwd` --outputformat json --outputpath ${SAST_REPORTS}/retirejs-report --exitwith 0'
+                sh 'scripts/retirejs_scan.sh'
             }
         }
         
