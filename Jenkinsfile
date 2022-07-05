@@ -3,7 +3,6 @@ pipeline {
    
 
     environment{
-	JENKINS_HOME = '/var/lib/jenkins'
 	SAST_REPORTS = '/var/lib/jenkins/reports'
 	} 
     stages {
@@ -38,13 +37,13 @@ pipeline {
                 }
             }    
         }
-        */
+        
         stage ('NPM Audit Analysis') {
             steps {
                sh 'scripts/npm-audit.sh'
             }
         }
-        
+       */ 
         stage ('NodeJsScan Analysis') {
             steps {
                 sh 'nodejsscan --directory `pwd` --output ${SAST_REPORTS}/nodejsscan-report'
