@@ -46,7 +46,7 @@ pipeline {
        */ 
         stage ('NodeJsScan Analysis') {
             steps {
-                sh 'nodejsscan --directory `pwd` --output ${SAST_REPORTS}/nodejsscan-report'
+                sh '/bin/bash nodejsscan --directory `pwd` --output ${SAST_REPORTS}/nodejsscan-report'
             }
         }
         
