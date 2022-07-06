@@ -58,7 +58,7 @@ pipeline {
 */        
         stage ('Dependency-Check Analysis') {
             steps {
-                sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
+                sh 'scripts/depedancey-scan.sh'
             }
         }
         
