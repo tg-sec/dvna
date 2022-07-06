@@ -25,7 +25,7 @@ pipeline {
                    '''
             }
         }
-      /*  
+/*  
         stage ('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner'
@@ -49,13 +49,13 @@ pipeline {
                 sh 'scripts/nodejsscan.sh'
             }
         }
-*/        
+        
         stage ('Retire.js Analysis') {
             steps {
                 sh 'scripts/retirejs_scan.sh'
             }
         }
-        
+*/        
         stage ('Dependency-Check Analysis') {
             steps {
                 sh '/var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /var/lib/jenkins/reports/dependency-check-report --prettyPrint'
