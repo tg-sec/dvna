@@ -55,16 +55,16 @@ pipeline {
                 sh 'scripts/retirejs_scan.sh'
             }
         }
-*/        
+        
         stage ('Dependency-Check Analysis') {
             steps {
                 sh 'scripts/depedancey-scan.sh'
             }
         }
-        
+*/        
         stage ('Audit.js Analysis') {
             steps {
-                sh '/home/chaos/auditjs.sh'
+                sh 'scripts/auditjs_reports.sh'
             }
         }
               
