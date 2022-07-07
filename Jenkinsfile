@@ -26,7 +26,7 @@ pipeline {
             }
         }
 /*  
-        stage ('SonarQube Analysis') {
+        stage ('SAST-SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner'
             }
@@ -38,42 +38,36 @@ pipeline {
             }    
         }
         
-        stage ('NPM Audit Analysis') {
+        stage ('SCA-NPM Audit Analysis') {
             steps {
                sh 'scripts/npm-audit.sh'
             }
         }
 
-        stage ('NodeJsScan Analysis') {
+        stage ('SAST-NodeJsScan Analysis') {
             steps {
                 sh 'scripts/nodejsscan.sh'
             }
         }
         
-        stage ('Retire.js Analysis') {
+        stage ('SCA-Retire.js Analysis') {
             steps {
                 sh 'scripts/retirejs_scan.sh'
             }
         }
         
-        stage ('Dependency-Check Analysis') {
+        stage ('SCA-Dependency-Check Analysis') {
             steps {
                 sh 'scripts/depedancey-scan.sh'
             }
         }
-*/        
-        stage ('Audit.js Analysis') {
+        
+        stage ('SCA-Audit.js Analysis') {
             steps {
                 sh 'scripts/auditjs_reports.sh'
             }
         }
-              
-        stage ('Snyk Analysis') {
-            steps {
-                sh '/home/chaos/snyk.sh'
-            }
-        }
-                
+*/              
         stage ('Deploy to App Server') {
             steps {
                     sh 'echo "Deploying App to Server"'
